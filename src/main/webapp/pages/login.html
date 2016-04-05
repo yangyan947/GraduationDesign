@@ -14,16 +14,16 @@
         <div class="content">
             <div class="login-box">
                 <span class="tit-text">账户登录</span>
-                <form>
+                <form action="/api/login" method="POST">
                     <div class="input-box">
                         <div class="box-item user">
                             <img src="/static/images/login/user.png"/>
-                            <input type="text" placeholder="账户/邮箱"/>
+                            <input type="text" placeholder="账户/邮箱" name="email"/>
                             <button type="button" class="dele">x</button>
                         </div>
                         <div class="box-item password">
                             <img src="/static/images/login/password.png"/>
-                            <input  type="password"/>
+                            <input  type="password" name="password"/>
                         </div>
                     </div>
                     <button type="submit" class="login-btn">登录</button>

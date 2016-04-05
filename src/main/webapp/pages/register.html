@@ -14,19 +14,19 @@
     <div class="content">
         <div class="login-box register-box">
             <span class="tit-text">账户注册</span>
-            <form>
+            <form action="/api/user" METHOD="post">
                 <div class="input-box">
                     <div class="box-item email">
                         <span>邮箱:</span>
-                        <input type="text" placeholder="请输入邮箱"/>
+                        <input type="text" placeholder="请输入邮箱" name="email"/>
                     </div>
                     <div class="box-item user">
                         <span>账户:</span>
-                        <input type="text" placeholder="请输入账户名称"/>
+                        <input type="text" placeholder="请输入账户名称" name="name"/>
                     </div>
                     <div class="box-item password">
                         <span>密码:</span>
-                        <input  type="password" placeholder="请输入密码"/>
+                        <input  type="password" placeholder="请输入密码" name="password"/>
                     </div>
                 </div>
 

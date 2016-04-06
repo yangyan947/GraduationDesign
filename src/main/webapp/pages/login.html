@@ -18,8 +18,8 @@
                     <div class="input-box">
                         <div class="box-item user">
                             <img src="/static/images/login/user.png"/>
-                            <input type="text" placeholder="账户/邮箱"/>
-                            <button type="button" class="dele">x</button>
+                            <input id="username" type="text" placeholder="账户/邮箱"/>
+                            <button id="dele-btn" type="button" class="dele">x</button>
                         </div>
                         <div class="box-item password">
                             <img src="/static/images/login/password.png"/>
@@ -41,7 +41,27 @@
 
 
     <script type="text/javascript">
+        var username = $("input#username");
+        var dele_btn = $("button#dele-btn");
 
+        username.bind("input propertychange", function() {
+            if(username.val() != "") {
+                dele_btn.show();
+            }
+            else {
+                dele_btn.hide();
+            }
+        })
+        if(username.val() != "") {
+            dele_btn.show();
+            dele_btn.bind("click", function (){
+                username.val("");
+                dele_btn.hide();
+            });
+        }
+        else {
+            dele_btn.hide();
+        }
 
     </script>
 </body>

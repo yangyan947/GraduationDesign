@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 //这个注解代表这是一个mybatis的操作数据库的类
 public interface UserDao extends JpaRepository<User, Long> {
     // 根据username获得一个User类
-    User getByUsername(String username);
+    User getByEmail(String email);
 
     Page<User> findAll(Pageable pageable);
 

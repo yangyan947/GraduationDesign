@@ -26,7 +26,7 @@ public class UserService {
     public Message register(User user) {
         Message message;
         //判断用户是否存在
-        if (userDao.getByUsername(user.getUsername()) == null) {
+        if (userDao.getByEmail(user.getEmail()) == null) {
 //            user.setRole(roleDao.getOne(2L));
             userDao.save(user);
             message = new Message(true, "注册成功");
@@ -41,7 +41,7 @@ public class UserService {
         Message message;
 
         //通过用户名获取用户
-        User dbUser = userDao.getByUsername(user.getUsername());
+        User dbUser = userDao.getByEmail(user.getNickname());
         //若获取失败
         if (dbUser == null) {
             message = new Message(false, "该用户不存在");
@@ -65,7 +65,7 @@ public class UserService {
         Message message;
 
         //通过用户名获取用户
-        User dbUser = userDao.getByUsername(user.getUsername());
+        User dbUser = userDao.getByEmail(user.getNickname());
         //若获取失败
         if (dbUser == null) {
             message = new Message(false, "该用户不存在");

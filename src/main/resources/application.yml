@@ -29,7 +29,7 @@ spring:
 # schema will be automatically updated accordingly to java entities found in
 # the project
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
 # Naming strategy
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
 # Allows Hibernate to generate SQL optimized for a particular DBMS

@@ -14,8 +14,8 @@
 				<form id="register-form" role="form" th:action="@{/register}" th:object="${user}" class="contact-form"
 							method="POST">
 					<div class="form-group">
-						<label for="username">用户名</label>
-						<input type="text" class="form-control" name="username" id="username" placeholder="输入用户名"/>
+						<label for="nickname">用户名</label>
+						<input type="text" class="form-control" name="nickname" id="nickname" placeholder="输入用户名"/>
 					</div>
 					<div class="form-group">
 						<label for="email">邮箱</label>
@@ -70,7 +70,7 @@
 						validating: 'glyphicon glyphicon-refresh'
 					},
 					fields: {
-						username: {
+						nickname: {
 							message: '无效的用户名',
 							validators: {
 								notEmpty: {

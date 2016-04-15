@@ -1,4 +1,5 @@
 <!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +15,7 @@
     <div class="content">
         <div class="login-box register-box">
             <span class="tit-text">账户注册</span>
-            <form action="/api/user" METHOD="post">
+            <form action="/register" METHOD="post" th:object="${user}">
                 <div class="input-box">
                     <div class="box-item email">
                         <span>邮箱:</span>
@@ -22,14 +23,14 @@
                     </div>
                     <div class="box-item user">
                         <span>昵称:</span>
-                        <input type="text" placeholder="请输入用户昵称" name="name"/>
+                        <input type="text" placeholder="请输入用户昵称" name="nickname"/>
                     </div>
                     <div class="box-item sex">
                         <span>性别:</span>
                         <label>
-                            <input class="sex" type="checkbox" name="sex"/>男
-                            <input class="sex" type="checkbox" name="sex"/>女
-                            <input class="sex" type="checkbox" name="sex"/>保密
+                            <input class="sex" type="radio" name="sex" value="1"/>男
+                            <input class="sex" type="radio" name="sex" value="0"/>女
+                            <input class="sex" type="radio" name="sex" value="2"/>保密
                         </label>
                     </div>
                     <div class="box-item phone">

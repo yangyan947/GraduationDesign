@@ -1,14 +1,14 @@
 /*
 Error: File to import not found or unreadable: compass/reset.
        Load path: F:/Work/tianm-boot/src/main/webapp/static/css/sass
-        on line 1 of css/sass/layout.scss
-        from line 1 of css/sass/index.scss
+        on line 1 of sass/layout.scss
+        from line 1 of sass/index.scss
 
 1: @import "layout";
 
 Backtrace:
-css/sass/layout.scss:1
-css/sass/index.scss:1
+sass/layout.scss:1
+sass/index.scss:1
 C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/tree/import_node.rb:67:in `rescue in import'
 C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/tree/import_node.rb:45:in `import'
 C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/tree/import_node.rb:28:in `imported_file'
@@ -65,4 +65,4 @@ C:/Ruby22-x64/bin/sass:23:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: File to import not found or unreadable: compass/reset.\A        Load path: F:/Work/tianm-boot/src/main/webapp/static/css/sass\A         on line 1 of css/sass/layout.scss\A         from line 1 of css/sass/index.scss\A \A 1: @import \"layout\";"; }
+  content: "Error: File to import not found or unreadable: compass/reset.\A        Load path: F:/Work/tianm-boot/src/main/webapp/static/css/sass\A         on line 1 of sass/layout.scss\A         from line 1 of sass/index.scss\A \A 1: @import \"layout\";"; }

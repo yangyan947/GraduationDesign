@@ -1,6 +1,6 @@
 /*
 Error: Invalid GBK character "\xE5"
-        on line 30 of css/sass/login.scss
+        on line 30 of sass/login.scss
 
 25:       right: 60px;
 26:       top: 120px;
@@ -15,7 +15,7 @@ Error: Invalid GBK character "\xE5"
 35:         color: #3c3c3c;
 
 Backtrace:
-css/sass/login.scss:30
+sass/login.scss:30
 C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/util.rb:1299:in `rescue in block in find_encoding_error'
 C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/util.rb:1296:in `block in find_encoding_error'
 C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/util.rb:1295:in `each'
@@ -44,4 +44,4 @@ C:/Ruby22-x64/bin/sass:23:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Invalid GBK character \"\xE5\"\A         on line 30 of css/sass/login.scss\A \A 25:       right: 60px;\A 26:       top: 120px;\A 27:       width: 350px;\A 28:       padding: 25px 25px 40px;\A 29:       color: #6c6c6c;\A 30:       font-family: 微软雅黑;\A 31:       background-color: rgba(255, 255, 255, 0.9);\A 32: \A 33:       span.tit-text {\A 34:         display: block;\A 35:         color: #3c3c3c;"; }
+  content: "Error: Invalid GBK character \"\xE5\"\A         on line 30 of sass/login.scss\A \A 25:       right: 60px;\A 26:       top: 120px;\A 27:       width: 350px;\A 28:       padding: 25px 25px 40px;\A 29:       color: #6c6c6c;\A 30:       font-family: 微软雅黑;\A 31:       background-color: rgba(255, 255, 255, 0.9);\A 32: \A 33:       span.tit-text {\A 34:         display: block;\A 35:         color: #3c3c3c;"; }

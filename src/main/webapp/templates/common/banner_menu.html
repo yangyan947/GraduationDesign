@@ -1,0 +1,27 @@
+<div class="container_wapper clearfix" th:fragment="banner_menu">
+	<div id="templatemo_banner_menu">
+		<div class="container-fluid">
+			<div class="col-xs-4 templatemo_logo">
+				<a rel="nofollow" href="/">
+					<img src="../static/images/templatemo_logo.jpg" id="logo_img" alt="dragonfruit free html5 template"/>
+					<h1 id="logo_text">人人贷<span style="font-size: medium" th:if="${session.user}"
+																			th:text="'欢迎：' + ${session.user.getUsername()}"></span></h1>
+				</a>
+			</div>
+			<div class="col-sm-8 hidden-xs" id="templatemo_menu">
+				<ul class="nav nav-justified">
+					<li><a th:href="@{/}">首页</a></li>
+					<li><a th:href="@{/project}">项目</a></li>
+					<li th:if="${session.user==null}"><a class="otherLink" th:href="@{/register}">注册</a></li>
+					<li th:if="${session.user!=null}"><a class="otherLink" th:href="@{/userCenter}">用户</a></li>
+					<li th:if="${session.user==null}"><a class="otherLink" th:href="@{/login}">登录</a></li>
+					<li th:unless="${session.user==null}"><a class="otherLink" th:href="@{/addProject}">发布</a></li>
+					<li th:unless="${session.user==null}"><a class="otherLink" th:href="@{/loginOut}">退出</a></li>
+				</ul>
+			</div>
+			<div class="col-xs-8 visible-xs">
+				<a href="#" id="mobile_menu"><span class="glyphicon glyphicon-th-list"></span></a>
+			</div>
+		</div>
+	</div>
+</div>

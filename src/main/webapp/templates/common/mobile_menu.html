@@ -1,0 +1,12 @@
+<div id="templatemo_mobile_menu" th:fragment="mobile_menu">
+	<ul class="nav nav-pills nav-stacked">
+		<li><a href="#templatemo_banner_slide">首页</a></li>
+		<!--<li><a href="#templatemo_timeline">Timeline</a></li>-->
+		<li class="otherLink" th:if="${session.user==null}"><a th:href="@{/register}">注册</a></li>
+		<li class="otherLink" th:if="${session.user!=null}"><a th:href="@{/userCenter}">用户</a></li>
+		<li class="otherLink" th:if="${session.user==null}"><a th:href="@{/login}">登录</a></li>
+		<li class="otherLink" th:unless="${session.user==null}"><a th:href="@{/addProject}">发布</a></li>
+		<li class="otherLink" th:unless="${session.user==null}"><a th:href="@{/loginOut}">退出</a></li>
+		<li th:if="${session.user}"><span th:text="'欢迎：' + ${session.user.getUsername()}"></span></li>
+	</ul>
+</div>

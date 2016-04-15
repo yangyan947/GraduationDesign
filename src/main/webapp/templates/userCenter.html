@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head th:include="common/header :: header(title = '用户信息')"></head>
+<body>
+<div id="templatemo_mobile_menu" th:include="common/mobile_menu :: mobile_menu"></div>
+<div class="container_wapper clearfix" th:include="common/banner_menu :: banner_menu"></div>
+<div style="height: 94px;"></div>
+<div id="templatemo_about" class="container_wapper text-center">
+	<div class="container-fluid text-center">
+		<div class="col-sm-3 col-md-8 col-lg-12 about_icon text-center">
+
+			<ul class="list-group">
+				<li class="list-group-item">用户名：<span th:text="${user.getUsername()}"></span></li>
+				<li class="list-group-item">邮箱：<span th:text="${user.getEmail()}"></span></li>
+				<li class="list-group-item">电话：<span th:text="${user.getPhone()}"></span></li>
+				<li class="list-group-item">性别：<span th:text="${user.getSex()}"></span></li>
+				<li class="list-group-item">用户组别：<span th:text="${user.getRole().getRoleName()}"></span></li>
+				<li class="list-group-item">用户发布：
+					<div th:each="project : ${user.getOwnProjects()}">
+						<a th:text="${project.getProjectName()}" th:href="'/project/' + ${project.getId()}"></a>
+					</div>
+				</li>
+				<li class="list-group-item">参与的项目：
+					<div th:each="Join_log : ${user.getJoin_logs()}">
+						<a th:text="${Join_log.getProject().getProjectName()}" th:href="'/project/' + ${Join_log.getProject().getId()}"></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="clearfix testimonial_top_bottom_spacer"></div>
+	</div>
+</div><!--templatemo_about-->
+
+<div id="templatemo_footer" th:include="common/footer :: footer"></div>
+</body>
+</html>

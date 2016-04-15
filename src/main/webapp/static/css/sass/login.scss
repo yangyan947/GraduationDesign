@@ -1,0 +1,150 @@
+@import "layout";
+
+div.container {
+  width: 100%;
+
+  div.header {
+    width: 100%;
+    height: 88px;
+    padding: 20px 30px;
+
+    img {
+      width: 120px;
+      height: 50px;
+    }
+  }
+
+  div.content {
+    width: 100%;
+    height: 600px;
+    position: relative;
+    background: url("../../images/login/login_backg.jpg") no-repeat center center;
+
+    div.login-box {
+      position: absolute;
+      right: 60px;
+      top: 120px;
+      width: 350px;
+      padding: 25px 25px 40px;
+      color: #6c6c6c;
+      font-family: 微软雅黑;
+      background-color: rgba(255, 255, 255, 0.9);
+
+      span.tit-text {
+        display: block;
+        color: #3c3c3c;
+        font-size: 16px;
+        font-weight: 700;
+        height: 22px;
+        line-height: 22px;
+        margin-top: 9px;
+        padding-bottom: 8px;
+      }
+
+      div.input-box {
+        width: 100%;
+
+        div.box-item {
+          margin-top: 20px;
+          width: 100%;
+          height: 42px;
+          position: relative;
+
+          img {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+          }
+
+          input {
+            font-size: 14px;
+            height: 40px;
+            line-height: 18px;
+            padding: 11px 27px 11px 50px;
+            border: 1px solid #ddd;
+            width: 100%;
+          }
+
+          button.dele {
+            background-color: #6c6c6c;
+            border: medium none #6c6c6c;
+            color: #fff;
+            font-size: 12px;
+            height: 17px;
+            position: absolute;
+            right: 8px;
+            top: 12px;
+            width: 17px;
+            cursor: pointer;
+            @include border-radius(10px);
+          }
+        }
+      }
+
+      button.login-btn {
+        background: #f40 none repeat scroll 0 0;
+        border: 0 none;
+        border-radius: 3px;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 18px;
+        font-weight: 700;
+        height: 42px;
+        line-height: 42px;
+        overflow: hidden;
+        vertical-align: middle;
+        width: 300px;
+        margin: 20px 0;
+        letter-spacing: 20px;
+      }
+
+      a.register-link {
+        color: #6c6c6c;
+        text-decoration: none;
+        :hover {
+          color: #f40;
+        }
+        span.register {
+          display: block;
+          font-size: 12px;
+          line-height: 14px;
+          float: right;
+        }
+      }
+
+    }
+
+    div.register-box {
+
+      div.input-box {
+
+        div.box-item {
+
+          span {
+            font-size: 13px;
+            line-height: 40px;
+          }
+
+          input {
+            padding: 11px 27px 11px 11px;
+            width: 255px;
+            position: absolute;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  div.footer {
+    text-align: center;
+    margin: 30px auto;
+
+    span {
+      display: block;
+      color: #9c9c9c;
+      font-size: 12px;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head th:include="common/header :: header(title = '项目列表')"></head>
+<body>
+<div id="templatemo_mobile_menu" th:include="common/mobile_menu :: mobile_menu"></div>
+<div class="container_wapper clearfix" th:include="common/banner_menu :: banner_menu"></div>
+
+<div style="height: 94px;"></div>
+<div id="templatemo_about" class="container_wapper text-center">
+	<div class="container-fluid text-center">
+		<div class="col-sm-3 col-md-8 col-lg-12 about_icon text-center">
+			<div class="services form text-center" style="display: block">
+				<ul class="list-group" th:each="project : ${projects}">
+					<li class="list-group-item">
+						<a th:href="'/project/' + ${project.getId()}" th:text="${project.getProjectName()}"></a>
+						<img  th:src="${project.getImgUrl()}"  th:alt="${project.getProjectName()}" style="width: 200px;height: 150px;">
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="clearfix testimonial_top_bottom_spacer"></div>
+	</div>
+</div><!--templatemo_about-->
+
+<div id="templatemo_footer" th:include="common/footer :: footer"></div>
+
+</body>
+</html>

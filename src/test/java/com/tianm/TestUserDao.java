@@ -10,15 +10,16 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by SunYi on 2016/3/25/0025.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(TianmApplication.class)
-//@Transactional
+@Transactional
 @PropertySource("classpath:application.properties")
-@Rollback(value = false)
+@Rollback(value = true)
 public class TestUserDao {
     @Autowired UserRepository userRepository;
     @Test
@@ -27,9 +28,9 @@ public class TestUserDao {
         user.setEmail("123");
         user.setName("123");
         user.setPassword("123");
-        user.setId(1L);
+//        user.setId(1L);
         userRepository.save(user);
-        User user1 = userRepository.getOne(1L);
+        User user1 = userRepository.findById(1L);
         System.out.println(user1.getName());
         Assert.assertEquals(user1.getName(), user.getName());
     }

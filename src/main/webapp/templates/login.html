@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head th:include="common/header :: header(title = '登陆')"></head>
+<body>
+<div id="templatemo_mobile_menu" th:include="common/mobile_menu :: mobile_menu"></div>
+<div class="container_wapper clearfix" th:include="common/banner_menu :: banner_menu"></div>
+
+<div style="height: 94px;"></div>
+<div id="templatemo_about" class="container_wapper text-center">
+	<div class="container-fluid text-center">
+		<div class="col-sm-3 col-md-8 col-lg-12 about_icon text-center">
+			<div class="services form text-center" style="display: block">
+				<h1>欢迎登陆</h1>
+				<form role="form" id="login-form" th:action="@{/login}" th:object="${user}" class="contact-form" method="POST">
+					<div class="form-group">
+						<label for="username">用户名</label>
+						<input type="text" id="username" name="username" placeholder="输入用户名">
+					</div>
+					<div class="form-group">
+						<label for="password">密码</label>
+						<input type="password" id="password" name="password" placeholder="输入密码">
+					</div>
+					<div class="form-group">
+						<input type="submit" class="button" value="登陆">
+					</div>
+					<div class="form-group">
+						<h2 id="message" th:if="${result}" th:text="${result}"></h2>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="clearfix testimonial_top_bottom_spacer"></div>
+	</div>
+</div><!--templatemo_about-->
+
+<div id="templatemo_footer" th:include="common/footer :: footer"></div>
+<script src="../static/js/bootstrapValidator.js"></script>
+<script>
+	jQuery(document).ready(function () {
+		$ = jQuery;
+		$('#login-form')
+				.bootstrapValidator({
+					message: '这个值无效',
+					//live: 'submitted',
+					feedbackIcons: {
+						valid: 'glyphicon glyphicon-ok',
+						invalid: 'glyphicon glyphicon-remove',
+						validating: 'glyphicon glyphicon-refresh'
+					},
+					fields: {
+						username: {
+							message: '无效的用户名',
+							validators: {
+								notEmpty: {
+									message: '用户名不能为空'
+								},
+								stringLength: {
+									min: 5,
+									max: 30,
+									message: '用户名长度大于5小于30'
+								},
+								/*remote: {
+								 url: 'remote.php',
+								 message: 'The username is not available'
+								 },*/
+								regexp: {
+									regexp: /^[a-zA-Z0-9_\.]+$/,
+									message: '用户名只能为英文字符数组或者下划线'
+								}
+							}
+						},
+						password: {
+							validators: {
+								notEmpty: {
+									message: '密码不能为空'
+								},
+								stringLength: {
+									min: 5,
+									max: 30,
+									message: '密码长度大于5小于30'
+								}
+							}
+						}
+					}
+				})
+				.on('success.form.bv', function (e) {
+
+				});
+	});
+</script>
+</body>
+</html>

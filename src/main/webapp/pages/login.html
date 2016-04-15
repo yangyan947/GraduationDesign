@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/stylesheets/login.css" />
+    <script type="text/javascript" src="/static/javascript/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="/static/images/login/header.jpg">
+        </div>
+        <div class="content">
+            <div class="login-box">
+                <span class="tit-text">账户登录</span>
+                <form action="/api/login" method="POST">
+                    <div class="input-box">
+                        <div class="box-item user">
+                            <img src="/static/images/login/user.png"/>
+                            <input type="text" placeholder="账户/邮箱" name="email"/>
+                            <button type="button" class="dele">x</button>
+                        </div>
+                        <div class="box-item password">
+                            <img src="/static/images/login/password.png"/>
+                            <input  type="password" name="password"/>
+                        </div>
+                    </div>
+                    <button type="submit" class="login-btn">登录</button>
+                </form>
+                <a href="register.html" class="register-link">
+                    <span class="register">免费注册</span>
+                </a>
+            </div>
+        </div>
+        <div class="footer">
+            <span>© 2016 Taobao.com 版权所有</span>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+
+
+    </script>
+</body>
+</html>

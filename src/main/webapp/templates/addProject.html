@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head th:include="common/header :: header(title = '添加项目')"></head>
+<body>
+<div id="templatemo_mobile_menu" th:include="common/mobile_menu :: mobile_menu"></div>
+<div class="container_wapper clearfix" th:include="common/banner_menu :: banner_menu"></div>
+<div style="height: 100px;"></div>
+
+<div id="templatemo_about" class="container_wapper text-center">
+	<div class="container-fluid text-center">
+		<div class="col-sm-3 col-md-8 col-lg-12 about_icon text-center">
+			<h1>发布</h1>
+
+			<form class="contact-form" th:action="@{/addProject}" th:object="${project}" method="post"
+						enctype="multipart/form-data">
+				<div class="form-group">
+					<label for="projectName">项目名:</label>
+					<input type="text" name="projectName" id="projectName"/>
+				</div>
+				<div class="form-group clearfix">
+					<label for="context">内容:</label>
+					<textarea  name="context" id="context"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="price">初始资金:</label>
+					<input type="number" min="0" max="10000" name="price" id="price"/>
+				</div>
+				<div class="form-group input-group">
+					<label class="btn btn-default btn-file" for="fileName">
+						封面: <input type="file" name="img" id="img" class="file">
+					</label>
+					<input type="text" id="fileName" readonly="readonly"/>
+				</div>
+				<div class="form-group">
+					<input type="submit" value="提交">
+				</div>
+			</form>
+		</div>
+		<div class="clearfix testimonial_top_bottom_spacer"></div>
+	</div>
+</div><!--templatemo_about-->
+
+<div id="templatemo_footer" th:include="common/footer :: footer"></div>
+<script>
+	jQuery(document).on('change', '.btn-file :file', function () {
+		$ = jQuery;
+		var input = $(this),
+				numFiles = input.get(0).files ? input.get(0).files.length : 1,
+				label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+		input.trigger('fileselect', [numFiles, label]);
+		$('#fileName').val(input.val());
+	});
+</script>
+</body>
+</html>

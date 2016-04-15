@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head th:include="common/header :: header(title = '用户信息')"></head>
+<body>
+<div id="templatemo_mobile_menu" th:include="common/mobile_menu :: mobile_menu"></div>
+<div class="container_wapper clearfix" th:include="common/banner_menu :: banner_menu"></div>
+<div style="height: 94px;"></div>
+<div id="templatemo_about" class="container_wapper text-center">
+	<div class="container-fluid text-center">
+		<div class="col-sm-3 col-md-8 col-lg-12 about_icon text-center">
+
+			<ul class="list-group">
+				<li class="list-group-item">项目名: <span th:text="${project.getProjectName()}"></span></li>
+				<li class="list-group-item">内容： <span th:text="${project.getContext()}"></span></li>
+				<li class="list-group-item">当前资金： <span th:text="${project.getPrice()}"></span></li>
+
+				<li class="list-group-item">图片：<img th:src="${project.getImgUrl()}" alt=""
+																						style="width: 400px; height: 200px;"></li>
+				<li class="list-group-item">发起人： <span th:text="${project.getOwnUser().getUsername()}"></span></li>
+				<li class="list-group-item">joinUsers <span></span></li>
+				<li class="list-group-item">comments <span></span></li>
+				<li class="list-group-item">
+					<div th:if="${session.user}">
+						<form th:if="${session.user.getUsername() != project.getOwnUser().getUsername()}" action="/joinProject"
+									method="POST" class="contact-form">
+							<div class="form-group clearfix">
+								<label for="money">投资金额:</label>
+								<input type="number" min="0" max="10000" name="money" id="money"/>
+								<input type="text" name="projectId" id="projectId" th:value="${project.getId()}"
+											 style="display: none"/>
+								<input type="submit" class="button right" value="提交">
+							</div>
+						</form>
+					</div>
+				</li>
+				<li class="list-group-item">
+					<ul>
+						<h3>交易记录</h3>
+						<li th:each="log : ${join_logs}">
+							<i>用户名：</i>
+							<span th:text="${log.getUser().getUsername()}"></span>
+							<i>金额：</i>
+							<span th:text="${log.getMoney()}"></span>
+							<i>时间：</i>
+							<span th:text="${log.getCreateTime()}"></span>
+						</li>
+					</ul>
+				</li>
+				<div th:unless="${session.user}">
+					<p>要加入请先 <a href="/login">登录</a></p>
+				</div>
+			</ul>
+		</div>
+		<div class="clearfix testimonial_top_bottom_spacer"></div>
+	</div>
+</div><!--templatemo_about-->
+<div id="templatemo_footer" th:include="common/footer :: footer"></div>
+</body>
+</html>

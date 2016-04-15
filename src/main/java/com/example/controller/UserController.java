@@ -14,7 +14,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  * Created by SunYi on 2016/2/1/0001.
@@ -28,21 +27,26 @@ public class UserController {
 
     //跳转链接，跳转到主页xx
     @RequestMapping("/")
-    public String index(Model model,
+    public RedirectView index(Model model,
                         HttpServletResponse response) {
         //对应到templates文件夹下面的index
-        return "index";
+        return new RedirectView("/index", true, false, true);
     }
 
     //真正主页，用户在访问 XXXXX/index就会跳转该方法，
     // 这个XXXXX是你的域名，自己电脑上的话一般都是127.0.0.1:8080或者是localhost：8080
     // 8080是端口号，端口号根据tomcat设置而改变，默认值是8080
     @RequestMapping("/index")
-    public String home(Model model, @RequestParam(value = "result", defaultValue = "欢迎！") String result) {
+    public String home(Model model, @RequestParam(value = "result", defaultValue = "欢迎！") String result, HttpSession session) {
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("result", "请先登录");
+            return "pages/login";
+        }
         //对应到templates文件夹下面的index
         if (result != null) {
             model.addAttribute("result", result);
         }
+
         return "index";
     }
 
@@ -110,41 +114,41 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public RedirectView user(Model model,
-                             @ModelAttribute(value = "user") User user,
-                             @RequestParam(value = "sex") String sex,
-                             HttpSession session) {
-        if (sex.equals("male")) {
-            user.setSex(1);
-        }
-        Message result = userService.save(user);
+//    @RequestMapping(value = "/user", method = RequestMethod.POST)
+//    public RedirectView user(Model model,
+//                             @ModelAttribute(value = "user") User user,
+//                             @RequestParam(value = "sex") String sex,
+//                             HttpSession session) {
+//        if (sex.equals("male")) {
+//            user.setSex(1);
+//        }
+//        Message result = userService.save(user);
+//
+//        model.addAttribute("result", result.getReason());
+//        if (result.isSuccess()) {
+//            //添加到session中，session是一次会话，在本次会话中都可以取到session中的值
+//            //若是session中有用户存在则会覆盖原来的user，当session中的user存在时判定用户存在
+//            session.setAttribute("user", result.getOthers());
+//            return new RedirectView("/index", true, false, true);
+//        } else {
+//            return new RedirectView("/login", true, false, true);
+//        }
+//    }
 
-        model.addAttribute("result", result.getReason());
-        if (result.isSuccess()) {
-            //添加到session中，session是一次会话，在本次会话中都可以取到session中的值
-            //若是session中有用户存在则会覆盖原来的user，当session中的user存在时判定用户存在
-            session.setAttribute("user", result.getOthers());
-            return new RedirectView("/index", true, false, true);
-        } else {
-            return new RedirectView("/login", true, false, true);
-        }
-    }
-
-    @RequestMapping(value = "/userList", method = RequestMethod.GET)
-    public RedirectView user(Model model,
-                             @RequestParam(value = "page", defaultValue = "1") int pageNumber,
-                             HttpSession session) {
-
-        List<User> users = userService.getAllUser(pageNumber);
-
-        if (users != null) {
-            //添加到session中，session是一次会话，在本次会话中都可以取到session中的值
-            //若是session中有用户存在则会覆盖原来的user，当session中的user存在时判定用户存在
-            model.addAttribute("userList", users);
-            return new RedirectView("/userList", true, false, true);
-        }
-        model.addAttribute("result", "无结果");
-        return new RedirectView("/userList", true, false, true);
-    }
+//    @RequestMapping(value = "/userList", method = RequestMethod.GET)
+//    public RedirectView user(Model model,
+//                             @RequestParam(value = "page", defaultValue = "1") int pageNumber,
+//                             HttpSession session) {
+//
+//        List<User> users = userService.getAllUser(pageNumber);
+//
+//        if (users != null) {
+//            //添加到session中，session是一次会话，在本次会话中都可以取到session中的值
+//            //若是session中有用户存在则会覆盖原来的user，当session中的user存在时判定用户存在
+//            model.addAttribute("userList", users);
+//            return new RedirectView("/userList", true, false, true);
+//        }
+//        model.addAttribute("result", "无结果");
+//        return new RedirectView("/userList", true, false, true);
+//    }
 }

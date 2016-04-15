@@ -4,11 +4,7 @@ import com.example.dao.UserDao;
 import com.example.domain.User;
 import com.example.service.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * Created by SunYi on 2016/2/1/0001.
@@ -41,7 +37,7 @@ public class UserService {
         Message message;
 
         //通过用户名获取用户
-        User dbUser = userDao.getByEmail(user.getNickname());
+        User dbUser = userDao.getByEmail(user.getEmail());
         //若获取失败
         if (dbUser == null) {
             message = new Message(false, "该用户不存在");
@@ -61,39 +57,39 @@ public class UserService {
     }
 
     //用户信息修改
-    public Message save(User user) {
-        Message message;
+//    public Message save(User user) {
+//        Message message;
+//
+//        //通过用户名获取用户
+//        User dbUser = userDao.getByEmail(user.getNickname());
+//        //若获取失败
+//        if (dbUser == null) {
+//            message = new Message(false, "该用户不存在");
+//        } else {
+//            user.setId(dbUser.getId());
+//            user =  userDao.save(user);
+//            message = new Message(true, "修改成功");
+//            message.setOthers(user);
+//        }
+//        return message;
+//
+//    }
 
-        //通过用户名获取用户
-        User dbUser = userDao.getByEmail(user.getNickname());
-        //若获取失败
-        if (dbUser == null) {
-            message = new Message(false, "该用户不存在");
-        } else {
-            user.setId(dbUser.getId());
-            user =  userDao.save(user);
-            message = new Message(true, "修改成功");
-            message.setOthers(user);
-        }
-        return message;
-
-    }
-
-    public User getOne(Long id) {
-        return userDao.findOne(id);
-    }
+//    public User getOne(Long id) {
+//        return userDao.findOne(id);
+//    }
 //    public Message GetUserOwnProject(User user) {
 //        Message message ;
 //        user.getOwnProjects()
 //        return message;
 //    }
 
-    public List<User> getAllUser() {
-        return userDao.findAll();
-    }
-
-    public List<User> getAllUser(int index) {
-        Pageable pageable = new PageRequest(index-1, PAGE_SIZE);
-        return  userDao.findAll(pageable).getContent();
-    }
+//    public List<User> getAllUser() {
+//        return userDao.findAll();
+//    }
+//
+//    public List<User> getAllUser(int index) {
+//        Pageable pageable = new PageRequest(index-1, PAGE_SIZE);
+//        return  userDao.findAll(pageable).getContent();
+//    }
 }

@@ -1,19 +1,96 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>主页</title>
-	<link rel="stylesheet" type="text/css" href="static/css/stylesheets/index.css" />
-	<script type="text/javascript" src="../static/javascript/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/static/css/resources/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/static/css/stylesheets/index.css"/>
+	<script type="text/javascript" src="/static/js/resources/jquery.min.js"></script>
+	<script src="/static/js/resources/bootstrap.min.js"></script>
+	<script src="/static/js/resources/bootstrapValidator.js"></script>
 </head>
 <body>
 
-	<a href="/login" id="aaa">登录</a>
-	<a href="/register">注册</a>
-	<a href="/loginOut">退出登录</a>
+<div class="nav">
+	<div class="nav-box">
+		<div class=".col-md-2 logo"></div>
+		<div class=".col-md-4 search"></div>
+		<div class=".col-md-6 nav-item"></div>
+	</div>
+</div>
 
-	<p th:text="${result}"></p>
+<div class="container-box">
+	<div class="col-md-8 cont-left">
+
+		<!--富文本部分-->
+		<div class="editor">
+			<div class="text-editor"></div>
+			<button class="publish">发布</button>
+		</div>
+
+		<!--已关注人状态-->
+		<div class="fri-news" style="width:100%;height:2000px;background:#999">
+			<div class="news-item">
+				<div class="item-top">
+					<img src="" alt="" class="user-head" />
+					<span class="user-name">AAA</span>
+					<span class="create-time">2016-4-16</span>
+					<pre class="text">asdfasdfasdfasdfasdfasdfasdfasfssaf</pre>
+					<div class="images">
+						<img src="" alt="" class="cont-images" />
+					</div>
+				</div>
+				<div class="item-botm">
+					<button type="button" class="comment">评论</button>
+					<button type="button" class="good">点赞</button>
+					<button type="button" class="report">举报</button>
+				</div>
+				<div class="comment-list">
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4 cont-rit">
+		<!--部分个人信息-->
+		<div class="personal">
+			<img src="" alt="" class="background-img">
+			<img src="" alt="" class="user-head">
+			<span class="user-name"></span>
+			<div class="info">
+				<div class="item">
+					<span class="num">112</span>
+					<span class="text">关注</span>
+				</div>
+				<div class="item">
+					<span class="num">234</span>
+					<span class="text">粉丝</span>
+				</div>
+				<div class="item">
+					<span class="num">96</span>
+					<span class="text">微博</span>
+				</div>
+			</div>
+		</div>
+
+		<!--公告栏-->
+		<div class="notice" style="width:100%;height:2000px;background:#999">
+			<span class="head">公告栏</span>
+			<a href="">
+				<span class="tit">第一条公告栏标题</span>
+			</a>
+		</div>
+	</div>
+</div>
+
+
+
+<a href="/login" id="aaa">登录</a>
+<a href="/register">注册</a>
+<a href="/loginOut">退出登录</a>
+<p th:text="${result}"></p>
+
 <script type="text/javascript">
 	var aaa = $("#aaa");
 

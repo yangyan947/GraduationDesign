@@ -1,16 +1,16 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>注册</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/stylesheets/login.css" />
-    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
-    <script type="text/javascript" src="/static/javascript/jquery.min.js"></script>
-    <script src="/static/js/bootstrapValidator.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/resources/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/stylesheets/login.css"/>
+    <script type="text/javascript" src="/static/js/resources/jquery.min.js"></script>
+    <script src="/static/js/resources/bootstrap.min.js"></script>
+    <script src="/static/js/resources/bootstrapValidator.js"></script>
 </head>
 <body>
-<div class="container">
+<div class="container-box">
     <div class="header">
         <img src="/static/images/login/logo.png">
         <span class="logo-txt">SC Blog</span>
@@ -18,41 +18,49 @@
     <div class="content">
         <div class="login-box register-box">
             <span class="tit-text">账户注册</span>
-            <form id="register-form" action="/register" METHOD="post" th:object="${user}">
+
+            <form id="register-form" class="form-horizontal" action="/register" METHOD="post" th:object="${user}">
                 <div class="input-box">
-                    <div class="box-item email">
-                        <span>邮箱:</span>
-                        <input class="text" type="text" placeholder="请输入邮箱" name="email"/>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="请输入邮箱" name="email"/>
+                        </div>
                     </div>
-                    <div class="box-item user">
-                        <span>昵称:</span>
-                        <input class="text" type="text" placeholder="请输入用户昵称" name="nickname"/>
+                    <div class="form-group">
+                        <label for="inputSex" class="col-sm-2 control-label">昵称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputSex" placeholder="请输入昵称" name="sex"/>
+                        </div>
                     </div>
-                    <div class="box-item sex">
-                        <span>性别:</span>
-                        <input id="male" class="sex" type="radio" name="sex" value="1"/>
-                        <label for="male"><span>男</span></label>
-                        <input id="female" class="sex" type="radio" name="sex" value="0"/>
-                        <label for="female"><span>女</span></label>
-                        <input id="secret" class="sex" type="radio" name="sex" value="2"/>
-                        <label for="secret"><span>保密</span></label>
+
+
+                    <div class="form-group">
+                        <label for="inputPhone" class="col-sm-2 control-label">手机</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputPhone" placeholder="请输入手机号码" name="phone"/>
+                        </div>
                     </div>
-                    <div class="box-item phone">
-                        <span>手机:</span>
-                        <input class="text" type="text" placeholder="请输入手机号码" name="phone"/>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-sm-2 control-label">密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPassword" placeholder="请输入密码" name="password"/>
+                        </div>
                     </div>
-                    <div class="box-item password">
-                        <span>密码:</span>
-                        <input class="text" type="password" placeholder="请输入密码" name="password"/>
+                    <div class="form-group">
+                        <label for="inputPassword2" class="col-sm-2 control-label password-again">确认密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPassword2" placeholder="请再次输入密码" name="password2"/>
+                        </div>
                     </div>
-                    <div class="box-item password-again">
-                        <span>确认密码:</span>
-                        <input class="text" type="password" placeholder="请再次输入密码" name="password2"/>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-default login-btn">注册</button>
+                        </div>
                     </div>
                 </div>
-
-                <button type="submit" class="login-btn">注册</button>
             </form>
+
             <a href="login.html" class="register-link">
                 <span class="register">直接登录</span>
             </a>
@@ -67,7 +75,6 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function () {
-        $ = jQuery;
         $('#register-form')
                 .bootstrapValidator({
                     message: '这个值无效',
@@ -155,4 +162,3 @@
     });
 </script>
 </body>
-</html>

@@ -55,9 +55,9 @@ public class Message implements Serializable {
 
     @Override
     public String toString() {
-        return "Message{" +
-                "reason='" + reason + '\'' +
-                ", isSuccess=" + isSuccess +
+        return "{" +
+                "\"reason\":\"" + reason + '"' +
+                ", \"isSuccess\":" + isSuccess +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.example.config;
 
+import org.springframework.boot.context.embedded.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
@@ -10,6 +11,8 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
+
+import javax.servlet.MultipartConfigElement;
 
 /**
  * Created by SunYi on 2016/2/1/0001.
@@ -61,5 +64,13 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 //        将资源文件定位到web根目录
         registry.addResourceHandler("/**").addResourceLocations("/static").addResourceLocations("/upload");
+    }
+
+    @Bean
+    MultipartConfigElement multipartConfigElement() {
+        MultipartConfigFactory factory = new MultipartConfigFactory();
+        factory.setMaxFileSize("5120MB");
+        factory.setMaxRequestSize("5120MB");
+        return factory.createMultipartConfig();
     }
 }

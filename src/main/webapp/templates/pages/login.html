@@ -58,11 +58,10 @@
                     <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                 </div>
                 <div class="modal-body">
-                    333333333
-                    <p th:if="${param.result}" th:text="${param.result}"></p>
+                    <p id="result" data-result=""></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="close-btn">关闭</button>
                 </div>
             </div>
         </div>
@@ -125,17 +124,25 @@
 <script type="text/javascript">
     var login_btn = $("#login-btn");
     var login_form = $("#login-form");
-
+    var modal = $("#myModal");
+    var modal_result = $("#result");
+    var isSuccess = false;
+    $("#close-btn").bind("click", function () {
+        if (isSuccess){
+            window.location = "/index";
+        }
+    });
     login_btn.click(function (e){
         e.preventDefault();
-        /*$("#myModal").modal('show');*/
-
         $.ajax({
             url: "/login",
-            data: login_form.serializeObject(),
-            type: post,
+            data: login_form.serializeArray(),
+            type: 'POST',
             success: function(data){
-                console.log(data);
+                var result = $.parseJSON(data);
+                modal_result.text(result.reason);
+                isSuccess = result.isSuccess;
+                modal.modal('show');
             }
         })
     })

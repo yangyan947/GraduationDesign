@@ -3,6 +3,7 @@ package com.example.service.message;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 /**
  * Created by SunYi on 2016/3/25/0025.
@@ -11,7 +12,7 @@ import java.io.Serializable;
 public class Message implements Serializable {
     private boolean isSuccess = true;
     private String reason = "success";
-    private Object others;
+    private Optional<Object> others;
 
     public boolean isSuccess() {
         return isSuccess;
@@ -39,7 +40,7 @@ public class Message implements Serializable {
 
 
     public Message(boolean isSuccess, String reason, Object others) {
-        this.others = others;
+        this.others = Optional.ofNullable(others);
         this.isSuccess = isSuccess;
         this.reason = reason;
     }
@@ -49,6 +50,14 @@ public class Message implements Serializable {
     }
 
     public void setOthers(Object others) {
-        this.others = others;
+        this.others = Optional.ofNullable(others);
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "reason='" + reason + '\'' +
+                ", isSuccess=" + isSuccess +
+                '}';
     }
 }

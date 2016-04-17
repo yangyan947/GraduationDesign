@@ -1,6 +1,5 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>登录</title>
@@ -8,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"/>
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/unslider.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -18,20 +18,21 @@
     <div class="content">
         <div class="login-box">
             <span class="tit-text">账户登录</span>
-
             <form id="login-form" action="/login" method="POST" th:object="${user}">
-                <div class="input-box">
-                    <div class="box-item user">
+                <div class="input-box ">
+                    <div class="box-item user form-group">
                         <img src="/static/images/login/user.png"/>
-                        <input id="username" type="text" placeholder="请输入邮箱" name="email"/>
+                        <input id="email" type="email" placeholder="请输入邮箱" name="email"/>
                         <button id="dele-btn" type="button" class="dele">x</button>
                     </div>
-                    <div class="box-item password">
+                    <div class="box-item password form-group">
                         <img src="/static/images/login/password.png"/>
                         <input type="password" placeholder="请输入密码" name="password"/>
                     </div>
                 </div>
-                <button type="submit" class="login-btn">登录</button>
+                <div class="form-group">
+                    <button type="submit" class="login-btn" >登录</button>
+                </div>
             </form>
             <a href="register.html" class="register-link">
                 <span class="register">免费注册</span>
@@ -47,68 +48,76 @@
 <script src="/static/js/bootstrapValidator.js"></script>
 
 <script type="text/javascript">
-    var username = $("input#username");
-    var dele_btn = $("button#dele-btn");
-
-    username.bind("input propertychange", function () {
-        if (username.val() != "") {
-            dele_btn.show();
-        }
-        else {
-            dele_btn.hide();
-        }
-    })
-    if (username.val() != "") {
-        dele_btn.show();
-        dele_btn.bind("click", function () {
-            username.val("");
-            dele_btn.hide();
-        });
-    }
-    else {
-        dele_btn.hide();
-    }
+//    var username = $("input#username");
+//    var dele_btn = $("button#dele-btn");
+//
+//    username.bind("input propertychange", function () {
+//        if (username.val() != "") {
+//            dele_btn.show();
+//        }
+//        else {
+//            dele_btn.hide();
+//        }
+//    })
+//    if (username.val() != "") {
+//        dele_btn.show();
+//        dele_btn.bind("click", function () {
+//            username.val("");
+//            dele_btn.hide();
+//        });
+//    }
+//    else {
+//        dele_btn.hide();
+//    }
 
     $(document).ready(function () {
-        $('#login-form')
-                .bootstrapValidator({
-                    message: '这个值无效',
-                    //live: 'submitted',
-                    feedbackIcons: {
-                        valid: 'glyphicon glyphicon-ok',
-                        invalid: 'glyphicon glyphicon-remove',
-                        validating: 'glyphicon glyphicon-refresh'
-                    },
-                    fields: {
-                        email: {
-                            validators: {
-                                notEmpty: {
-                                    message: '邮箱不能为空'
-                                },
-                                emailAddress: {
-                                    message: '无效的邮箱格式'
-                                }
+        $('#login-form').bootstrapValidator({
+                message: '这个值无效',
+                //live: 'submitted',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    username: {
+                        message: '无效的用户名',
+                        validators: {
+                            notEmpty: {
+                                message: '用户名不能为空'
+                            },
+                            stringLength: {
+                                min: 5,
+                                max: 30,
+                                message: '用户名长度大于5小于30'
+                            },
+                            /*remote: {
+                             url: 'remote.php',
+                             message: 'The username is not available'
+                             },*/
+                            regexp: {
+                                regexp: /^[a-zA-Z0-9_\.]+$/,
+                                message: '用户名只能为英文字符数组或者下划线'
                             }
-                        },
-                        password: {
-                            validators: {
-                                notEmpty: {
-                                    message: '密码不能为空'
-                                },
-                                stringLength: {
-                                    min: 5,
-                                    max: 30,
-                                    message: '密码长度大于5小于30'
-                                }
+                        }
+                    },
+                    password: {
+                        validators: {
+                            notEmpty: {
+                                message: '密码不能为空'
+                            },
+                            stringLength: {
+                                min: 5,
+                                max: 30,
+                                message: '密码长度大于5小于30'
                             }
                         }
                     }
-                })
-                .on('success.form.bv', function (e) {
-
-                });
+                }
+            })
+            .on('success.form.bv', function (e) {
+            });
     });
-
 </script>
 </body>
 </html>

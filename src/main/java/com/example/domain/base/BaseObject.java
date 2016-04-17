@@ -18,7 +18,7 @@ public class BaseObject {
     @Column(name = "createTime",updatable = false)
     private Date createTime;
     @Column(name = "status")
-    private String status = "create";
+    private String status = "normal";
 
     public Long getId() {
         return id;

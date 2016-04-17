@@ -6,10 +6,7 @@ import com.example.service.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +25,7 @@ public class UserController {
     //跳转链接，跳转到主页xx
     @RequestMapping("/")
     public RedirectView index(Model model,
-                        HttpServletResponse response) {
+                              HttpServletResponse response) {
         //对应到templates文件夹下面的index
         return new RedirectView("/index", true, false, true);
     }
@@ -102,6 +99,7 @@ public class UserController {
         return new RedirectView("/index", true, false, true);
     }
 
+    //用户个人信息页面
     @RequestMapping(value = "/userCenter", method = RequestMethod.GET)
     public String userCenter(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
@@ -114,6 +112,13 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value = "/attendUser", method = RequestMethod.GET)
+    @ResponseBody
+    public String attendUser(HttpSession session, Model model, @RequestParam(value = "userId") Long userId) {
+        User user = (User) session.getAttribute("user");
+        Message message = userService.attendUser(user, userId);
+        return message.toString();
+    }
 //    @RequestMapping(value = "/user", method = RequestMethod.POST)
 //    public RedirectView user(Model model,
 //                             @ModelAttribute(value = "user") User user,

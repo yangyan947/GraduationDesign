@@ -63,7 +63,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 //        将资源文件定位到web根目录
-        registry.addResourceHandler("/**").addResourceLocations("/static").addResourceLocations("/upload");
+        registry.addResourceHandler("/**").addResourceLocations("/static").addResourceLocations("/upload").addResourceLocations("/resources");
     }
 
     @Bean
@@ -73,4 +73,5 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         factory.setMaxRequestSize("5120MB");
         return factory.createMultipartConfig();
     }
+
 }

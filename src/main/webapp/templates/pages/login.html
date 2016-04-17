@@ -19,7 +19,7 @@
         <div class="login-box">
             <span class="tit-text">账户登录</span>
 
-            <form id="login-form" class="form-horizontal" action="/login" method="POST" th:object="${user}">
+            <form id="login-form" class="form-horizontal">
                 <div class="input-box">
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <button  data-toggle="modal" type="submit" class="btn btn-default login-btn" data-toggle="modal" data-target="#myModal">登录</button>
+                            <button id="login-btn" type="submit" class="btn btn-default login-btn">登录</button>
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="modal-body">
                     333333333
-                    <p th:text="${result}"></p>
+                    <p th:if="${param.result}" th:text="${param.result}"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -116,7 +116,29 @@
                 .on('success.form.bv', function (e) {
 
                 });
+
+
     });
 
 </script>
+
+<script type="text/javascript">
+    var login_btn = $("#login-btn");
+    var login_form = $("#login-form");
+
+    login_btn.click(function (e){
+        e.preventDefault();
+        /*$("#myModal").modal('show');*/
+
+        $.ajax({
+            url: "/login",
+            data: login_form.serializeObject(),
+            type: post,
+            success: function(data){
+                console.log(data);
+            }
+        })
+    })
+</script>
+
 </body>

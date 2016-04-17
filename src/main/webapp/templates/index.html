@@ -44,21 +44,17 @@
 
 		<!--富文本部分-->
 		<div class="editor">
-			<div class="text-editor"></div>
+			<div class="text-editor">
+				<textarea name="后台取值的key" id="myEditor">这里写你的初始化内容</textarea>
+				<script type="text/javascript">
+					var editor = new UE.ui.Editor();
+					editor.render("myEditor");
+					//1.2.4以后可以使用一下代码实例化编辑器
+					//UE.getEditor('myEditor')
+				</script>
+			</div>
 			<button class="publish">发布</button>
 		</div>
-
-
-
-
-
-		<textarea name="后台取值的key" id="myEditor">这里写你的初始化内容</textarea>
-		<script type="text/javascript">
-			var editor = new UE.ui.Editor();
-			editor.render("myEditor");
-			//1.2.4以后可以使用一下代码实例化编辑器
-			//UE.getEditor('myEditor')
-		</script>
 
 
 
@@ -69,18 +65,28 @@
 		<div class="fri-news" style="width:100%;height:2000px;background:#999">
 			<div class="news-item">
 				<div class="item-top">
-					<img src="" alt="" class="user-head" />
-					<span class="user-name">AAA</span>
-					<span class="create-time">2016-4-16</span>
-					<pre class="text">asdfasdfasdfasdfasdfasdfasdfasfssaf</pre>
-					<div class="images">
-						<img src="" alt="" class="cont-images" />
+					<div class="user-head">
+						<img src="/static/images/test/head.jpg" class="head-img" />
+					</div>
+					<div class="item-info">
+						<div class="user-name">AAA</div>
+						<div class="create-time">2016-4-16</div>
+						<pre class="text">asdfasdfasdfasdfasdfasdfasdfasfssaf</pre>
+						<!--图片??-->
 					</div>
 				</div>
 				<div class="item-botm">
-					<button type="button" class="comment">评论</button>
-					<button type="button" class="good">点赞</button>
-					<button type="button" class="report">举报</button>
+					<a href="javascript:void(0);" class="comment">
+						<span class="glyphicon glyphicon-pencil icon"></span>评论
+					</a>
+					<span class="cut"></span>
+					<a href="javascript:void(0);" class="good">
+						<span class="glyphicon glyphicon-thumbs-up icon"></span>点赞
+					</a>
+					<span class="cut"></span>
+					<a href="javascript:void(0);" class="report">
+						<span class="glyphicon glyphicon-exclamation-sign icon"></span>举报
+					</a>
 				</div>
 				<div class="comment-list">
 
@@ -91,8 +97,10 @@
 	<div class="col-md-4 cont-rit">
 		<!--部分个人信息-->
 		<div class="personal">
-			<img src="" alt="" class="background-img">
-			<img src="" alt="" class="user-head">
+			<img src="/static/images/test/1.jpg" class="background-img">
+			<div class="head-box">
+				<img src="/static/images/test/head.jpg" class="user-head">
+			</div>
 			<span class="user-name"></span>
 			<div class="info">
 				<div class="item">
@@ -122,9 +130,7 @@
 
 
 
-<a href="/login" id="aaa">登录</a>
-<a href="/register">注册</a>
-<a href="/loginOut">退出登录</a>
+
 <p th:text="${result}"></p>
 
 <script type="text/javascript">

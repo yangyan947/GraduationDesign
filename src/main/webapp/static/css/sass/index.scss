@@ -11,7 +11,62 @@ div.nav {
   position: fixed;
   top: 0;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.94);
+  background: #fff;
+
+  div.nav-box {
+    width: 990px;
+    margin: 0 auto;
+    background-color: #999;
+    height: 100%;
+    
+    div.logo {
+      background-image: url('/static/images/login/logo.png');
+      background-size: 46px 46px;
+      width: 46px;
+      height: 46px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    span.logo-txt {
+      color: #666;
+      display: inline-block;
+      font-size: 20px;
+      line-height: 40px;
+      vertical-align: bottom;
+      margin-right: 20px;
+    }
+
+    div.search {
+      width: 200px;
+      height: 28px;
+      display: inline-block;
+      position: relative;
+      margin-right: 50px;
+
+      input.search-box {
+        width: 100%;
+        height: 100%;
+        padding: 4px 33px 4px 10px;
+      }
+
+      a.search-icon {
+        width: 30px;
+        position: absolute;
+        right: 5px;
+      }
+    }
+
+    div.nav-item {
+      display: inline-block;
+
+      a {
+        display: inline-block;
+        width: 100px;
+        height: 28px;
+      }
+    }
+  }
 }
 
 div.container-box {

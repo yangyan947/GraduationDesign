@@ -1,156 +1,164 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<title>注册</title>
-	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/static/css/stylesheets/login.css"/>
-	<script type="text/javascript" src="/static/javascript/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/resources/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/stylesheets/login.css"/>
+    <script type="text/javascript" src="/static/js/resources/jquery.min.js"></script>
+    <script src="/static/js/resources/bootstrap.min.js"></script>
+    <script src="/static/js/resources/bootstrapValidator.js"></script>
 </head>
 <body>
-<div class="container">
-	<div class="header">
-		<img src="/static/images/login/logo.png">
-		<span class="logo-txt">SC Blog</span>
-	</div>
-	<div class="content">
-		<div class="login-box register-box">
-			<span class="tit-text">账户注册</span>
-			<form id="register-form" action="/register" METHOD="post" th:object="${user}">
-				<div class="input-box">
-					<div class="box-item email form-group">
-						<span>邮箱:</span>
-						<input class="text" type="text" placeholder="请输入邮箱" name="email"/>
-					</div>
-					<div class="box-item user form-group">
-						<span>昵称:</span>
-						<input class="text" type="text" placeholder="请输入用户昵称" name="nickname"/>
-					</div>
-					<div class="box-item sex form-group">
-						<span>性别:</span>
-						<input id="male" class="sex" type="radio" name="sex" value="1"/>
-						<label for="male"><span>男</span></label>
-						<input id="female" class="sex" type="radio" name="sex" value="0"/>
-						<label for="female"><span>女</span></label>
-						<input id="secret" class="sex" type="radio" name="sex" value="2"/>
-						<label for="secret"><span>保密</span></label>
-					</div>
-					<div class="box-item phone form-group">
-						<span>手机:</span>
-						<input class="text" type="text" placeholder="请输入手机号码" name="phone"/>
-					</div>
-					<div class="box-item password form-group">
-						<span>密码:</span>
-						<input class="text" type="password" placeholder="请输入密码" name="password"/>
-					</div>
-					<div class="box-item password-again form-group">
-						<span>确认密码:</span>
-						<input class="text" type="password" placeholder="请再次输入密码" name="password2"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<button type="submit" class="login-btn">注册</button>
-				</div>
-			</form>
-			<a href="login.html" class="register-link">
-				<span class="register">直接登录</span>
-			</a>
-		</div>
-	</div>
-	<div class="footer">
-		<span>© 2016 SC Blog 版权所有</span>
-	</div>
+<div class="container-box">
+    <div class="header">
+        <img src="/static/images/login/logo.png">
+        <span class="logo-txt">SC Blog</span>
+    </div>
+    <div class="content">
+        <div class="login-box register-box">
+            <span class="tit-text">账户注册</span>
+
+            <form id="register-form" class="form-horizontal" action="/register" METHOD="post" th:object="${user}">
+                <div class="input-box">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="请输入邮箱" name="email"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSex" class="col-sm-2 control-label">昵称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputSex" placeholder="请输入昵称" name="sex"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputPhone" class="col-sm-2 control-label">手机</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputPhone" placeholder="请输入手机号码" name="phone"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-sm-2 control-label">密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPassword" placeholder="请输入密码" name="password"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword2" class="col-sm-2 control-label password-again">确认密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPassword2" placeholder="请再次输入密码" name="password2"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-default login-btn">注册</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <a href="login.html" class="register-link">
+                <span class="register">直接登录</span>
+            </a>
+        </div>
+    </div>
+    <div class="footer">
+        <span>© 2016 SC Blog 版权所有</span>
+    </div>
 </div>
 
-<script src="/static/js/bootstrapValidator.js"></script>
+
 
 <script type="text/javascript">
-	jQuery(document).ready(function () {
-		$('#register-form')
-				.bootstrapValidator({
-					message: '这个值无效',
-					//live: 'submitted',
-					feedbackIcons: {
-						valid: 'glyphicon glyphicon-ok',
-						invalid: 'glyphicon glyphicon-remove',
-						validating: 'glyphicon glyphicon-refresh'
-					},
-					fields: {
-						nickname: {
-							message: '无效的用户名',
-							validators: {
-								notEmpty: {
-									message: '用户名不能为空'
-								},
-								stringLength: {
-									min: 5,
-									max: 30,
-									message: '用户名长度大于5小于30'
-								},
-								regexp: {
-									regexp: /^[a-zA-Z0-9_\.]+$/,
-									message: '用户名只能为英文字符数组或者下划线'
-								}
-							}
-						},
-						email: {
-							validators: {
-								notEmpty: {
-									message: '邮箱不能为空'
-								},
-								emailAddress: {
-									message: '无效的邮箱格式'
-								}
-							}
-						},
-						phone: {
-							validators: {
-								notEmpty: {
-									message: '手机号'
-								},
-								stringLength: {
-									min: 11,
-									max: 11,
-									message: '手机号长度不对'
-								},
-								regexp: {
-									regexp: /^[0-9]+$/,
-									message: '手机号应该为数字'
-								}
-							}
-						},
-						password: {
-							validators: {
-								notEmpty: {
-									message: '密码不能为空'
-								},
-								stringLength: {
-									min: 5,
-									max: 30,
-									message: '密码长度大于5小于30'
-								}
-							}
-						},
-						password2: {
-							validators: {
-								notEmpty: {
-									message: '密码不能为空'
-								},
-								identical: {
-									field: 'password',
-									message: '两次密码应该一致'
-								},
-								stringLength: {
-									min: 5,
-									max: 30,
-									message: '密码长度大于5小于30'
-								}
-							}
-						}
-					}
-				})
+    jQuery(document).ready(function () {
+        $('#register-form')
+                .bootstrapValidator({
+                    message: '这个值无效',
+                    //live: 'submitted',
+                    feedbackIcons: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        nickname: {
+                            message: '无效的用户名',
+                            validators: {
+                                notEmpty: {
+                                    message: '用户名不能为空'
+                                },
+                                stringLength: {
+                                    min: 5,
+                                    max: 30,
+                                    message: '用户名长度大于5小于30'
+                                },
+                                regexp: {
+                                    regexp: /^[a-zA-Z0-9_\.]+$/,
+                                    message: '用户名只能为英文字符数组或者下划线'
+                                }
+                            }
+                        },
+                        email: {
+                            validators: {
+                                notEmpty: {
+                                    message: '邮箱不能为空'
+                                },
+                                emailAddress: {
+                                    message: '无效的邮箱格式'
+                                }
+                            }
+                        },
+                        phone: {
+                            validators: {
+                                notEmpty: {
+                                    message: '手机号'
+                                },
+                                stringLength: {
+                                    min: 11,
+                                    max: 11,
+                                    message: '手机号长度不对'
+                                },
+                                regexp: {
+                                    regexp: /^[0-9]+$/,
+                                    message: '手机号应该为数字'
+                                }
+                            }
+                        },
+                        password: {
+                            validators: {
+                                notEmpty: {
+                                    message: '密码不能为空'
+                                },
+                                stringLength: {
+                                    min: 5,
+                                    max: 30,
+                                    message: '密码长度大于5小于30'
+                                }
+                            }
+                        },
+                        password2: {
+                            validators: {
+                                notEmpty: {
+                                    message: '密码不能为空'
+                                },
+                                identical: {
+                                    field: 'password',
+                                    message: '两次密码应该一致'
+                                },
+                                stringLength: {
+                                    min: 5,
+                                    max: 30,
+                                    message: '密码长度大于5小于30'
+                                }
+                            }
+                        }
+                    }
+                })
 
-	});
+    });
 </script>
 </body>
-</html>

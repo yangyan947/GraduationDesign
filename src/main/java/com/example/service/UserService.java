@@ -1,13 +1,19 @@
 package com.example.service;
 
 import com.example.dao.UserDao;
+import com.example.domain.Admin;
 import com.example.domain.User;
 import com.example.service.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+
 
 /**
  * Created by SunYi on 2016/2/1/0001.
@@ -22,7 +28,11 @@ public class UserService {
 //    private RoleDao roleDao;
 
     static private int PAGE_SIZE = 10;
-
+    //冻结，普通，危险，热门
+    public static final String STATUS_FREEZE = "freeze";
+    public static final String STATUS_ACTIVE = "normal";
+    public static final String STATUS_DANGER = "danger";
+    public static final String STATUS_HOT = "hot";
     //用户注册逻辑
     public Message register(User user) {
         Message message;
@@ -65,12 +75,14 @@ public class UserService {
     }
 
     //    用户信息修改
-    public Message save(User user) {
+    public Message changeUser(User user, User loginUser) {
         Message message;
         //通过用户名获取用户
         Optional<User> dbUser = userDao.getByEmail(user.getNickname());
         //若获取失败
-        if (!dbUser.isPresent()) {
+        if (loginUser == null) {
+            message = new Message(false, "未登录");
+        } else if (!dbUser.isPresent()) {
             message = new Message(false, "该用户不存在");
         } else {
             user = userDao.save(dbUser.get().update(user));
@@ -79,6 +91,12 @@ public class UserService {
         return message;
     }
 
+    /**
+     * 关注用户
+     * @param user 操作用户
+     * @param attendId 被关于用户id
+     * @return
+     */
     public Message attendUser(User user, Long attendId) {
         Message message;
         User attendUser = userDao.findOne(attendId);
@@ -86,7 +104,9 @@ public class UserService {
             message = new Message(false, "未登录");
         } else if (attendUser != null) {
             user.getAttentionUsers().add(attendUser);
+            attendUser.getFollowUsers().add(user);
             user = userDao.save(user);
+            attendUser = userDao.save(attendUser);
             message = new Message(true, "关注成功", user);
         } else {
             message = new Message(false, "关注失败，关注的用户不存在");
@@ -104,12 +124,45 @@ public class UserService {
 //        return message;
 //    }
 
-//    public List<User> getAllUser() {
-//        return userDao.findAll();
-//    }
-//
-//    public List<User> getAllUser(int index) {
-//        Pageable pageable = new PageRequest(index-1, PAGE_SIZE);
-//        return  userDao.findAll(pageable).getContent();
-//    }
+    /**
+     * 获得用户列表
+     * @return
+     */
+    public List<User> getAllUser() {
+        return userDao.findAll();
+    }
+
+    /**
+     * 获得用户列表分页
+     * @param index
+     * @return
+     */
+    public Page<User> getPageUser(int index) {
+        return  userDao.findAll(new PageRequest(index-1, PAGE_SIZE));
+    }
+
+    /**
+     *  设置用户状态
+     * @param userId 操作用户ID
+     * @param admin 管理员
+     * @param status 设置状态
+     * @return
+     */
+    public Message setUserStatus(Long userId, Admin admin, String status) {
+        Message message;
+        User user = userDao.findOne(userId);
+        if (admin == null) {
+            message = new Message(false, "权限不足");
+        } else if (user == null) {
+            message = new Message(false, "用户不存在");
+        } else if (!user.getStatus().equals(status)) {
+            user.setStatus(status);
+            userDao.save(user);
+            message = new Message(true, "设置用户状态"+status+"成功");
+        } else {
+            message = new Message(false, "已经为"+status+"，不能再次设置");
+        }
+        return message;
+    }
+
 }

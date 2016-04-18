@@ -9,12 +9,11 @@ import com.example.service.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+
+import static com.example.controller.UserController.USER;
 
 /**
  * Created by SunYi on 2016/2/1/0001.
@@ -34,15 +33,16 @@ public class CommentController {
 
 
     @RequestMapping(value = "/addComment", method = RequestMethod.POST)
+    @ResponseBody
     public String addComment(HttpSession session, Model model, @ModelAttribute(value = "comment") Comment comment, @RequestParam(value = "blogId") Long blogId) {
-
-        Message message = commentService.addComment(comment, blogId, (User) session.getAttribute("user"));
-        if (message.isSuccess()) {
-            model.addAttribute("result", message.getReason());
-        } else {
-
-        }
-        return "index";
+        Message message = commentService.addComment(comment, blogId, (User) session.getAttribute(USER));
+        return message.toString();
+    }
+    @RequestMapping(value = "/deleteComment", method = RequestMethod.POST)
+    @ResponseBody
+    public String deleteComment(HttpSession session, Model model,  @RequestParam(value = "commentId") Long commentId) {
+        Message message = commentService.deleteComment(commentId, (User) session.getAttribute(USER));
+        return message.toString();
     }
 
 }

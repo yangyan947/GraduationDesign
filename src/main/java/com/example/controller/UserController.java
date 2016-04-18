@@ -21,7 +21,7 @@ public class UserController {
     //自动注入userService，用来处理业务
     @Autowired
     private UserService userService;
-
+    public static final String USER = "user";
     //跳转链接，跳转到主页xx
     @RequestMapping("/")
     public RedirectView index(Model model,
@@ -35,7 +35,7 @@ public class UserController {
     // 8080是端口号，端口号根据tomcat设置而改变，默认值是8080
     @RequestMapping("/index")
     public String home(Model model, @RequestParam(value = "result", defaultValue = "") String result, HttpSession session) {
-        if (session.getAttribute("user") == null && result.equals("")) {
+        if (session.getAttribute(USER) == null && result.equals("")) {
             model.addAttribute("result", "请先登录");
             return "pages/login";
         }
@@ -57,14 +57,14 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public RedirectView registerPost(Model model,
                                      //这里和模板中的th:object="${user}"对应起来
-                                     @ModelAttribute(value = "user") User user) {
+                                     @ModelAttribute(value = USER) User user) {
         //使用userService处理业务
         Message result = userService.register(user);
         //将结果放入model中，在模板中可以取到model中的值
         model.addAttribute("result", result.getReason());
         return new RedirectView("/index", true, false, true);
     }
-
+    //登陆
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginGet(Model model, @RequestParam(value = "result", defaultValue = "") String result) {
         if (result != null || result.equals("")) {
@@ -73,11 +73,11 @@ public class UserController {
         return "pages/login";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String loginPost(Model model,
-                             @ModelAttribute(value = "user") User user,
-                             HttpSession session) {
+                            @ModelAttribute(value = USER) User user,
+                            HttpSession session) {
 
         Message result = userService.login(user);
 
@@ -86,38 +86,62 @@ public class UserController {
         if (result.isSuccess()) {
             //添加到session中，session是一次会话，在本次会话中都可以取到session中的值
             //若是session中有用户存在则会覆盖原来的user，当session中的user存在时判定用户存在
-            session.setAttribute("user", result.getOthers());
+            session.setAttribute(USER, result.getOthers());
         }
         return result.toString();
 
     }
-
+    //登出
     @RequestMapping(value = "/loginOut", method = RequestMethod.GET)
     public RedirectView loginOut(HttpSession session) {
         //从session中删除user属性，用户退出登录
-        session.removeAttribute("user");
+        session.removeAttribute(USER);
         return new RedirectView("/index", true, false, true);
     }
 
     //用户个人信息页面
     @RequestMapping(value = "/userCenter", method = RequestMethod.GET)
     public String userCenter(HttpSession session, Model model) {
-        User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute(USER);
         if (user == null) {
             model.addAttribute("result", "用户未登录!");
             return "index";
         } else {
-            model.addAttribute("user", user);
+            model.addAttribute(USER, user);
             return "userCenter";
         }
     }
-
+    //关注用户
     @RequestMapping(value = "/attendUser", method = RequestMethod.GET)
     @ResponseBody
     public String attendUser(HttpSession session, Model model, @RequestParam(value = "userId") Long userId) {
-        User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute(USER);
         Message message = userService.attendUser(user, userId);
         return message.toString();
     }
 
+    //用户信息修改
+    @RequestMapping(value = "/changeUser", method = RequestMethod.GET)
+    public String changeUserGet(HttpSession session, Model model) {
+        if (session.getAttribute(USER) == null) {
+            model.addAttribute("result", "未登录");
+        } else {
+            model.addAttribute(USER, session.getAttribute(USER));
+        }
+        return "changeUser";
+    }
+
+    @RequestMapping(value = "/changeUser", method = RequestMethod.POST)
+    public RedirectView changeUserPost(HttpSession session, Model model, @ModelAttribute(value = USER) User user) {
+        Message message = userService.changeUser(user, (User) session.getAttribute(USER));
+        model.addAttribute("result", message.getReason());
+
+        if (message.isSuccess()) {
+            session.setAttribute(USER, message.getOthers());
+            return new RedirectView("/index", true, false, true);
+        } else {
+
+            return new RedirectView("/index", true, false, true);
+        }
+    }
 }

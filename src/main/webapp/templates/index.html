@@ -49,14 +49,8 @@
         <div class="editor">
             <div class="text-editor">
                 <textarea name="后台取值的key" id="myEditor"></textarea>
-                <script type="text/javascript">
-                    var editor = new UE.ui.Editor();
-                    editor.render("myEditor");
-                    //1.2.4以后可以使用一下代码实例化编辑器
-                    //UE.getEditor('myEditor')
-                </script>
             </div>
-            <a href="javascript:void(0);" class="publish">发布</a>
+            <a href="javascript:void(0);" class="publish" id="publish-btn">发布</a>
         </div>
 
 
@@ -160,7 +154,7 @@
                         <span class="glyphicon glyphicon-exclamation-sign icon"></span>举报
                     </a>
                 </div>
-                <div class="comment-list" id="comment-list">
+                <div class="comment-list">
                     <span class="triangle"></span>
 
                     <div class="comment-left">
@@ -168,8 +162,8 @@
                     </div>
                     <div class="comment-rit">
                         <div class="add-comment">
-                            <textarea name="" class="text" id="add-comment-text"></textarea>
-                            <a href="javascript:void(0);" class="comment-btn" id="add-comment-btn">评论</a>
+                            <textarea name="" class="text"></textarea>
+                            <a href="javascript:void(0);" class="comment-btn">评论</a>
                         </div>
                         <div class="comment-container">
 
@@ -262,9 +256,17 @@
             add_comment_btn.bind("click", function () {
                 var new_comment = comment_list.find("textarea.text"),
                         new_val = new_comment.val();
-                comment_container.append("<div class='fri-comment'><img src='/static/images/test/head.jpg' class='head'><div class='info-box'><span class='text'><span class='fir-name'>张三</span>: " + new_val + "</span><span class='create-time'>2016-4-18</span></div></div>");
+
+                comment_container.append(get_comment(new_val));
             });
 
+            function get_comment(new_val) {
+                return "<div class='fri-comment'>" +
+                "<img src='/static/images/test/head.jpg' class='head'>" +
+                "<div class='info-box'><span class='text'><span class='fir-name'>张三</span>: " + new_val + "</span>" +
+                "<span class='create-time'>2016-4-18</span></div>" +
+                "</div>";
+            }
 
             /*评论框所有评论隐藏显示 (有问题!!!!!!!!)*/
 
@@ -283,9 +285,38 @@
 
     });
 
-    /*发布新状态*/
+    /*富文本, 发布新状态*/
     $(function () {
+        /*富文本初始化*/
+        var editor = new UE.ui.Editor();
+        editor.render("myEditor");
+        //1.2.4以后可以使用一下代码实例化编辑器
+        //UE.getEditor('myEditor')
 
+        var myeditor = $("textarea#myEditor"),
+                publish_btn = $("a#publish-btn"),
+                fri_news = $("div#fri-news");
+
+        function publish() {
+            return
+        }
+
+        publish_btn.bind("click",function (){
+           var content =  UE.getEditor('myEditor').getContent();
+
+            $.ajax({
+                url: "/publishBlog",
+                data: {
+                    "content" : content,
+                },
+                type: 'POST',
+                success: function(data){
+//                    var result = $.parseJSON(data);
+                    console.info(data);
+                }
+            })
+
+        });
     });
 
     /*返回顶部*/
@@ -304,7 +335,7 @@
 
         to_top.bind("click", function () {
             body.animate({scrollTop: 0}, 200);
-            to_top.hide(0,function(){
+            to_top.hide(0, function () {
 
             });
         });
@@ -316,7 +347,7 @@
                 isTop = false;
                 to_top.fadeIn(200);
             }
-            else if(body_scrolltop <= 0) {
+            else if (body_scrolltop <= 0) {
                 isTop = true;
                 to_top.fadeOut(200);
             }

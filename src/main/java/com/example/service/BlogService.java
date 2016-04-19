@@ -6,6 +6,7 @@ import com.example.domain.Admin;
 import com.example.domain.Blog;
 import com.example.domain.User;
 import com.example.service.message.Message;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -43,10 +44,13 @@ public class BlogService {
         if (user == null) {
             message = new Message(false, "未登录!");
         } else {
+            blog.setUser(user);
             blog = blogDao.save(blog);
-            user.addBlog(blog);
+            user.getBlogs().add(blog);
             user = userDao.save(user);
-            message = new Message(true, "发表成功!");
+            message = new Message(true, "发表成功!", blog);
+            ObjectMapper mapper = new ObjectMapper();
+
         }
         return message;
     }

@@ -1559,3 +1559,215 @@
 2016-04-17 22:22:11.956  INFO 7796 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
 2016-04-17 22:22:11.984  INFO 7796 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 28 ms
 2016-04-17 22:22:36.429  INFO 7796 --- [http-nio-8090-exec-7] com.example.util.ImageUtil               : 图片转换成功: 从[png]到[png]
+2016-04-19 14:59:45.346  INFO 12743 --- [main] com.example.DemoApplication              : Starting DemoApplication on yangyandeMacBook-Pro.local with PID 12743 (/Users/yangyan/Viann/GraduationDesign/GraduationDesign/target/classes started by yangyan in /Users/yangyan/Viann/GraduationDesign/GraduationDesign)
+2016-04-19 14:59:45.353  INFO 12743 --- [main] com.example.DemoApplication              : No active profile set, falling back to default profiles: default
+2016-04-19 14:59:46.437  INFO 12743 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3c9d0b9d: startup date [Tue Apr 19 14:59:46 CST 2016]; root of context hierarchy
+2016-04-19 14:59:49.419  INFO 12743 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4245d020] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-04-19 14:59:50.373  INFO 12743 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2016-04-19 14:59:50.398  INFO 12743 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2016-04-19 14:59:50.400  INFO 12743 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.0.30
+2016-04-19 14:59:50.628  INFO 12743 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2016-04-19 14:59:50.629  INFO 12743 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4197 ms
+2016-04-19 14:59:50.824  INFO 12743 --- [localhost-startStop-1] o.s.b.c.e.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]
+2016-04-19 14:59:50.833  INFO 12743 --- [localhost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-04-19 14:59:51.255  INFO 12743 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2016-04-19 14:59:51.271  INFO 12743 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2016-04-19 14:59:51.419  INFO 12743 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {4.3.11.Final}
+2016-04-19 14:59:51.422  INFO 12743 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2016-04-19 14:59:51.425  INFO 12743 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2016-04-19 14:59:51.845  INFO 12743 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+2016-04-19 14:59:52.548  INFO 12743 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2016-04-19 14:59:52.829  INFO 12743 --- [main] o.h.h.i.ast.ASTQueryTranslatorFactory    : HHH000397: Using ASTQueryTranslatorFactory
+2016-04-19 14:59:53.255  INFO 12743 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2016-04-19 14:59:53.256  INFO 12743 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000102: Fetching database metadata
+2016-04-19 14:59:53.258  INFO 12743 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000396: Updating schema
+2016-04-19 14:59:53.262  INFO 12743 --- [main] java.sql.DatabaseMetaData                : HHH000262: Table not found: admin
+2016-04-19 14:59:53.285  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: netglooblog.blog
+2016-04-19 14:59:53.285  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [create_time, context, id, title, user, status]
+2016-04-19 14:59:53.285  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_q46q1rxhq8cec0isvwfmbxmdt]
+2016-04-19 14:59:53.285  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [fk_q46q1rxhq8cec0isvwfmbxmdt, primary]
+2016-04-19 14:59:53.293  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: netglooblog.blog_comments
+2016-04-19 14:59:53.294  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [comments, blog]
+2016-04-19 14:59:53.294  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_7s95v9vq7l278ifn8dk1ijpk1, fk_3d3o64nviuxs6ec55nw5mark0]
+2016-04-19 14:59:53.294  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [uk_3d3o64nviuxs6ec55nw5mark0, primary]
+2016-04-19 14:59:53.313  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: netglooblog.comment
+2016-04-19 14:59:53.314  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [create_time, context, id, blog, user, status]
+2016-04-19 14:59:53.314  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_4ivt42gn164dv18bc7kd6ofkv, fk_3bye9okd9q6nvfukvgu67d9et]
+2016-04-19 14:59:53.315  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [fk_4ivt42gn164dv18bc7kd6ofkv, fk_3bye9okd9q6nvfukvgu67d9et, primary]
+2016-04-19 14:59:53.321  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: netglooblog.user
+2016-04-19 14:59:53.321  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [resume, password, create_time, phone, img_url, sex, nickname, id, email, status]
+2016-04-19 14:59:53.322  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: []
+2016-04-19 14:59:53.322  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [primary]
+2016-04-19 14:59:53.334  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: netglooblog.user_blogs
+2016-04-19 14:59:53.334  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [blogs, user]
+2016-04-19 14:59:53.335  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_7nb07brgixv1v4tjnsusdjifh, fk_51naxvoe4xco83fmgtwo8roj8]
+2016-04-19 14:59:53.335  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [uk_51naxvoe4xco83fmgtwo8roj8, fk_7nb07brgixv1v4tjnsusdjifh]
+2016-04-19 14:59:53.342  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: netglooblog.user_comments
+2016-04-19 14:59:53.344  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [comments, user]
+2016-04-19 14:59:53.344  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_o6erpx1rt3ifie1kjjros4l3a, fk_oagiudgfmryep2ikftny4xy2i]
+2016-04-19 14:59:53.344  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [fk_oagiudgfmryep2ikftny4xy2i, uk_o6erpx1rt3ifie1kjjros4l3a]
+2016-04-19 14:59:53.351  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: netglooblog.user_point_blog
+2016-04-19 14:59:53.351  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [blog, user]
+2016-04-19 14:59:53.352  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_6q3qe5k229px46de8l00h78uk, fk_pegkuf199mklvqfay0gnb87wd]
+2016-04-19 14:59:53.352  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [fk_pegkuf199mklvqfay0gnb87wd, primary]
+2016-04-19 14:59:53.359  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: netglooblog.user_user
+2016-04-19 14:59:53.360  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [follow_user, attention_user]
+2016-04-19 14:59:53.360  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_m7jlnl4j4c4l0ip5mr3h6aehg, fk_pjw70ua204odel3p7i5hdv2ii]
+2016-04-19 14:59:53.360  INFO 12743 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [fk_m7jlnl4j4c4l0ip5mr3h6aehg, fk_pjw70ua204odel3p7i5hdv2ii]
+2016-04-19 14:59:53.362  INFO 12743 --- [main] java.sql.DatabaseMetaData                : HHH000262: Table not found: admin
+2016-04-19 14:59:53.364  INFO 12743 --- [main] java.sql.DatabaseMetaData                : HHH000262: Table not found: admin
+2016-04-19 14:59:53.409  INFO 12743 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000232: Schema update complete
+2016-04-19 14:59:54.674  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/admin/blogList],methods=[GET]}" onto public java.lang.String com.example.controller.AdminController.blogList(javax.servlet.http.HttpSession,org.springframework.ui.Model,java.lang.Integer)
+2016-04-19 14:59:54.677  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/admin/userList],methods=[GET]}" onto public java.lang.String com.example.controller.AdminController.userList(javax.servlet.http.HttpSession,org.springframework.ui.Model,java.lang.Integer)
+2016-04-19 14:59:54.678  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/admin/Login],methods=[GET]}" onto public java.lang.String com.example.controller.AdminController.loginGet(org.springframework.ui.Model,java.lang.String)
+2016-04-19 14:59:54.678  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/admin/Login],methods=[POST],produces=[text/html;charset=UTF-8]}" onto public java.lang.String com.example.controller.AdminController.loginPost(org.springframework.ui.Model,com.example.domain.Admin,javax.servlet.http.HttpSession)
+2016-04-19 14:59:54.678  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/admin/LoginOut],methods=[GET]}" onto public org.springframework.web.servlet.view.RedirectView com.example.controller.AdminController.AdminLoginOut(javax.servlet.http.HttpSession)
+2016-04-19 14:59:54.678  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/admin/commentList],methods=[GET]}" onto public java.lang.String com.example.controller.AdminController.commentList(javax.servlet.http.HttpSession,org.springframework.ui.Model,java.lang.Integer)
+2016-04-19 14:59:54.679  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/admin/setBlogFreeze],methods=[POST]}" onto public java.lang.String com.example.controller.AdminController.setBlogStatus(javax.servlet.http.HttpSession,org.springframework.ui.Model,java.lang.Long)
+2016-04-19 14:59:54.686  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/blogList],methods=[GET]}" onto public java.lang.String com.example.controller.BlogController.blogList(javax.servlet.http.HttpSession,org.springframework.ui.Model,java.lang.Integer)
+2016-04-19 14:59:54.686  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/publishBlog],methods=[POST]}" onto public java.lang.String com.example.controller.BlogController.publishBlog(javax.servlet.http.HttpSession,org.springframework.ui.Model,com.example.domain.Blog)
+2016-04-19 14:59:54.686  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/pointBlog],methods=[POST]}" onto public java.lang.String com.example.controller.BlogController.pointBlog(javax.servlet.http.HttpSession,java.lang.Long)
+2016-04-19 14:59:54.686  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/deleteBlog],methods=[POST]}" onto public java.lang.String com.example.controller.BlogController.deleteBlog(javax.servlet.http.HttpSession,java.lang.Long)
+2016-04-19 14:59:54.687  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/attendUserBlogList],methods=[GET]}" onto public java.lang.String com.example.controller.BlogController.attendUserBlogList(javax.servlet.http.HttpSession,org.springframework.ui.Model,java.lang.Integer)
+2016-04-19 14:59:54.688  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/addComment],methods=[POST]}" onto public java.lang.String com.example.controller.CommentController.addComment(javax.servlet.http.HttpSession,org.springframework.ui.Model,com.example.domain.Comment,java.lang.Long)
+2016-04-19 14:59:54.688  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/deleteComment],methods=[POST]}" onto public java.lang.String com.example.controller.CommentController.deleteComment(javax.servlet.http.HttpSession,org.springframework.ui.Model,java.lang.Long)
+2016-04-19 14:59:54.688  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ueditor/dispatch],produces=[application/json;charset=UTF-8]}" onto public void com.example.controller.UEditorController.config(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+2016-04-19 14:59:54.699  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/]}" onto public org.springframework.web.servlet.view.RedirectView com.example.controller.UserController.index(org.springframework.ui.Model,javax.servlet.http.HttpServletResponse)
+2016-04-19 14:59:54.700  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.example.controller.UserController.home(org.springframework.ui.Model,java.lang.String,javax.servlet.http.HttpSession)
+2016-04-19 14:59:54.700  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/login],methods=[GET]}" onto public java.lang.String com.example.controller.UserController.loginGet(org.springframework.ui.Model,java.lang.String)
+2016-04-19 14:59:54.700  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/login],methods=[POST],produces=[text/html;charset=UTF-8]}" onto public java.lang.String com.example.controller.UserController.loginPost(org.springframework.ui.Model,com.example.domain.User,javax.servlet.http.HttpSession)
+2016-04-19 14:59:54.701  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/register],methods=[GET]}" onto public java.lang.String com.example.controller.UserController.registerGet()
+2016-04-19 14:59:54.701  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/register],methods=[POST]}" onto public org.springframework.web.servlet.view.RedirectView com.example.controller.UserController.registerPost(org.springframework.ui.Model,com.example.domain.User)
+2016-04-19 14:59:54.701  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/loginOut],methods=[GET]}" onto public org.springframework.web.servlet.view.RedirectView com.example.controller.UserController.loginOut(javax.servlet.http.HttpSession)
+2016-04-19 14:59:54.701  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/userCenter],methods=[GET]}" onto public java.lang.String com.example.controller.UserController.userCenter(javax.servlet.http.HttpSession,org.springframework.ui.Model)
+2016-04-19 14:59:54.701  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/attendUser],methods=[GET]}" onto public java.lang.String com.example.controller.UserController.attendUser(javax.servlet.http.HttpSession,org.springframework.ui.Model,java.lang.Long)
+2016-04-19 14:59:54.702  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/changeUser],methods=[GET]}" onto public java.lang.String com.example.controller.UserController.changeUserGet(javax.servlet.http.HttpSession,org.springframework.ui.Model)
+2016-04-19 14:59:54.702  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/changeUser],methods=[POST]}" onto public org.springframework.web.servlet.view.RedirectView com.example.controller.UserController.changeUserPost(javax.servlet.http.HttpSession,org.springframework.ui.Model,com.example.domain.User)
+2016-04-19 14:59:54.711  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-04-19 14:59:54.712  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-04-19 14:59:54.752  INFO 12743 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-04-19 14:59:54.831  INFO 12743 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3c9d0b9d: startup date [Tue Apr 19 14:59:46 CST 2016]; root of context hierarchy
+2016-04-19 14:59:56.069  WARN 12743 --- [main] o.s.b.a.t.ThymeleafAutoConfiguration     : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2016-04-19 14:59:56.236  INFO 12743 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2016-04-19 14:59:56.385  INFO 12743 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2016-04-19 14:59:56.392  INFO 12743 --- [main] com.example.DemoApplication              : Started DemoApplication in 12.458 seconds (JVM running for 13.764)
+2016-04-19 15:00:07.447  INFO 12743 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2016-04-19 15:00:07.448  INFO 12743 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2016-04-19 15:00:07.480  INFO 12743 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 32 ms
+2016-04-19 15:00:23.965  INFO 12743 --- [http-nio-8080-exec-5] com.example.util.ImageUtil               : 图片转换成功: 从[jpeg]到[png]
+2016-04-19 15:03:03.768  INFO 12743 --- [http-nio-8080-exec-2] com.example.util.ImageUtil               : 图片转换成功: 从[jpeg]到[png]
+2016-04-19 15:03:16.223  INFO 12743 --- [http-nio-8080-exec-9] com.example.util.ImageUtil               : 图片转换成功: 从[jpeg]到[png]
+2016-04-19 15:05:09.974  INFO 12743 --- [http-nio-8080-exec-8] com.example.util.ImageUtil               : 图片转换成功: 从[jpeg]到[png]
+2016-04-19 15:06:36.457  INFO 12743 --- [http-nio-8080-exec-1] com.example.util.ImageUtil               : 图片转换成功: 从[jpeg]到[png]
+2016-04-19 15:08:49.428  INFO 12743 --- [http-nio-8080-exec-5] com.example.util.ImageUtil               : 图片转换成功: 从[jpeg]到[png]
+2016-04-19 15:10:44.020  INFO 12743 --- [http-nio-8080-exec-8] com.example.util.ImageUtil               : 图片转换成功: 从[jpeg]到[png]
+2016-04-19 15:10:57.297  INFO 12743 --- [http-nio-8080-exec-10] com.example.util.ImageUtil               : 图片转换成功: 从[jpeg]到[png]
+2016-04-19 15:16:31.600  INFO 12743 --- [http-nio-8080-exec-6] com.example.util.ImageUtil               : 图片转换成功: 从[png]到[png]
+2016-04-19 15:16:50.724  INFO 12743 --- [http-nio-8080-exec-7] com.example.util.ImageUtil               : 图片转换成功: 从[png]到[png]
+2016-04-19 15:16:50.881  INFO 12743 --- [http-nio-8080-exec-3] com.example.util.ImageUtil               : 图片转换成功: 从[jpeg]到[png]
+2016-04-19 15:16:51.092  INFO 12743 --- [http-nio-8080-exec-4] com.example.util.ImageUtil               : 图片转换成功: 从[png]到[png]
+2016-04-19 15:16:51.314  INFO 12743 --- [http-nio-8080-exec-6] com.example.util.ImageUtil               : 图片转换成功: 从[png]到[png]
+2016-04-19 15:16:51.644  INFO 12743 --- [http-nio-8080-exec-9] com.example.util.ImageUtil               : 图片转换成功: 从[png]到[png]
+2016-04-19 15:16:51.740  INFO 12743 --- [http-nio-8080-exec-5] com.example.util.ImageUtil               : 图片转换成功: 从[png]到[png]
+2016-04-19 15:16:52.075  INFO 12743 --- [http-nio-8080-exec-1] com.example.util.ImageUtil               : 图片转换成功: 从[png]到[png]
+2016-04-19 15:16:52.185  INFO 12743 --- [http-nio-8080-exec-2] com.example.util.ImageUtil               : 图片转换成功: 从[png]到[png]
+2016-04-19 15:30:47.875  INFO 12743 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3c9d0b9d: startup date [Tue Apr 19 14:59:46 CST 2016]; root of context hierarchy
+2016-04-19 15:30:47.880  INFO 12743 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2016-04-19 15:30:47.883  INFO 12743 --- [Thread-3] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2016-04-19 15:30:56.452  INFO 13096 --- [main] com.example.DemoApplication              : Starting DemoApplication on yangyandeMacBook-Pro.local with PID 13096 (/Users/yangyan/Viann/GraduationDesign/GraduationDesign/target/classes started by yangyan in /Users/yangyan/Viann/GraduationDesign/GraduationDesign)
+2016-04-19 15:30:56.501  INFO 13096 --- [main] com.example.DemoApplication              : No active profile set, falling back to default profiles: default
+2016-04-19 15:30:57.615  INFO 13096 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3c9d0b9d: startup date [Tue Apr 19 15:30:57 CST 2016]; root of context hierarchy
+2016-04-19 15:31:00.159  INFO 13096 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4245d020] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-04-19 15:31:00.935  INFO 13096 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2016-04-19 15:31:00.958  INFO 13096 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2016-04-19 15:31:00.960  INFO 13096 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.0.30
+2016-04-19 15:31:01.131  INFO 13096 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2016-04-19 15:31:01.131  INFO 13096 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3521 ms
+2016-04-19 15:31:01.289  INFO 13096 --- [localhost-startStop-1] o.s.b.c.e.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]
+2016-04-19 15:31:01.296  INFO 13096 --- [localhost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-04-19 15:31:01.697  INFO 13096 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2016-04-19 15:31:01.712  INFO 13096 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2016-04-19 15:31:01.817  INFO 13096 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {4.3.11.Final}
+2016-04-19 15:31:01.819  INFO 13096 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2016-04-19 15:31:01.821  INFO 13096 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2016-04-19 15:31:02.209  INFO 13096 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+2016-04-19 15:31:02.997  INFO 13096 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2016-04-19 15:31:03.277  INFO 13096 --- [main] o.h.h.i.ast.ASTQueryTranslatorFactory    : HHH000397: Using ASTQueryTranslatorFactory
+2016-04-19 15:31:03.739  INFO 13096 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2016-04-19 15:31:03.739  INFO 13096 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000102: Fetching database metadata
+2016-04-19 15:31:03.741  INFO 13096 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000396: Updating schema
+2016-04-19 15:31:03.767  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: netglooblog.admin
+2016-04-19 15:31:03.767  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [password, create_time, id, status, username]
+2016-04-19 15:31:03.768  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: []
+2016-04-19 15:31:03.768  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [primary]
+2016-04-19 15:31:03.781  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: netglooblog.blog
+2016-04-19 15:31:03.782  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [create_time, context, id, title, user, status]
+2016-04-19 15:31:03.783  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_q46q1rxhq8cec0isvwfmbxmdt]
+2016-04-19 15:31:03.783  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [fk_q46q1rxhq8cec0isvwfmbxmdt, primary]
+2016-04-19 15:31:03.789  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: netglooblog.blog_comments
+2016-04-19 15:31:03.789  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [comments, blog]
+2016-04-19 15:31:03.789  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_7s95v9vq7l278ifn8dk1ijpk1, fk_3d3o64nviuxs6ec55nw5mark0]
+2016-04-19 15:31:03.789  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [uk_3d3o64nviuxs6ec55nw5mark0, primary]
+2016-04-19 15:31:03.796  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: netglooblog.comment
+2016-04-19 15:31:03.797  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [create_time, context, id, blog, user, status]
+2016-04-19 15:31:03.797  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_4ivt42gn164dv18bc7kd6ofkv, fk_3bye9okd9q6nvfukvgu67d9et]
+2016-04-19 15:31:03.797  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [fk_4ivt42gn164dv18bc7kd6ofkv, fk_3bye9okd9q6nvfukvgu67d9et, primary]
+2016-04-19 15:31:03.803  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: netglooblog.user
+2016-04-19 15:31:03.804  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [resume, password, create_time, phone, img_url, sex, nickname, id, email, status]
+2016-04-19 15:31:03.805  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: []
+2016-04-19 15:31:03.805  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [primary]
+2016-04-19 15:31:03.811  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: netglooblog.user_blogs
+2016-04-19 15:31:03.811  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [blogs, user]
+2016-04-19 15:31:03.811  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_7nb07brgixv1v4tjnsusdjifh, fk_51naxvoe4xco83fmgtwo8roj8]
+2016-04-19 15:31:03.811  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [uk_51naxvoe4xco83fmgtwo8roj8, fk_7nb07brgixv1v4tjnsusdjifh]
+2016-04-19 15:31:03.817  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: netglooblog.user_comments
+2016-04-19 15:31:03.817  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [comments, user]
+2016-04-19 15:31:03.817  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_o6erpx1rt3ifie1kjjros4l3a, fk_oagiudgfmryep2ikftny4xy2i]
+2016-04-19 15:31:03.817  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [fk_oagiudgfmryep2ikftny4xy2i, uk_o6erpx1rt3ifie1kjjros4l3a]
+2016-04-19 15:31:03.823  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: netglooblog.user_point_blog
+2016-04-19 15:31:03.823  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [blog, user]
+2016-04-19 15:31:03.823  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_6q3qe5k229px46de8l00h78uk, fk_pegkuf199mklvqfay0gnb87wd]
+2016-04-19 15:31:03.823  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [fk_pegkuf199mklvqfay0gnb87wd, primary]
+2016-04-19 15:31:03.829  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: netglooblog.user_user
+2016-04-19 15:31:03.829  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [follow_user, attention_user]
+2016-04-19 15:31:03.829  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_m7jlnl4j4c4l0ip5mr3h6aehg, fk_pjw70ua204odel3p7i5hdv2ii]
+2016-04-19 15:31:03.829  INFO 13096 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [fk_m7jlnl4j4c4l0ip5mr3h6aehg, fk_pjw70ua204odel3p7i5hdv2ii]
+2016-04-19 15:31:03.830  INFO 13096 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000232: Schema update complete
+2016-04-19 15:31:04.762  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/admin/Login],methods=[GET]}" onto public java.lang.String com.example.controller.AdminController.loginGet(org.springframework.ui.Model,java.lang.String)
+2016-04-19 15:31:04.764  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/admin/Login],methods=[POST],produces=[text/html;charset=UTF-8]}" onto public java.lang.String com.example.controller.AdminController.loginPost(org.springframework.ui.Model,com.example.domain.Admin,javax.servlet.http.HttpSession)
+2016-04-19 15:31:04.764  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/admin/LoginOut],methods=[GET]}" onto public org.springframework.web.servlet.view.RedirectView com.example.controller.AdminController.AdminLoginOut(javax.servlet.http.HttpSession)
+2016-04-19 15:31:04.764  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/admin/userList],methods=[GET]}" onto public java.lang.String com.example.controller.AdminController.userList(javax.servlet.http.HttpSession,org.springframework.ui.Model,java.lang.Integer)
+2016-04-19 15:31:04.765  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/admin/commentList],methods=[GET]}" onto public java.lang.String com.example.controller.AdminController.commentList(javax.servlet.http.HttpSession,org.springframework.ui.Model,java.lang.Integer)
+2016-04-19 15:31:04.765  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/admin/blogList],methods=[GET]}" onto public java.lang.String com.example.controller.AdminController.blogList(javax.servlet.http.HttpSession,org.springframework.ui.Model,java.lang.Integer)
+2016-04-19 15:31:04.766  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/admin/setBlogFreeze],methods=[POST]}" onto public java.lang.String com.example.controller.AdminController.setBlogStatus(javax.servlet.http.HttpSession,org.springframework.ui.Model,java.lang.Long)
+2016-04-19 15:31:04.769  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/blogList],methods=[GET]}" onto public java.lang.String com.example.controller.BlogController.blogList(javax.servlet.http.HttpSession,org.springframework.ui.Model,java.lang.Integer)
+2016-04-19 15:31:04.770  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/publishBlog],methods=[POST]}" onto public java.lang.String com.example.controller.BlogController.publishBlog(javax.servlet.http.HttpSession,org.springframework.ui.Model,com.example.domain.Blog)
+2016-04-19 15:31:04.771  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/pointBlog],methods=[POST]}" onto public java.lang.String com.example.controller.BlogController.pointBlog(javax.servlet.http.HttpSession,java.lang.Long)
+2016-04-19 15:31:04.771  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/deleteBlog],methods=[POST]}" onto public java.lang.String com.example.controller.BlogController.deleteBlog(javax.servlet.http.HttpSession,java.lang.Long)
+2016-04-19 15:31:04.771  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/attendUserBlogList],methods=[GET]}" onto public java.lang.String com.example.controller.BlogController.attendUserBlogList(javax.servlet.http.HttpSession,org.springframework.ui.Model,java.lang.Integer)
+2016-04-19 15:31:04.772  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/addComment],methods=[POST]}" onto public java.lang.String com.example.controller.CommentController.addComment(javax.servlet.http.HttpSession,org.springframework.ui.Model,com.example.domain.Comment,java.lang.Long)
+2016-04-19 15:31:04.773  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/deleteComment],methods=[POST]}" onto public java.lang.String com.example.controller.CommentController.deleteComment(javax.servlet.http.HttpSession,org.springframework.ui.Model,java.lang.Long)
+2016-04-19 15:31:04.775  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ueditor/dispatch],produces=[application/json;charset=UTF-8]}" onto public void com.example.controller.UEditorController.config(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+2016-04-19 15:31:04.778  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/]}" onto public org.springframework.web.servlet.view.RedirectView com.example.controller.UserController.index(org.springframework.ui.Model,javax.servlet.http.HttpServletResponse)
+2016-04-19 15:31:04.779  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index]}" onto public java.lang.String com.example.controller.UserController.home(org.springframework.ui.Model,java.lang.String,javax.servlet.http.HttpSession)
+2016-04-19 15:31:04.780  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/login],methods=[GET]}" onto public java.lang.String com.example.controller.UserController.loginGet(org.springframework.ui.Model,java.lang.String)
+2016-04-19 15:31:04.780  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/login],methods=[POST],produces=[text/html;charset=UTF-8]}" onto public java.lang.String com.example.controller.UserController.loginPost(org.springframework.ui.Model,com.example.domain.User,javax.servlet.http.HttpSession)
+2016-04-19 15:31:04.781  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/register],methods=[GET]}" onto public java.lang.String com.example.controller.UserController.registerGet()
+2016-04-19 15:31:04.781  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/register],methods=[POST]}" onto public org.springframework.web.servlet.view.RedirectView com.example.controller.UserController.registerPost(org.springframework.ui.Model,com.example.domain.User)
+2016-04-19 15:31:04.781  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/loginOut],methods=[GET]}" onto public org.springframework.web.servlet.view.RedirectView com.example.controller.UserController.loginOut(javax.servlet.http.HttpSession)
+2016-04-19 15:31:04.781  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/userCenter],methods=[GET]}" onto public java.lang.String com.example.controller.UserController.userCenter(javax.servlet.http.HttpSession,org.springframework.ui.Model)
+2016-04-19 15:31:04.782  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/attendUser],methods=[GET]}" onto public java.lang.String com.example.controller.UserController.attendUser(javax.servlet.http.HttpSession,org.springframework.ui.Model,java.lang.Long)
+2016-04-19 15:31:04.782  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/changeUser],methods=[GET]}" onto public java.lang.String com.example.controller.UserController.changeUserGet(javax.servlet.http.HttpSession,org.springframework.ui.Model)
+2016-04-19 15:31:04.782  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/changeUser],methods=[POST]}" onto public org.springframework.web.servlet.view.RedirectView com.example.controller.UserController.changeUserPost(javax.servlet.http.HttpSession,org.springframework.ui.Model,com.example.domain.User)
+2016-04-19 15:31:04.799  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-04-19 15:31:04.800  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-04-19 15:31:04.886  INFO 13096 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-04-19 15:31:05.010  INFO 13096 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3c9d0b9d: startup date [Tue Apr 19 15:30:57 CST 2016]; root of context hierarchy
+2016-04-19 15:31:06.294  WARN 13096 --- [main] o.s.b.a.t.ThymeleafAutoConfiguration     : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2016-04-19 15:31:06.387  INFO 13096 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2016-04-19 15:31:06.487  INFO 13096 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2016-04-19 15:31:06.495  INFO 13096 --- [main] com.example.DemoApplication              : Started DemoApplication in 11.379 seconds (JVM running for 12.219)

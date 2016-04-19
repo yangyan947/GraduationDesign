@@ -11,8 +11,8 @@
     <script src="/static/js/resources/bootstrapValidator.js"></script>
 
 
-    <script type="text/javascript" src="/static/ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" src="/static/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript" src="/resources/ueditor.config.js"></script>
+    <script type="text/javascript" src="/resources/ueditor.all.js"></script>
 
 </head>
 <body>
@@ -234,6 +234,7 @@
 
 <script type="text/javascript">
 
+    /*评论框*/
     $(function () {
         var fri_news = $("div#fri-news"),
                 news_item = fri_news.find("div.news-item");
@@ -257,15 +258,13 @@
                 }
             });
 
-            /*添加评论 (除了textarea的监听有问题!!!!!!!)*/
-            /*add_comment.bind("input propertychange", function (){*/
-            if (comment_val != "") {
-                add_comment_btn.bind("click", function () {
+            /*添加评论*/
+            add_comment_btn.bind("click", function () {
+                var new_comment = comment_list.find("textarea.text"),
+                        new_val = new_comment.val();
+                comment_container.append("<div class='fri-comment'><img src='/static/images/test/head.jpg' class='head'><div class='info-box'><span class='text'><span class='fir-name'>张三</span>: " + new_val + "</span><span class='create-time'>2016-4-18</span></div></div>");
+            });
 
-                    comment_container.append("<div class='fri-comment'><img src='/static/images/test/head.jpg' class='head'><div class='info-box'><span class='text'><span class='fir-name'>张三</span>: " + comment_val + "</span><span class='create-time'>2016-4-18</span></div></div>");
-                });
-            }
-            /*});*/
 
             /*评论框所有评论隐藏显示 (有问题!!!!!!!!)*/
 
@@ -275,8 +274,6 @@
             else {
                 comment_list.hide();
             }
-
-            console.log(comment_container);
 
             comment_list_btn.bind("click", function () {
                 comment_list.toggle();
@@ -295,8 +292,9 @@
     $(function () {
         var to_top = $("a#to-top"),
                 body = $("body,html"),
-                body_scrolltop = body.scrollTop()
-        var isTop = true;
+                body_scrolltop = body.scrollTop(),
+                isTop = true;
+
         if (body_scrolltop > 0) {
             to_top.show();
         }
@@ -309,7 +307,6 @@
             to_top.hide(0,function(){
 
             });
-            console.info('runclick')
         });
 
         $(window).scroll(function () {

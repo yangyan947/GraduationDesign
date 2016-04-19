@@ -15,7 +15,7 @@ public class Comment extends BaseObject {
     private String context;
     @ManyToOne
     private User user;
-    @ManyToOne
+@ManyToOne
     private Blog blog;
 
     public String getContext() {

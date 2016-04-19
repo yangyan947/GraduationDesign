@@ -10,7 +10,6 @@ import java.util.Set;
  */
 @Entity
 public class Blog extends BaseObject {
-    private String title;
     private String context;
     @ManyToOne
     private User user;
@@ -21,13 +20,6 @@ public class Blog extends BaseObject {
     @JoinTable(name = "user_point_blog", joinColumns = @JoinColumn(name = "blog"), inverseJoinColumns = @JoinColumn(name = "user"))
     private Set<User> pointsUsers;
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getContext() {
         return context;

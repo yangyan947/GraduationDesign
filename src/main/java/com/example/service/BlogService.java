@@ -131,7 +131,7 @@ public class BlogService {
         } else if (blog == null) {
             message = new Message(false, "微博不存在");
         } else if (!blog.getStatus().equals(status)) {
-            blog.setStatus(status);
+            BLOG.setStatus(status);
             blogDao.save(blog);
             message = new Message(true, "设置微博状态"+status+"成功", status);
         } else {

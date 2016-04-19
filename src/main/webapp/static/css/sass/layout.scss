@@ -13,4 +13,9 @@
 
 a {
   text-decoration: none;
+  outline: none;
+}
+
+body .edui-default .edui-editor-bottomContainer td {
+  border-top: 0;
 }

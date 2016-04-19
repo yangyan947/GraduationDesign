@@ -73,6 +73,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /* line 14, ../sass/layout.scss */
 a {
   text-decoration: none;
+  outline: none;
+}
+
+/* line 19, ../sass/layout.scss */
+body .edui-default .edui-editor-bottomContainer td {
+  border-top: 0;
 }
 
 /* line 3, ../sass/login.scss */

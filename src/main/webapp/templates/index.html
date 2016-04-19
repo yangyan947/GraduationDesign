@@ -31,7 +31,7 @@
                 <span class="glyphicon glyphicon-home icon"></span>
                 <span class="index">首页</span>
             </a>
-            <a href="/personal">
+            <a href="/personalCenter">
                 <span class="glyphicon glyphicon-user icon"></span>
                 <span class="index">火火Viann</span>
             </a>
@@ -74,26 +74,23 @@
                         <span class="glyphicon glyphicon-pencil icon"></span>评论
                     </a>
                     <span class="cut"></span>
-                    <a href="javascript:void(0);" class="good">
+                    <a href="javascript:void(0);" class="good" data-status=false>
                         <span class="glyphicon glyphicon-thumbs-up icon"></span>点赞
                     </a>
-                    <span class="cut"></span>
-                    <a href="javascript:void(0);" class="report">
-                        <span class="glyphicon glyphicon-exclamation-sign icon"></span>举报
-                    </a>
                 </div>
-                <div class="comment-list" id="comment-list">
+                <div class="comment-list">
                     <span class="triangle"></span>
 
                     <div class="comment-left">
-                        <img src="/static/images/test/head.jpg" alt="" class="head">
+                        <img src="/static/images/test/head.jpg" class="head">
                     </div>
                     <div class="comment-rit">
                         <div class="add-comment">
-                            <textarea name="" class="text" id="add-comment-text"></textarea>
-                            <a href="javascript:void(0);" class="comment-btn" id="add-comment-btn">评论</a>
+                            <textarea name="" class="text"></textarea>
+                            <a href="javascript:void(0);" class="comment-btn">评论</a>
                         </div>
                         <div class="comment-container">
+
                             <div class="fri-comment">
                                 <img src="/static/images/test/head.jpg" class="head">
 
@@ -108,70 +105,11 @@
                                 </div>
                             </div>
 
-                            <!--多余部分-->
-                            <div class="fri-comment">
-                                <img src="/static/images/test/head.jpg" alt="" class="head">
-
-                                <div class="info-box">
-                                <span class="text">
-                                    <span class="fir-name">张三</span>:&nbsp
-                                    是打发撒打发士大夫撒打发士大夫dfaffsff
-                                    asdfasdfsafasdfsadfdsafafdfafdafafafadfsdafasdfafdfaffsff
-                                    asdfasdffffff的水电费等丰富的的丰富的地方fafadfsdafasdfafdfaffsff
-                                </span>
-                                    <span class="create-time">2016-4-18</span>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!--多余部分-->
-            <div class="news-item">
-                <div class="item-top">
-                    <div class="user-head">
-                        <img src="/static/images/test/head.jpg" class="head-img"/>
-                    </div>
-                    <div class="item-info">
-                        <div class="user-name">AAA</div>
-                        <div class="create-time">2016-4-16</div>
-                        <p class="text">asdfasdfasdfasdfasdfasdfasdfasfssaf</p>
-                        <!--图片??-->
-                    </div>
-                </div>
-                <div class="item-botm">
-                    <a href="javascript:void(0);" class="comment comment-list-btn">
-                        <span class="glyphicon glyphicon-pencil icon"></span>评论
-                    </a>
-                    <span class="cut"></span>
-                    <a href="javascript:void(0);" class="good">
-                        <span class="glyphicon glyphicon-thumbs-up icon"></span>点赞
-                    </a>
-                    <span class="cut"></span>
-                    <a href="javascript:void(0);" class="report">
-                        <span class="glyphicon glyphicon-exclamation-sign icon"></span>举报
-                    </a>
-                </div>
-                <div class="comment-list">
-                    <span class="triangle"></span>
-
-                    <div class="comment-left">
-                        <img src="/static/images/test/head.jpg" alt="" class="head">
-                    </div>
-                    <div class="comment-rit">
-                        <div class="add-comment">
-                            <textarea name="" class="text"></textarea>
-                            <a href="javascript:void(0);" class="comment-btn">评论</a>
-                        </div>
-                        <div class="comment-container">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--以上多余部分-->
 
         </div>
     </div>
@@ -187,16 +125,22 @@
 
             <div class="info">
                 <div class="item">
-                    <span class="num">112</span>
-                    <span class="text">关注</span>
+                    <a href="/personalCenter?type=01">
+                        <span class="num">112</span>
+                        <span class="text">关注</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <span class="num">234</span>
-                    <span class="text">粉丝</span>
+                    <a href="/personalCenter?type=02">
+                        <span class="num">234</span>
+                        <span class="text">粉丝</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <span class="num">96</span>
-                    <span class="text">微博</span>
+                    <a href="/personalCenter?type=03">
+                        <span class="num">96</span>
+                        <span class="text">微博</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -223,18 +167,23 @@
 </a>
 
 
-<!--<p th:text="${result}"></p>-->
+
+
+
+
+
+
 
 
 <script type="text/javascript">
 
-    /*评论框*/
+    /*发布微博, 添加评论*/
     $(function () {
         var fri_news = $("div#fri-news"),
                 news_item = fri_news.find("div.news-item");
 
-        news_item.each(function () {
-            var $this = $(this),
+        function init(e) {
+            var $this = $(e),
                     comment_list = $this.find("div.comment-list"),
                     add_comment = comment_list.find("textarea.text"),
                     comment_val = add_comment.val(),
@@ -262,14 +211,13 @@
 
             function get_comment(new_val) {
                 return "<div class='fri-comment'>" +
-                "<img src='/static/images/test/head.jpg' class='head'>" +
-                "<div class='info-box'><span class='text'><span class='fir-name'>张三</span>: " + new_val + "</span>" +
-                "<span class='create-time'>2016-4-18</span></div>" +
-                "</div>";
+                        "<img src='/static/images/test/head.jpg' class='head'>" +
+                        "<div class='info-box'><span class='text'><span class='fir-name'>张三</span>: " + new_val + "</span>" +
+                        "<span class='create-time'>2016-4-18</span></div>" +
+                        "</div>";
             }
 
-            /*评论框所有评论隐藏显示 (有问题!!!!!!!!)*/
-
+            /*评论框所有评论隐藏显示*/
             if (comment_container.children('.fri-comment').length > 0) {
                 comment_list.show();
             }
@@ -281,12 +229,51 @@
                 comment_list.toggle();
             });
 
+
+            /*点赞功能*/
+            var good_btn = $this.find("a.good");
+            good_btn.bind("click", function (){
+                var _this = $(this);
+                var status = _this.attr("data-status");
+                if(status == 'false') {
+                    $.ajax({
+                        url: "/pointBlog",
+                        data: {
+                            "blogId": 11111111111
+                        },
+                        type: 'POST',
+                        success: function(data){
+                            good_btn.addClass("active");
+                            status = true;
+                            _this.attr("data-status", true);
+                        }
+                    });
+                }
+                else if(status == 'true') {
+                    $.ajax({
+                        url: "/unPointBlog",
+                        data: {
+                            "blogId": 11111111111
+                        },
+                        type: 'POST',
+                        success: function(data){
+                            good_btn.removeClass("active");
+                            status = false;
+                            _this.attr("data-status", false);
+                        }
+                    });
+                }
+            });
+
+        }
+        news_item.each(function(i,e){
+            init(e); //针对循环出的当前一个对象e
         });
 
-    });
+
+
 
     /*富文本, 发布新状态*/
-    $(function () {
         /*富文本初始化*/
         var editor = new UE.ui.Editor();
         editor.render("myEditor");
@@ -297,26 +284,50 @@
                 publish_btn = $("a#publish-btn"),
                 fri_news = $("div#fri-news");
 
-        function publish() {
-            return
-        }
+        publish_btn.bind("click", function () {
+            var content = UE.getEditor('myEditor').getContent();    //UEditor取得内容Html的方法
 
-        publish_btn.bind("click",function (){
-           var content =  UE.getEditor('myEditor').getContent();
+            function publish_info(info) {
+                return "<div class='news-item'><div class='item-top'>" +
+                        "<div class='user-head'><img src='/static/images/test/head.jpg' class='head-img'/></div>" +
+                        "<div class='item-info'><div class='user-name'>AAA</div>" +
+                        "<div class='create-time'>2016-4-16</div>" +
+                        "<p class='text'>" + info + "</p></div></div>" +
 
-            $.ajax({
-                url: "/publishBlog",
-                data: {
-                    "content" : content,
-                },
-                type: 'POST',
-                success: function(data){
-//                    var result = $.parseJSON(data);
-                    console.info(data);
-                }
-            })
+                        "<div class='item-botm'>" +
+                        "<a href='javascript:void(0);' class='comment comment-list-btn'>" +
+                        "<span class='glyphicon glyphicon-pencil icon'></span>评论</a><span class='cut'></span>" +
+                        "<a href='javascript:void(0);' class='good' data-status=false>" +
+                        "<span class='glyphicon glyphicon-thumbs-up icon'></span>点赞</a><span class='cut'></span>" +
+                        "<a href='javascript:void(0);' class='report'>" +
+
+                        "<div class='comment-list'><span class='triangle'></span>" +
+                        "<div class='comment-left'><img src='/static/images/test/head.jpg' class='head'></div>" +
+                        "<div class='comment-rit'><div class='add-comment'><textarea name='' class='text'></textarea>" +
+                        "<a href='javascript:void(0);' class='comment-btn'>评论</a></div>" +
+                        "<div class='comment-container'></div></div></div></div>";
+            }
+
+            fri_news.prepend(publish_info(content));
+
+            init(fri_news.children('div.news-item')[0]);
+
+
+//            $.ajax({
+//                url: "/publishBlog",
+//                data: {
+//                    "content": content,
+//                },
+//                type: 'POST',
+//                success: function (data) {
+//                    // var result = $.parseJSON(data);
+//                    console.log(data);
+//                }
+//            })
 
         });
+
+
     });
 
     /*返回顶部*/
@@ -352,9 +363,9 @@
                 to_top.fadeOut(200);
             }
         });
-
-
     });
+
+
 
 
 </script>

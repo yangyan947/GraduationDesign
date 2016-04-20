@@ -49,6 +49,13 @@ public class BlogController {
         Message message = blogService.pointBlog(blogId, (User) session.getAttribute(USER));
         return message.toString();
     }
+    //点赞
+    @RequestMapping(value = "/unPointBlog", method = RequestMethod.POST)
+    @ResponseBody
+    public String unPointBlog(HttpSession session, @ModelAttribute(value = "blogId") Long blogId) {
+        Message message = blogService.pointBlog(blogId, (User) session.getAttribute(USER));
+        return message.toString();
+    }
     //删除
     @RequestMapping(value = "/deleteBlog", method = RequestMethod.POST)
     @ResponseBody

@@ -40,7 +40,6 @@ public class BlogService {
      * @return
      */
     public Message publishBlog(Blog blog, User user) {
-
         Message message;
         if (user == null) {
             message = new Message(false, "未登录!");
@@ -51,7 +50,6 @@ public class BlogService {
             user = userDao.save(user);
             message = new Message(true, "发表成功!", blog);
             ObjectMapper mapper = new ObjectMapper();
-
         }
         return message;
     }
@@ -94,6 +92,32 @@ public class BlogService {
             blog.getPointsUsers().add(user);
             user.getPointsBlogs().add(blog);
             blog = blogDao.save(blog);
+            user = userDao.save(user);
+            message = new Message(true, "点赞成功");
+        }
+        return message;
+    }
+
+    /**
+     * 取消点赞
+     * @param blogId 对应微博Id
+     * @param user 点赞用户
+     * @return
+     */
+    public Message unPointBlog(Long blogId, User user) {
+        Message message;
+        Blog blog = blogDao.findOne(blogId);
+        if (user == null) {
+            message = new Message(false, "未登录!");
+        } else if (blog == null) {
+            message = new Message(false, "微博不存在!");
+        } else if (!blog.getPointsUsers().contains(user)) {
+            message = new Message(false, "未点赞，无法取消点赞。");
+        } else {
+            blog.getPointsUsers().remove(user);
+            user.getPointsBlogs().remove(blog);
+            blog = blogDao.save(blog);
+            user = userDao.save(user);
             message = new Message(true, "点赞成功");
         }
         return message;

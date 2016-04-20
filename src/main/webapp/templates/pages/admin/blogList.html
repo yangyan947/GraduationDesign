@@ -1,0 +1,182 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>主页</title>
+	
+	<link rel="stylesheet" type="text/css" href="/static/css/resources/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/static/css/stylesheets/index.css"/>
+	<script type="text/javascript" src="/static/js/resources/jquery.min.js"></script>
+	<script src="/static/js/resources/bootstrap.min.js"></script>
+	<script src="/static/js/resources/bootstrapValidator.js"></script>
+	
+	
+	<script type="text/javascript" src="/resources/ueditor.config.js"></script>
+	<script type="text/javascript" src="/resources/ueditor.all.js"></script>
+
+</head>
+<body>
+
+<div class="nav">
+	<div class="nav-box">
+		<div class=".col-md-2 logo"></div>
+		<span class="logo-txt">SC Blog</span>
+		
+		<div class=".col-md-4 search">
+			<input type="text" class="search-box" placeholder="搜索..."/>
+			<a href="javascript:void(0);" class="search-icon glyphicon glyphicon-search"></a>
+		</div>
+		<div class=".col-md-6 nav-item">
+			<a href="/index">
+				<span class="glyphicon glyphicon-home icon"></span>
+				<span class="index">首页</span>
+			</a>
+			<a href="/personalCenter">
+				<span class="glyphicon glyphicon-user icon"></span>
+				<span class="index">火火Viann</span>
+			</a>
+			<a href="/loginOut">
+				<span class="index">退出登录</span>
+			</a>
+		</div>
+	</div>
+</div>
+
+<div class="container-box">
+	<div class="col-md-8 cont-left">
+		<!--已关注人状态-->
+		<div class="fri-news" id="fri-news" th:each="blog : ${blogPage.getContent() }">
+			<div class="news-item">
+				<div class="item-top">
+					<div class="user-head">
+						<img th:src="${blog.getUser().getImgUrl()}" class="head-img"/>
+					</div>
+					<div class="item-info">
+						<span th:text="${blog.getStatusZn()}"></span>
+						<div class="btn-group status-button" th:attr="data-status=${blog.getStatus()}">
+							<button th:attr="data-id=${blog.getId()}" data-status="freeze"
+											type="button" class="btn btn-default">冻结
+							</button>
+							<button th:attr="data-id=${blog.getId()}" data-status="normal"
+											type="button" class="btn btn-success">正常
+							</button>
+							<button th:attr="data-id=${blog.getId()}" data-status="hot" type="button" class="btn btn-primary">热门
+							</button>
+						</div>
+						<div class="user-name" th:text="${blog.getUser().getNickname()}">AAA</div>
+						<div class="create-time" th:text="${#dates.format(blog.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}">
+						</div>
+
+						<p class="text" th:utext="${blog.getContext()}"></p>
+						<!--图片??-->
+					</div>
+				</div>
+
+				<div class="comment-list" th:each="comment : ${blog.getComments()}">
+					<span class="triangle"></span>
+					<div class="comment-rit">
+						<div class="comment-container">
+							<div class="fri-comment">
+								<img src="/static/images/test/head.jpg" class="head">
+								<div class="info-box">
+                                <span class="text">
+                                    <span class="fir-name" th:text="${comment.getUser().getNickname()}"></span>:&nbsp
+                                    <span th:text="${comment.getContext()}"></span>
+                                </span>
+									<span class="create-time">2016-4-18</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<ul class="pagination">
+			<li th:unless="${blogPage.getNumber()} == 0"><a
+					th:href="'/admin/blogList?page=' + ${blogPage.getNumber()} +'&&status=' + ${param.status!=null?param.status[0]:'all'}">&laquo;</a>
+			</li>
+			<li><a href="javascript:;">当前页面 第<span th:text="${blogPage.getNumber()+1}"></span>页</a></li>
+			<li th:unless="${blogPage.getNumber()} == ${blogPage.getTotalPages() -1}"><a
+					th:href="'/admin/blogList?page=' + ${blogPage.getNumber() + 2} +'&&status=' + ${param.status!=null?param.status[0]:'all'}">&raquo;</a>
+			</li>
+			<li><a href="javascript:;">共 <span th:text="${blogPage.getTotalPages()}"></span>页</a></li>
+		</ul>
+	</div>
+
+	<div class="col-md-4 cont-rit" th:include="pages/admin/common/right-nav :: right">
+	</div>
+</div>
+
+<!--返回顶部-->
+<a href="javascript:void(0);" id="to-top" class="to-top">
+	<span class="glyphicon glyphicon-arrow-up top-icon"></span>
+</a>
+
+
+<script type="text/javascript">
+	$(function () {
+		var buttonDiv = $('div.status-button');
+		var button = buttonDiv.find('button');
+		button.bind('click', function () {
+			var _this = $(this);
+			var id = _this.attr('data-id');
+			var status = _this.attr('data-status');
+			$.ajax({
+				url: '/admin/setBlogStatus',
+				data: {
+					'id': id,
+					'status': status
+				},
+				type: 'POST',
+				success: function (data) {
+					var result = $.parseJSON(data);
+					console.info(result);
+					var isSuccess = result.isSuccess;
+					if (isSuccess) {
+						_this.parent().parent().find('span').text(result.other)
+					}
+					else {
+						alert(result.reason);
+					}
+				}
+			});
+		});
+	});
+	/*返回顶部*/
+	$(function () {
+		var to_top = $("a#to-top"),
+				body = $("body,html"),
+				body_scrolltop = body.scrollTop(),
+				isTop = true;
+		to_top.show();
+		if (body_scrolltop > 0) {
+			to_top.show();
+		}
+		else {
+			to_top.hide();
+		}
+
+		to_top.bind("click", function () {
+			body.animate({scrollTop: 0}, 200);
+			to_top.hide(0, function () {
+
+			});
+		});
+
+		$(window).scroll(function () {
+			var body_scrolltop = body.scrollTop();
+			console.info(body_scrolltop);
+			if (body_scrolltop > 0 && isTop == true) {
+				isTop = false;
+				to_top.fadeIn(200);
+			}
+			else if (body_scrolltop <= 0) {
+				isTop = true;
+				to_top.fadeOut(200);
+			}
+		});
+	});
+</script>
+
+</body>
+</html>

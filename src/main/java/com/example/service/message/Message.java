@@ -3,7 +3,6 @@ package com.example.service.message;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
-import java.util.Optional;
 
 /**
  * Created by SunYi on 2016/3/25/0025.
@@ -12,7 +11,7 @@ import java.util.Optional;
 public class Message implements Serializable {
     private boolean isSuccess = true;
     private String reason = "success";
-    private Optional<Object> others;
+    private Object others;
 
     public boolean isSuccess() {
         return isSuccess;
@@ -40,7 +39,7 @@ public class Message implements Serializable {
 
 
     public Message(boolean isSuccess, String reason, Object others) {
-        this.others = Optional.ofNullable(others);
+        this.others = others;
         this.isSuccess = isSuccess;
         this.reason = reason;
     }
@@ -50,14 +49,30 @@ public class Message implements Serializable {
     }
 
     public void setOthers(Object others) {
-        this.others = Optional.ofNullable(others);
+        this.others = others;
     }
 
     @Override
     public String toString() {
-        return "{" +
-                "\"reason\":\"" + reason + '"' +
-                ", \"isSuccess\":" + isSuccess +
-                '}';
+        if (others != null) {
+            if (others instanceof String) {
+                return "{" +
+                        "\"reason\":\"" + reason + '"' +
+                        ", \"isSuccess\":" + isSuccess +
+                        ", \"other\":\"" + others + '"' +
+                        '}';
+            } else {
+                return "{" +
+                        "\"reason\":\"" + reason + '"' +
+                        ", \"isSuccess\":" + isSuccess +
+                        '}';
+            }
+        } else {
+            return "{" +
+                    "\"reason\":\"" + reason + '"' +
+                    ", \"isSuccess\":" + isSuccess +
+                    '}';
+        }
+
     }
 }

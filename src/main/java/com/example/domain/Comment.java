@@ -4,6 +4,7 @@ import com.example.domain.base.BaseObject;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 /**
@@ -13,9 +14,9 @@ import javax.persistence.ManyToOne;
 public class Comment extends BaseObject {
     @Column(nullable = false)
     private String context;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
-@ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Blog blog;
 
     public String getContext() {
@@ -48,5 +49,14 @@ public class Comment extends BaseObject {
 
     public void setBlog(Blog blog) {
         this.blog = blog;
+    }
+
+    public String getStatusZn() {
+        if (getStatus().equals("freeze")) {
+            return "冻结";
+        } else if (getStatus().equals("normal")) {
+            return "正常";
+        }
+        return "状态异常";
     }
 }

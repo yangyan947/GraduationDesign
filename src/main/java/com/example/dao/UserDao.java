@@ -17,9 +17,10 @@ public interface UserDao extends JpaRepository<User, Long> {
     // 根据username获得一个User类
     Optional<User> getByEmail(String email);
 
-    Page<User> findAllOrderByCreateTime(Pageable pageable);
+    Page<User> findAll(Pageable pageable);
+    Page<User> getByStatus(String status,Pageable pageable);
 
-    Page<User> findByNicknameLikeOrderByCreateTime(String nickname,Pageable pageable);
-    Page<User> findByEmailLikeOrderByCreateTime(String email,Pageable pageable);
+    Page<User> findByNicknameLike(String nickname,Pageable pageable);
+    Page<User> findByEmailLike(String email,Pageable pageable);
 
 }

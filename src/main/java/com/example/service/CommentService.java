@@ -11,6 +11,7 @@ import com.example.service.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -110,21 +111,27 @@ public class CommentService {
     public Message setCommentStatus(Long commentId, Admin admin,String status) {
         Message message;
         Comment comment = commentDao.findOne(commentId);
-        if (admin == null) {
+        if (!status.equals(STATUS_FREEZE)  && !status.equals(STATUS_ACTIVE)) {
+            message = new Message(false, "状态设置错误");
+        }
+        else if (admin == null) {
             message = new Message(false, "权限不足");
         } else if (comment == null) {
             message = new Message(false, "评论不存在");
         } else if (!comment.getStatus().equals(status)) {
             comment.setStatus(status);
             commentDao.save(comment);
-            message = new Message(true, "设置状态"+status+"成功");
+            message = new Message(true, "设置状态"+comment.getStatusZn()+"成功", comment.getStatusZn());
         } else {
-            message = new Message(false, "已经状态为" + status+ "不需要再次设置");
+            message = new Message(false, "已经状态为" + comment.getStatusZn()+ "不需要再次设置");
         }
         return message;
     }
 
     public Page<Comment> getCommentPage(Integer index) {
-        return commentDao.findAll(new PageRequest(index - 1, PAGE_SIZE));
+        return commentDao.findAll(new PageRequest(index - 1, PAGE_SIZE, new Sort(Sort.Direction.DESC,"createTime")));
+    }
+    public Page<Comment> getCommentPageByStatus(Integer index,String status) {
+        return commentDao.getByStatus(status,new PageRequest(index - 1, PAGE_SIZE, new Sort(Sort.Direction.DESC,"createTime")));
     }
 }

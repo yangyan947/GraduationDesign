@@ -7,7 +7,7 @@ import com.example.service.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,6 +33,7 @@ public class UserService {
     public static final String STATUS_ACTIVE = "normal";
     public static final String STATUS_DANGER = "danger";
     public static final String STATUS_HOT = "hot";
+
     //用户注册逻辑
     public Message register(User user) {
         Message message;
@@ -65,9 +66,15 @@ public class UserService {
             } else {
                 //若密码也相同则登陆成功
                 //让传入用户的属性和数据库保持一致
-                user.setId(user1.getId());
-                user.setCreateTime(user1.getCreateTime());
-                message[0] = new Message(true, "登陆成功", user1);
+                if (user1.getStatus().equals(STATUS_FREEZE)) {
+                    message[0] = new Message(false, "用户已经被冻结请联系客服");
+
+                } else {
+                    user.setId(user1.getId());
+                    user.setCreateTime(user1.getCreateTime());
+                    message[0] = new Message(true, "登陆成功", user1);
+                }
+
             }
         });
         return message[0];
@@ -93,7 +100,8 @@ public class UserService {
 
     /**
      * 关注用户
-     * @param user 操作用户
+     *
+     * @param user     操作用户
      * @param attendId 被关于用户id
      * @return
      */
@@ -126,6 +134,7 @@ public class UserService {
 
     /**
      * 获得用户列表
+     *
      * @return
      */
     public List<User> getAllUser() {
@@ -134,33 +143,41 @@ public class UserService {
 
     /**
      * 获得用户列表分页
+     *
      * @param index
      * @return
      */
     public Page<User> getPageUser(int index) {
-        return  userDao.findAll(new PageRequest(index-1, PAGE_SIZE));
+        return userDao.findAll(new PageRequest(index - 1, PAGE_SIZE, new Sort(Sort.Direction.DESC, "createTime")));
+    }
+
+    public Page<User> getPageUserByStatus(int index, String status) {
+        return userDao.getByStatus(status, new PageRequest(index - 1, PAGE_SIZE, new Sort(Sort.Direction.DESC, "createTime")));
     }
 
     /**
-     *  设置用户状态
+     * 设置用户状态
+     *
      * @param userId 操作用户ID
-     * @param admin 管理员
+     * @param admin  管理员
      * @param status 设置状态
      * @return
      */
     public Message setUserStatus(Long userId, Admin admin, String status) {
         Message message;
         User user = userDao.findOne(userId);
-        if (admin == null) {
+        if (!status.equals(STATUS_DANGER) && !status.equals(STATUS_ACTIVE) && !status.equals(STATUS_FREEZE) && !status.equals(STATUS_HOT)) {
+            message = new Message(false, "状态设置错误");
+        } else if (admin == null) {
             message = new Message(false, "权限不足");
         } else if (user == null) {
             message = new Message(false, "用户不存在");
         } else if (!user.getStatus().equals(status)) {
             user.setStatus(status);
             userDao.save(user);
-            message = new Message(true, "设置用户状态"+status+"成功");
+            message = new Message(true, "设置用户状态" + user.getStatusZn() + "成功", user.getStatusZn());
         } else {
-            message = new Message(false, "已经为"+status+"，不能再次设置");
+            message = new Message(false, "已经为" + user.getStatusZn() + "，不能再次设置");
         }
         return message;
     }

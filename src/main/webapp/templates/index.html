@@ -313,17 +313,17 @@
             init(fri_news.children('div.news-item')[0]);
 
 
-//            $.ajax({
-//                url: "/publishBlog",
-//                data: {
-//                    "content": content,
-//                },
-//                type: 'POST',
-//                success: function (data) {
-//                    // var result = $.parseJSON(data);
-//                    console.log(data);
-//                }
-//            })
+            $.ajax({
+                url: "/publishBlog",
+                data: {
+                    "context": content
+                },
+                type: 'POST',
+                success: function (data) {
+                    // var result = $.parseJSON(data);
+                    console.log(data);
+                }
+            })
 
         });
 

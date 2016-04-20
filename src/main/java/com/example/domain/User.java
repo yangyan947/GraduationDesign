@@ -22,22 +22,22 @@ public class User extends BaseObject {
     @Column(nullable = false)
     private String phone;
     private int sex = 2;
-    private String imgUrl = "";
-    private String resume;
-    @ManyToMany
+    private String imgUrl = "/static/images/test/head.jpg";
+    private String resume = "他很懒什么都没有留下";
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_user", joinColumns = @JoinColumn(name = "attention_user"), inverseJoinColumns = @JoinColumn(name = "follow_user"))
     private List<User> attentionUsers;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_user", joinColumns = @JoinColumn(name = "follow_user"), inverseJoinColumns = @JoinColumn(name = "attention_user"))
     private List<User> followUsers;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Blog> blogs;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Comment> comments;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_point_blog", joinColumns = @JoinColumn(name = "user"), inverseJoinColumns = @JoinColumn(name = "blog"))
     private Set<Blog> pointsBlogs;
 
@@ -81,6 +81,11 @@ public class User extends BaseObject {
         }
         return "保密";
     }
+
+    public int getSexInt() {
+        return sex;
+    }
+
 
     public void setSex(int sex) {
         this.sex = sex;
@@ -159,11 +164,23 @@ public class User extends BaseObject {
         this.pointsBlogs = pointsBlogs;
     }
 
-//    public List<Comment> getReceiveComments() {
+    //    public List<Comment> getReceiveComments() {
 //        return receiveComments;
 //    }
 //
 //    public void setReceiveComments(List<Comment> receiveComments) {
 //        this.receiveComments = receiveComments;
 //    }
+    public String getStatusZn() {
+        if (getStatus().equals("freeze")) {
+            return "冻结";
+        } else if (getStatus().equals("normal")) {
+            return "正常";
+        } else if (getStatus().equals("hot")) {
+            return "热门";
+        } else if (getStatus().equals("danger")) {
+            return "危险";
+        }
+        return "状态异常";
+    }
 }

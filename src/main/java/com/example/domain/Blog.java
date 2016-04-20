@@ -13,10 +13,10 @@ public class Blog extends BaseObject {
     private String context;
     @ManyToOne
     private User user;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Comment> comments;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_point_blog", joinColumns = @JoinColumn(name = "blog"), inverseJoinColumns = @JoinColumn(name = "user"))
     private Set<User> pointsUsers;
 
@@ -35,6 +35,7 @@ public class Blog extends BaseObject {
         else
             return 0;
     }
+
     public User getUser() {
         return user;
     }
@@ -61,7 +62,16 @@ public class Blog extends BaseObject {
 
     public void addComment(Comment comment) {
         this.comments.add(comment);
-
     }
 
+    public String getStatusZn() {
+        if (getStatus().equals("freeze")) {
+            return "冻结";
+        } else if (getStatus().equals("normal")) {
+            return "正常";
+        } else if (getStatus().equals("hot")) {
+            return "热门";
+        }
+        return "状态异常";
+    }
 }

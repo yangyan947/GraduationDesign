@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -130,16 +131,19 @@ public class BlogService {
     public Message setBlogStatus(Long blogId, Admin admin,String status) {
         Message message;
         Blog blog = blogDao.findOne(blogId);
-        if (admin == null) {
+        if (!status.equals(STATUS_FREEZE) && !status.equals(STATUS_HOT) && !status.equals(STATUS_NORMAL)) {
+            message = new Message(false, "状态设置错误");
+        }
+        else if (admin == null) {
             message = new Message(false, "权限不足");
         } else if (blog == null) {
             message = new Message(false, "微博不存在");
         } else if (!blog.getStatus().equals(status)) {
             blog.setStatus(status);
             blogDao.save(blog);
-            message = new Message(true, "设置微博状态"+status+"成功", status);
+            message = new Message(true, "设置微博状态"+status+"成功", blog.getStatusZn());
         } else {
-            message = new Message(false, "微博已经状态为" + status+ "，不需要再次设置");
+            message = new Message(false, "微博已经状态为" +  blog.getStatusZn()+ "，不需要再次设置");
         }
         return message;
     }
@@ -150,6 +154,21 @@ public class BlogService {
      * @return
      */
     public Page<Blog> getAllBlog(Integer index) {
-        return blogDao.getAllOrderByCreateTime(new PageRequest(index - 1, PAGE_SIZE));
+        if (index <= 0) {
+            index = 1;
+        }
+//        return blogDao.findAll(new PageRequest(index - 1, PAGE_SIZE));
+        return blogDao.findAll(new PageRequest(index - 1, PAGE_SIZE, new Sort(Sort.Direction.DESC,"createTime")));
+    }
+    /**
+     * 获得所有blog
+     * @param index 页码
+     * @return
+     */
+    public Page<Blog> getAllBlogNyStatus(Integer index, String status) {
+        if (index <= 0) {
+            index = 1;
+        }
+        return blogDao.getByStatus(status,new PageRequest(index - 1, PAGE_SIZE, new Sort(Sort.Direction.DESC,"createTime")));
     }
 }

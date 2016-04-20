@@ -5,6 +5,7 @@ import com.example.domain.Comment;
 import com.example.domain.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -26,9 +27,10 @@ public interface BlogDao extends JpaRepository<Blog, Long> {
     @Query("select b from Blog b where b.user in ?1 order by b.createTime")
     Page<Blog> getByUsers(List<User> user, Pageable pageable);
 
-    Page<Blog> getByUserInOrderByCreateTime(List<User> user, Pageable pageable);
+    Page<Blog> getByUserIn(List<User> user, Pageable pageable);
 
-    Page<Blog> getAllOrderByCreateTime(Pageable pageable);
+    Page<Blog> findAll(Pageable pageable);
+    Page<Blog> getByStatus(String status,Pageable pageable);
 
-    Page<Blog> getByContextLikeOrderByCreateTime(String fragment, Pageable pageable);
+    Page<Blog> getByContextLike(String fragment, Pageable pageable);
 }

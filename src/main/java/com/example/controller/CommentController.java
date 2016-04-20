@@ -32,13 +32,13 @@ public class CommentController {
     private CommentService commentService;
 
 
-    @RequestMapping(value = "/addComment", method = RequestMethod.POST)
+    @RequestMapping(value = "/addComment", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String addComment(HttpSession session, Model model, @ModelAttribute(value = "comment") Comment comment, @RequestParam(value = "blogId") Long blogId) {
         Message message = commentService.addComment(comment, blogId, (User) session.getAttribute(USER));
         return message.toString();
     }
-    @RequestMapping(value = "/deleteComment", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteComment", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String deleteComment(HttpSession session, Model model,  @RequestParam(value = "commentId") Long commentId) {
         Message message = commentService.deleteComment(commentId, (User) session.getAttribute(USER));

@@ -100,15 +100,16 @@ public class UserController {
     }
 
     //用户个人信息页面
-    @RequestMapping(value = "/userCenter", method = RequestMethod.GET)
+    @RequestMapping(value = "/personalCenter", method = RequestMethod.GET)
     public String userCenter(HttpSession session, Model model) {
         User user = (User) session.getAttribute(USER);
         if (user == null) {
             model.addAttribute("result", "用户未登录!");
-            return "index";
+            return "pages/login";
         } else {
-            model.addAttribute(USER, user);
-            return "userCenter";
+            update(session);
+            model.addAttribute("user", session.getAttribute(USER));
+            return "pages/personal";
         }
     }
     //关注用户
@@ -126,7 +127,8 @@ public class UserController {
         if (session.getAttribute(USER) == null) {
             model.addAttribute("result", "未登录");
         } else {
-            model.addAttribute(USER, session.getAttribute(USER));
+            update(session);
+            model.addAttribute("user", session.getAttribute(USER));
         }
         return "changeUser";
     }
@@ -143,5 +145,13 @@ public class UserController {
 
             return new RedirectView("/index", true, false, true);
         }
+    }
+
+    private User update(HttpSession session) {
+        User oldUser = (User) session.getAttribute(USER);
+        session.removeAttribute(USER);
+        User newUser = userService.update(oldUser);
+        session.setAttribute(USER, newUser);
+        return newUser;
     }
 }

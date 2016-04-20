@@ -3,13 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <title>个人主页</title>
+
     <link rel="stylesheet" type="text/css" href="/static/css/resources/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/stylesheets/personal.css"/>
     <script type="text/javascript" src="/static/js/resources/jquery.min.js"></script>
     <script src="/static/js/resources/bootstrap.min.js"></script>
     <script src="/static/js/resources/bootstrapValidator.js"></script>
+
+
+    <script type="text/javascript" src="/resources/ueditor.config.js"></script>
+    <script type="text/javascript" src="/resources/ueditor.all.js"></script>
+
 </head>
 <body>
+
+<div class="nav">
+    <div class="nav-box"`>
+        <div class=".col-md-2 logo"></div>
+        <span class="logo-txt">SC Blog</span>
+
+        <div class=".col-md-4 search">
+            <input type="text" class="search-box" placeholder="搜索..."/>
+            <a href="javascript:void(0);" class="search-icon glyphicon glyphicon-search"></a>
+        </div>
+        <div class=".col-md-6 nav-item">
+            <a href="/index">
+                <span class="glyphicon glyphicon-home icon"></span>
+                <span class="index">首页</span>
+            </a>
+            <a href="/personalCenter">
+                <span class="glyphicon glyphicon-user icon"></span>
+                <span class="index">火火Viann</span>
+            </a>
+            <a href="/loginOut">
+                <span class="index">退出登录</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container-box">
+    <div class="cont-top">
+        <img src="/static/images/test/1.jpg" class="background-img">
+
+        <div class="head-box">
+            <img src="/static/images/test/head.jpg" class="user-head">
+        </div>
+        <span class="user-name">火火</span>
+    </div>
+
+    <div class="col-md-4 cont-rit">
+        <!--部分个人信息-->
+        <div class="personal">
+
+            <div class="info">
+                <div class="item">
+                    <a href="/personalCenter?type=01">
+                        <span class="num">112</span>
+                        <span class="text">关注</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="/personalCenter?type=02">
+                        <span class="num">234</span>
+                        <span class="text">粉丝</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="/personalCenter?type=03">
+                        <span class="num">96</span>
+                        <span class="text">微博</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 个人资料 -->
+        <div class="per-info">
+            <span class="head">个人资料</span>
+
+            <ul class="info-box">
+                <li>
+                    <span class="tit">昵称:</span>
+                    <span class="info" th:text="${user.getNickname()}">111</span>
+                </li>
+                <li>
+                    <span class="tit">邮箱:</span>
+                    <span class="info" th:text="${user.getEmail()}"></span>
+                </li>
+                <li>
+                    <span class="tit">性别:</span>
+                    <span class="info" th:text="${user.getSex()}"></span>
+                </li>
+                <li>
+                    <span class="tit">电话:</span>
+                    <span class="info" th:text="${user.getPhone()}"></span>
+                </li>
+            </ul>
+
+            <div class="edit">
+                <a href="javascript:void(0);" class="info-edit">编辑个人资料 ></a>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="col-md-8 cont-left">
+
+        <!--富文本部分-->
+        <!--<div class="editor">
+            <div class="text-editor">
+                <textarea name="后台取值的key" id="myEditor"></textarea>
+            </div>
+            <a href="javascript:void(0);" class="publish" id="publish-btn">发布</a>
+        </div>-->
+
+
+        <!--自己发布的微博-->
+        <div class="fri-news" id="fri-news" style="display: none;">
+
+            <div class="news-item" th:each="blog: ${user.getBlogs()}">
+
+                <a href="javascript:void(0);" class="dele-news" th:attr="data-blogId=${blog.getId()}">删除</a>
+
+                <div class="item-top">
+                    <div class="user-head">
+                        <img src="/static/images/test/head.jpg" class="head-img"/>
+                    </div>
+                    <div class="item-info">
+                        <div class="user-name" th:text="${blog.getUser().getNickname()}"></div>
+                        <div class="create-time" th:text="${#dates.format(blog.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></div>
+                        <p class="text" th:utext="${blog.getContext()}"></p>
+                        <!--图片??-->
+                    </div>
+                </div>
+                <div class="item-botm">
+                    <a href="javascript:void(0);" class="comment comment-list-btn">
+                        <span class="glyphicon glyphicon-pencil icon"></span>评论
+                    </a>
+                    <span class="cut"></span>
+                    <a href="javascript:void(0);" class="good" data-status=false th:attr="data-blogId=${blog.getId()}">
+                        <span class="glyphicon glyphicon-thumbs-up icon"></span>点赞
+                    </a>
+                </div>
+                <div class="comment-list">
+                    <span class="triangle"></span>
+
+                    <div class="comment-left">
+                        <img src="/static/images/test/head.jpg" class="head">
+                    </div>
+                    <div class="comment-rit">
+                        <div class="add-comment">
+                            <textarea name="" class="text" th:attr="data-blogId=${blog.getId()}"></textarea>
+                            <a href="javascript:void(0);" class="comment-btn">评论</a>
+                        </div>
+                        <div class="comment-container">
+
+                            <div class="fri-comment" th:each="comment: ${blog.getComments()}">
+                                <img th:src="${comment.getUser().getImgUrl()}" class="head">
+
+                                <div class="info-box">
+                                <span class="text" >
+                                    <span class="fir-name" th:text="${comment.getUser().getNickname()}"></span>:&nbsp
+                                    <span th:text="${comment.getContext()}"></span>
+                                </span>
+                                    <span class="create-time" th:text="${#dates.format(comment.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--自己发布的微博end-->
+
+
+        <!--粉丝列表-->
+        <div class="fri-list" style="display: none;">
+            <span class="title">粉丝</span>
+            <div class="item">
+                <div class="img-box">
+                    <img src="/static/images/test/head.jpg" class="head">
+                </div>
+                <div class="info">
+                    <span class="name">名字这个粉丝</span>
+                    <div class="num-box">
+                        <span class="num-item">
+                            关注:
+                            <span class="num">123</span>
+                        </span>
+                        <span class="num-item">
+                            粉丝:
+                            <span class="num">223</span>
+                        </span>
+                        <span class="num-item">
+                            微博:
+                            <span class="num">333</span>
+                        </span>
+                    </div>
+                    <div class="introduction">
+                        简介:
+                        <span class="intro">啊啊是发达是分散 阿斯蒂芬阿斯蒂芬啊发发撒</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--粉丝列表end-->
+
+        <!--关注的人列表-->
+        <div class="fri-list" style="display: none;">
+            <span class="title">关注</span>
+            <div class="item">
+                <div class="img-box">
+                    <img src="/static/images/test/head.jpg" class="head">
+                </div>
+                <div class="info">
+                    <span class="name">名字这个关注</span>
+                    <div class="num-box">
+                        <span class="num-item">
+                            关注:
+                            <span class="num">123</span>
+                        </span>
+                        <span class="num-item">
+                            粉丝:
+                            <span class="num">223</span>
+                        </span>
+                        <span class="num-item">
+                            微博:
+                            <span class="num">333</span>
+                        </span>
+                    </div>
+                    <div class="introduction">
+                        简介:
+                        <span class="intro">啊啊是发达是分散 阿斯蒂芬阿斯蒂芬啊发发撒</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--关注的人列表end-->
+
+        <!--修改个人信息-->
+        <div class="edit-per-info">
+            <span class="title">编辑个人资料</span>
+            
+            <div class="item-box">
+                <div class="item">
+                    <span class="tit">头像:</span>
+                    <input type="file" class="head">
+                </div>
+                <div class="item">
+                    <span class="tit">邮箱:</span>
+                    <span class="email">123123@1212121</span>
+                </div>
+                <div class="item">
+                    <span class="tit">昵称:</span>
+                    <input type="text" class="edit nick-name">
+                </div>
+                <div class="item sex">
+                    <span class="tit">性别:</span>
+                    <label>
+                        <input type="radio" name="sex" value="0">男
+                    </label>
+                    <label>
+                        <input type="radio" name="sex" value="1">女
+                    </label>
+                    <label>
+                        <input type="radio" name="sex" value="2">保密
+                    </label>
+                </div>
+                <div class="item">
+                    <span class="tit">电话:</span>
+                    <input type="text" class="edit phone">
+                </div>
+                <div class="item">
+                    <span class="tit">旧密码:</span>
+                    <input type="password" class="edit old-password">
+                </div>
+                <div class="item">
+                    <span class="tit">新密码:</span>
+                    <input type="password" class="edit new-password">
+                </div>
+                <div class="item">
+                    <span class="tit">确认新密码:</span>
+                    <input type="password" class="edit new-password2">
+                </div>
+                <div class="item introduction">
+                    <span class="tit">个人简介:</span>
+                    <textarea name="" class="introduction"></textarea>
+                </div>
+            </div>
+            <a href="javascript:void(0);" class="edit-btn">确认修改</a>
+        </div>
+        <!--修改个人信息end-->
+
+
+    </div>
+
+</div>
+
+<!--返回顶部-->
+<a href="javascript:void(0);" id="to-top" class="to-top">
+    <span class="glyphicon glyphicon-arrow-up top-icon"></span>
+</a>
+
+
+
 
 
 
@@ -19,5 +318,236 @@
 
 <script type="text/javascript">
 
+    /*发布微博, 添加评论*/
+    $(function () {
+        var fri_news = $("div#fri-news"),
+                news_item = fri_news.find("div.news-item");
+
+        function init(e) {
+            var $this = $(e),
+                    comment_list = $this.find("div.comment-list"),
+                    add_comment = comment_list.find("textarea.text"),
+                    comment_val = add_comment.val(),
+                    add_comment_btn = comment_list.find("a.comment-btn"),
+                    comment_container = $this.find("div.comment-container"),
+                    comment_list_btn = $this.find("a.comment-list-btn");
+
+            /*添加评论框获得和失去焦点*/
+            add_comment.bind({
+                focus: function () {
+                    add_comment.addClass("onfocus");
+                },
+                blur: function () {
+                    add_comment.removeClass("onfocus");
+                }
+            });
+
+            /*添加评论*/
+            add_comment_btn.bind("click", function () {
+                var new_comment = comment_list.find("textarea.text"),
+                        new_val = new_comment.val(),
+                        blogId = new_comment.attr('data-blogId');
+                $.ajax({
+                    url: "/addComment",
+                    data: {
+                        "blogId": blogId,
+                        "context" : new_val
+                    },
+                    contentType : "application/x-www-form-urlencoded; charset=utf-8",
+                    type: 'POST',
+                    success: function(data){
+                        good_btn.addClass("active");
+                        status = true;
+                    }
+                });
+                comment_container.append(get_comment(new_val));
+            });
+
+            function get_comment(new_val) {
+                return "<div class='fri-comment'>" +
+                        "<img src='/static/images/test/head.jpg' class='head'>" +
+                        "<div class='info-box'><span class='text'><span class='fir-name' th:text='${comment.getUser().getNickname()}'></span>: " + new_val + "</span>" +
+                        "<span class='create-time' th:text='${#dates.format(comment.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}'></span></div>" +
+                        "</div>";
+            }
+
+            /*评论框所有评论隐藏显示*/
+            if (comment_container.children('.fri-comment').length > 0) {
+                comment_list.show();
+            }
+            else {
+                comment_list.hide();
+            }
+
+            comment_list_btn.bind("click", function () {
+                comment_list.toggle();
+            });
+
+
+            /*点赞功能*/
+            var good_btn = $this.find("a.good");
+
+            good_btn.bind("click", function (){
+                var _this = $(this);
+                var status = _this.attr("data-status");
+                var blogId = _this.attr('data-blogId');
+
+                if(status == 'false') {
+                    $.ajax({
+                        url: "/pointBlog",
+                        data: {
+                            "blogId": blogId
+                        },
+                        type: 'POST',
+                        success: function(data){
+                            good_btn.addClass("active");
+                            status = true;
+                            _this.attr("data-status", true);
+                        }
+                    });
+                }
+                else if(status == 'true') {
+                    $.ajax({
+                        url: "/pointBlog",
+                        data: {
+                            "blogId": blogId
+                        },
+                        type: 'POST',
+                        success: function(data){
+                            good_btn.removeClass("active");
+                            status = false;
+                            _this.attr("data-status", false);
+                        }
+                    });
+                }
+            });
+
+
+            /*删除微博*/
+            var dele_btn = $this.find("a.dele-news"),
+                    blogId = dele_btn.attr('data-blogId');
+
+            dele_btn.bind("click",function (){
+                $.ajax({
+                    url: "/deleteBlog",
+                    data: {
+                        "blogId": blogId
+                    },
+                    type: "POST",
+                    success: function(data) {
+
+                    }
+                });
+            });
+
+
+        }
+
+        news_item.each(function(i,e){
+            init(e); //针对循环出的当前一个对象e ??
+        });
+
+
+
+
+        /*富文本, 发布新状态*/
+        /*富文本初始化*/
+        var editor = new UE.ui.Editor();
+        editor.render("myEditor");
+        //1.2.4以后可以使用一下代码实例化编辑器
+        //UE.getEditor('myEditor')
+
+        var myeditor = $("textarea#myEditor"),
+                publish_btn = $("a#publish-btn"),
+                fri_news = $("div#fri-news");
+
+        publish_btn.bind("click", function () {
+            var content = UE.getEditor('myEditor').getContent();    //UEditor取得内容Html的方法
+
+            function publish_info(info) {
+                return "<div class='news-item'><div class='item-top'>" +
+                        "<div class='user-head'><img src='/static/images/test/head.jpg' class='head-img'/></div>" +
+                        "<div class='item-info'><div class='user-name'>AAA</div>" +
+                        "<div class='create-time'>2016-4-16</div>" +
+                        "<p class='text'>" + info + "</p></div></div>" +
+
+                        "<div class='item-botm'>" +
+                        "<a href='javascript:void(0);' class='comment comment-list-btn'>" +
+                        "<span class='glyphicon glyphicon-pencil icon'></span>评论</a><span class='cut'></span>" +
+                        "<a href='javascript:void(0);' class='good' data-status=false>" +
+                        "<span class='glyphicon glyphicon-thumbs-up icon'></span>点赞</a><span class='cut'></span>" +
+                        "<a href='javascript:void(0);' class='report'>" +
+
+                        "<div class='comment-list'><span class='triangle'></span>" +
+                        "<div class='comment-left'><img src='/static/images/test/head.jpg' class='head'></div>" +
+                        "<div class='comment-rit'><div class='add-comment'><textarea name='' class='text'></textarea>" +
+                        "<a href='javascript:void(0);' class='comment-btn'>评论</a></div>" +
+                        "<div class='comment-container'></div></div></div></div>";
+            }
+
+            //新发布的微博显示为第一个
+            fri_news.prepend(publish_info(content));
+
+            //页面已加载完,新发布的微博无法取到,所以需要重新循环,取得父元素的第一个子元素也就是新发布的微博.
+            init(fri_news.children('div.news-item')[0]);
+
+
+//            $.ajax({
+//                url: "/publishBlog",
+//                data: {
+//                    "content": content,
+//                },
+//                type: 'POST',
+//                success: function (data) {
+//                    // var result = $.parseJSON(data);
+//                    console.log(data);
+//                }
+//            })
+
+        });
+
+
+    });
+
+    /*返回顶部*/
+    $(function () {
+        var to_top = $("a#to-top"),
+                body = $("body,html"),
+                body_scrolltop = body.scrollTop(),
+                isTop = true;
+
+        if (body_scrolltop > 0) {
+            to_top.show();
+        }
+        else {
+            to_top.hide();
+        }
+
+        to_top.bind("click", function () {
+            body.animate({scrollTop: 0}, 200);
+            to_top.hide(0, function () {
+
+            });
+        });
+
+        $(window).scroll(function () {
+            var body_scrolltop = body.scrollTop();
+
+            if (body_scrolltop > 0 && isTop == true) {
+                isTop = false;
+                to_top.fadeIn(200);
+            }
+            else if (body_scrolltop <= 0) {
+                isTop = true;
+                to_top.fadeOut(200);
+            }
+        });
+    });
+
+
+
+
 </script>
+
 </body>
+</html>

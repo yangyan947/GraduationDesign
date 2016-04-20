@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -180,6 +181,10 @@ public class UserService {
             message = new Message(false, "已经为" + user.getStatusZn() + "，不能再次设置");
         }
         return message;
+    }
+
+    public User update(User user) {
+        return userDao.getOne(user.getId());
     }
 
 }

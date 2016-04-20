@@ -51,9 +51,11 @@ public class CommentService {
         } else {
             comment.setUser(user);
             comment.setBlog(blog);
+            comment =  commentDao.save(comment);
             user.addComment(comment);
             blog.addComment(comment);
-            commentDao.save(comment);
+            blogDao.save(blog);
+            userDao.saveAndFlush(user);
             message = new Message(true, "评论成功！");
         }
         return message;
@@ -75,7 +77,13 @@ public class CommentService {
             message = new Message(false, "评论不存在");
         }
         else{
+            User oUser = comment.getUser();
+            Blog oBlog = comment.getBlog();
+            user.getComments().remove(comment);
+            oBlog.getComments().remove(comment);
             commentDao.delete(comment);
+            userDao.save(oUser);
+            blogDao.save(oBlog);
             message = new Message(true, "删除成功");
         }
         return message;

@@ -251,7 +251,7 @@
                 }
                 else if(status == 'true') {
                     $.ajax({
-                        url: "/unPointBlog",
+                        url: "/pointBlog",
                         data: {
                             "blogId": 11111111111
                         },
@@ -267,7 +267,7 @@
 
         }
         news_item.each(function(i,e){
-            init(e); //针对循环出的当前一个对象e
+            init(e); //针对循环出的当前一个对象e ??
         });
 
 
@@ -308,8 +308,10 @@
                         "<div class='comment-container'></div></div></div></div>";
             }
 
+            //新发布的微博显示为第一个
             fri_news.prepend(publish_info(content));
 
+            //页面已加载完,新发布的微博无法取到,所以需要重新循环,取得父元素的第一个子元素也就是新发布的微博.
             init(fri_news.children('div.news-item')[0]);
 
 

@@ -49,6 +49,7 @@ public class BlogController {
         Message message = blogService.pointBlog(blogId, (User) session.getAttribute(USER));
         return message.toString();
     }
+
     //点赞
     @RequestMapping(value = "/unPointBlog", method = RequestMethod.POST)
     @ResponseBody
@@ -56,6 +57,7 @@ public class BlogController {
         Message message = blogService.pointBlog(blogId, (User) session.getAttribute(USER));
         return message.toString();
     }
+
     //删除
     @RequestMapping(value = "/deleteBlog", method = RequestMethod.POST)
     @ResponseBody
@@ -77,13 +79,35 @@ public class BlogController {
     @RequestMapping(value = "/attendUserBlogList", method = RequestMethod.GET)
     @ResponseBody
     public String attendUserBlogList(HttpSession session, Model model, @RequestParam(value = "page", defaultValue = "1") Integer index) {
-        Message message = blogService.getAttentionUsersBlog((User) session.getAttribute(USER),index);
+        Message message = blogService.getAttentionUsersBlog((User) session.getAttribute(USER), index);
         if (message.isSuccess()) {
             model.addAttribute("blogPage", message.getOthers());
-        }else {
+        } else {
             model.addAttribute("result", message.getReason());
         }
         return "blogList";
     }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String search(HttpSession session, Model model,
+                         @RequestParam(value = "search", defaultValue = "all") String search,
+                         @RequestParam(value = "page", defaultValue = "1") Integer index
+    ) {
+        if (session.getAttribute(USER) == null) {
+            model.addAttribute("result", "未登录");
+            return "pages/login";
+        } else {
+            Page<Blog> blogPage;
+            if (search.equals("all")) {
+                blogPage = blogService.getAllBlog(index);
+            } else {
+                blogPage = blogService.getSearch(index, search);
+            }
+            model.addAttribute("blogPage", blogPage);
+            model.addAttribute("user", session.getAttribute(USER));
+            return "pages/search";
+        }
+    }
+
 
 }

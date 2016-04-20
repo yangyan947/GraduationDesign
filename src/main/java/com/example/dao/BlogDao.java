@@ -22,7 +22,7 @@ import java.util.Optional;
 public interface BlogDao extends JpaRepository<Blog, Long> {
 
 
-    Page<Blog> getByUserOrderByCreateTime(User user, Pageable pageable);
+    Page<Blog> getByUserOrderByCreateTimeDesc(User user, Pageable pageable);
 
     @Query("select b from Blog b where b.user in ?1 order by b.createTime")
     Page<Blog> getByUsers(List<User> user, Pageable pageable);

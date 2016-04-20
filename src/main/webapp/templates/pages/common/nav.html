@@ -1,0 +1,28 @@
+<div class="nav" th:fragment="nav">
+	<div class="nav-box" `>
+		<div class=".col-md-2 logo"></div>
+		<span class="logo-txt">SC Blog</span>
+
+		<div class=".col-md-4 search">
+			<form action="/search">
+				<input type="text" name="search" class="search-box" id="search-input" placeholder="搜索..."/>
+				<a href="javascript:;" class="search-icon glyphicon glyphicon-search" type="submit">
+					<button id="search-btn" style="position: absolute;border: none;opacity: 0;width: 100%;height: 100%" class=" glyphicon glyphicon-search" type="submit"></button>
+				</a>
+			</form>
+		</div>
+		<div class=".col-md-6 nav-item">
+			<a href="/index">
+				<span class="glyphicon glyphicon-home icon"></span>
+				<span class="index">首页</span>
+			</a>
+			<a href="/personalCenter">
+				<span class="glyphicon glyphicon-user icon"></span>
+				<span class="index" th:text="${user.getNickname()}"></span>
+			</a>
+			<a href="/loginOut">
+				<span class="index">退出登录</span>
+			</a>
+		</div>
+	</div>
+</div>

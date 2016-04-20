@@ -50,6 +50,7 @@
             <img src="/static/images/test/head.jpg" class="user-head">
         </div>
         <span class="user-name">火火</span>
+        <span class="introduction">暗示法第三方爱妃答复阿斯蒂芬是打发是打发撒地方是打发是撒房东撒地方</span>
     </div>
 
     <div class="col-md-4 cont-rit">
@@ -244,57 +245,59 @@
         <!--关注的人列表end-->
 
         <!--修改个人信息-->
-        <div class="edit-per-info">
-            <span class="title">编辑个人资料</span>
-            
-            <div class="item-box">
-                <div class="item">
-                    <span class="tit">头像:</span>
-                    <input type="file" class="head">
+        <form id="edit-form" class="form-horizontal">
+            <div class="edit-per-info">
+                <span class="title">编辑个人资料</span>
+
+                <div class="item-box">
+                    <div class="item fixed">
+                        <span class="tit">头像:</span>
+                        <input type="file" class="head">
+                    </div>
+                    <div class="item fixed">
+                        <span class="tit">邮箱:</span>
+                        <span class="email">123123@1212121</span>
+                    </div>
+                    <div class="item form-group">
+                        <span class="tit">昵称:</span>
+                        <input type="text" class="form-control edit nick-name" name="nickname">
+                    </div>
+                    <div class="item sex fixed">
+                        <span class="tit">性别:</span>
+                        <label>
+                            <input type="radio" name="sex" value="0">男
+                        </label>
+                        <label>
+                            <input type="radio" name="sex" value="1">女
+                        </label>
+                        <label>
+                            <input type="radio" name="sex" value="2">保密
+                        </label>
+                    </div>
+                    <div class="item form-group">
+                        <span class="tit">电话:</span>
+                        <input type="text" class="form-control edit phone" name="phone">
+                    </div>
+                    <div class="item form-group">
+                        <span class="tit">旧密码:</span>
+                        <input type="password" class="form-control edit old-password">
+                    </div>
+                    <div class="item form-group">
+                        <span class="tit">新密码:</span>
+                        <input type="password" class="form-control edit new-password" name="password">
+                    </div>
+                    <div class="item form-group">
+                        <span class="tit">确认新密码:</span>
+                        <input type="password" class="form-control edit new-password2" name="password2">
+                    </div>
+                    <div class="item introduction form-group">
+                        <span class="tit">个人简介:</span>
+                        <textarea name="" class="introduction"></textarea>
+                    </div>
                 </div>
-                <div class="item">
-                    <span class="tit">邮箱:</span>
-                    <span class="email">123123@1212121</span>
-                </div>
-                <div class="item">
-                    <span class="tit">昵称:</span>
-                    <input type="text" class="edit nick-name">
-                </div>
-                <div class="item sex">
-                    <span class="tit">性别:</span>
-                    <label>
-                        <input type="radio" name="sex" value="0">男
-                    </label>
-                    <label>
-                        <input type="radio" name="sex" value="1">女
-                    </label>
-                    <label>
-                        <input type="radio" name="sex" value="2">保密
-                    </label>
-                </div>
-                <div class="item">
-                    <span class="tit">电话:</span>
-                    <input type="text" class="edit phone">
-                </div>
-                <div class="item">
-                    <span class="tit">旧密码:</span>
-                    <input type="password" class="edit old-password">
-                </div>
-                <div class="item">
-                    <span class="tit">新密码:</span>
-                    <input type="password" class="edit new-password">
-                </div>
-                <div class="item">
-                    <span class="tit">确认新密码:</span>
-                    <input type="password" class="edit new-password2">
-                </div>
-                <div class="item introduction">
-                    <span class="tit">个人简介:</span>
-                    <textarea name="" class="introduction"></textarea>
-                </div>
+                <a href="javascript:void(0);" class="edit-btn">确认修改</a>
             </div>
-            <a href="javascript:void(0);" class="edit-btn">确认修改</a>
-        </div>
+        </form>
         <!--修改个人信息end-->
 
 
@@ -310,8 +313,85 @@
 
 
 
+<!--修改个人资料验证-->
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        $('#edit-form')
+                .bootstrapValidator({
+                    message: '这个值无效',
+                    //live: 'submitted',
+                    feedbackIcons: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        nickname: {
+                            message: '无效的用户名',
+                            validators: {
+                                notEmpty: {
+                                    message: '用户名不能为空'
+                                },
+                                stringLength: {
+                                    min: 5,
+                                    max: 30,
+                                    message: '用户名长度大于5小于30'
+                                },
+                                regexp: {
+                                    regexp: /^[a-zA-Z0-9_\.]+$/,
+                                    message: '用户名只能为英文字符数组或者下划线'
+                                }
+                            }
+                        },
+                        phone: {
+                            validators: {
+                                notEmpty: {
+                                    message: '手机号'
+                                },
+                                stringLength: {
+                                    min: 11,
+                                    max: 11,
+                                    message: '手机号长度不对'
+                                },
+                                regexp: {
+                                    regexp: /^[0-9]+$/,
+                                    message: '手机号应该为数字'
+                                }
+                            }
+                        },
+                        password: {
+                            validators: {
+                                notEmpty: {
+                                    message: '密码不能为空'
+                                },
+                                stringLength: {
+                                    min: 5,
+                                    max: 30,
+                                    message: '密码长度大于5小于30'
+                                }
+                            }
+                        },
+                        password2: {
+                            validators: {
+                                notEmpty: {
+                                    message: '密码不能为空'
+                                },
+                                identical: {
+                                    field: 'password',
+                                    message: '两次密码应该一致'
+                                },
+                                stringLength: {
+                                    min: 5,
+                                    max: 30,
+                                    message: '密码长度大于5小于30'
+                                }
+                            }
+                        }
+                    }
+                })
 
-
+    });
+</script>
 
 
 

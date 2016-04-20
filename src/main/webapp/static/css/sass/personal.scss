@@ -119,6 +119,7 @@ div.container-box {
     img.background-img {
       width: 100%;
       height: 300px;
+      opacity: 0.9;
     }
 
     div.head-box {
@@ -149,11 +150,23 @@ div.container-box {
       font-weight: bold;
       color: #fff;
       position: absolute;
-      bottom: 75px;
+      bottom: 85px;
       text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 
     }
 
+    span.introduction {
+      display: block;
+      font-size: 14px;
+      width: 100%;
+      padding: 0 180px;
+      text-align: center;
+      line-height: 20px;
+      color: #fff;
+      position: absolute;
+      top: 220px;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    }
   }
 
   div.cont-left {
@@ -562,9 +575,14 @@ div.container-box {
         width: 100%;
         padding: 30px 20px 60px;
 
+        div.item.fixed {
+          height: 50px;
+          margin-left: -15px;
+          margin-right: -15px;
+        }
+
         div.item {
           width: 100%;
-          height: 50px;
           vertical-align: middle;
 
           span.tit {
@@ -687,6 +705,7 @@ div.container-box {
 
           a {
             text-decoration: none;
+            outline: none;
 
             span {
               display: block;

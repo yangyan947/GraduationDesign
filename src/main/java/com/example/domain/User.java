@@ -5,6 +5,7 @@ import com.example.domain.base.BaseObject;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by SunYi on 2016/2/1/0001.
@@ -26,19 +27,24 @@ public class User extends BaseObject {
     private String resume = "他很懒什么都没有留下";
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_user", joinColumns = @JoinColumn(name = "attention_user"), inverseJoinColumns = @JoinColumn(name = "follow_user"))
+    @OrderBy(value = "createTime DESC")
     private List<User> attentionUsers;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_user", joinColumns = @JoinColumn(name = "follow_user"), inverseJoinColumns = @JoinColumn(name = "attention_user"))
+    @OrderBy(value = "createTime DESC")
     private List<User> followUsers;
 
     @OneToMany(fetch = FetchType.EAGER)
+    @OrderBy(value = "createTime DESC")
     private List<Blog> blogs;
 
     @OneToMany(fetch = FetchType.EAGER)
+    @OrderBy(value = "createTime DESC")
     private List<Comment> comments;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_point_blog", joinColumns = @JoinColumn(name = "user"), inverseJoinColumns = @JoinColumn(name = "blog"))
+    @OrderBy(value = "createTime DESC")
     private Set<Blog> pointsBlogs;
 
     public String getNickname() {
@@ -121,6 +127,11 @@ public class User extends BaseObject {
     }
 
     public List<Comment> getComments() {
+        for (Comment comment : comments) {
+            if (comment.getStatus() == "freeze") {
+                comments.remove(comment);
+            }
+        }
         return comments;
     }
 
@@ -182,5 +193,10 @@ public class User extends BaseObject {
             return "危险";
         }
         return "状态异常";
+    }
+
+    public boolean isPoint(Long blogId) {
+        List<Long> blogIdList = getPointsBlogs().stream().map(Blog::getId).collect(Collectors.toList());
+        return blogIdList.contains(blogId);
     }
 }

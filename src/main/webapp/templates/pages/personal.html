@@ -89,7 +89,7 @@
         <img src="/static/images/test/1.jpg" class="background-img">
 
         <div class="head-box">
-            <img src="/static/images/test/head.jpg" class="user-head">
+            <img th:src="${user.getImgUrl()}" class="user-head">
         </div>
         <span class="user-name">火火</span>
         <span class="introduction">暗示法第三方爱妃答复阿斯蒂芬是打发是打发撒地方是打发是撒房东撒地方</span>
@@ -193,7 +193,7 @@
                     <span class="triangle"></span>
 
                     <div class="comment-left">
-                        <img src="/static/images/test/head.jpg" class="head">
+                        <img th:src="${user.getImgUrl()}" class="head">
                     </div>
                     <div class="comment-rit">
                         <div class="add-comment">
@@ -293,8 +293,11 @@
 
                 <div class="item-box">
                     <div class="item fixed">
-                        <span class="tit">头像:</span>
-                        <input type="file" class="head">
+                        <form action="/changeUserImg" method="post" enctype="multipart/form-data">
+                            <span class="tit">头像:</span>
+                            <input type="file" name="img" class="head">
+                            <input type="submit" value="确定">
+                        </form>
                     </div>
                     <div class="item fixed">
                         <span class="tit">邮箱:</span>

@@ -3,14 +3,20 @@ package com.example.controller;
 import com.example.domain.User;
 import com.example.service.UserService;
 import com.example.service.message.Message;
+import com.example.util.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.UUID;
 
 /**
  * Created by SunYi on 2016/2/1/0001.
@@ -22,6 +28,7 @@ public class UserController {
     @Autowired
     private UserService userService;
     public static final String USER = "user";
+
     //跳转链接，跳转到主页xx
     @RequestMapping("/")
     public RedirectView index(Model model,
@@ -64,6 +71,7 @@ public class UserController {
         model.addAttribute("result", result.getReason());
         return new RedirectView("/index", true, false, true);
     }
+
     //登陆
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginGet(Model model, @RequestParam(value = "result", defaultValue = "") String result) {
@@ -91,6 +99,7 @@ public class UserController {
         return result.toString();
 
     }
+
     //登出
     @RequestMapping(value = "/loginOut", method = RequestMethod.GET)
     public RedirectView loginOut(HttpSession session) {
@@ -112,6 +121,33 @@ public class UserController {
             return "pages/personal";
         }
     }
+
+    //用户个人信息页面
+    @RequestMapping(value = "/personalCenter/{id}", method = RequestMethod.GET)
+    public String userCenterNormal(HttpSession session, Model model, @PathVariable(value = "id") Long id) {
+        User user = (User) session.getAttribute(USER);
+        if (user == null) {
+            model.addAttribute("result", "用户未登录!");
+            return "pages/login";
+        } else {
+            if (user.getId() == id) {
+                update(session);
+                model.addAttribute("user", session.getAttribute(USER));
+                return "pages/personal";
+            } else {
+                Message message = userService.getUserById(id);
+                model.addAttribute("result", message.getReason());
+                if (message.isSuccess()) {
+                    model.addAttribute("user", message.getOthers());
+                    return "pages/personalNormal";
+                } else {
+                    return "index";
+                }
+            }
+
+        }
+    }
+
     //关注用户
     @RequestMapping(value = "/attendUser", method = RequestMethod.GET)
     @ResponseBody
@@ -147,11 +183,70 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value = "/changeUserImg", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String changeUserImg(HttpSession session, Model model, @RequestParam(value = "img") MultipartFile file) throws Exception {
+        User user = (User) session.getAttribute(USER);
+        String imgUrl = saveFile(file, session);
+        user.setImgUrl(imgUrl);
+        Message message = userService.changeUser(user, user);
+        update(session);
+        return message.toString();
+    }
+
+    @RequestMapping(value = "/changeUserPassword", method = RequestMethod.POST)
+    public RedirectView changeUserPassword(HttpSession session,
+                                           Model model, @RequestParam(value = "oldPassword") String oldPassword,
+                                           @RequestParam(value = "newPassword") String newPassword) {
+        Message message = userService.changeUserPassword((User) session.getAttribute(USER), oldPassword, newPassword);
+        model.addAttribute("result", message.getReason());
+        if (message.isSuccess()) {
+            session.removeAttribute(USER);
+            return new RedirectView("/index", true, false, true);
+        } else {
+            return new RedirectView("/personalCenter", true, false, true);
+        }
+    }
+
     private User update(HttpSession session) {
         User oldUser = (User) session.getAttribute(USER);
         session.removeAttribute(USER);
         User newUser = userService.update(oldUser);
         session.setAttribute(USER, newUser);
         return newUser;
+    }
+
+    private String saveFile(MultipartFile file, HttpSession session) throws Exception {
+        String fileType = file.getContentType().split("/")[1];
+        String path = session.getServletContext().getRealPath("/");
+        String separator = File.separator;
+        String uuid = UUID.randomUUID().toString();
+        FileOutputStream fos = null;
+        String fileName = null;
+        try {
+            InputStream fis = file.getInputStream();
+            // 转换文件为png格式，并保存在同名目录下
+            File files = new File(path + "\\upload");
+            // 判断文件夹是否存在,如果不存在则创建文件夹
+            if (!files.exists()) {
+                files.mkdir();
+            }
+            if (file.getContentType().split("/")[0].equals("image")) {
+                if (path.endsWith(separator))
+                    fileName = path + "upload" + separator + uuid + ".png";
+                else
+                    fileName = path + separator + "upload" + separator + uuid + ".png";
+                fos = new FileOutputStream(fileName);
+                ImageUtil.convertFormat(fis, fos, fileType, "png", 0, 0);
+                fos.flush();
+                fos.close();
+            }
+        } catch (Exception ex) {
+            System.out.println("文件取出失败，错误信息: " + ex.getMessage());
+            if (fos != null)
+                fos.close();
+            throw ex;
+        }
+        return "/upload" + separator + uuid + ".png";
     }
 }

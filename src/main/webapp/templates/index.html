@@ -1,373 +1,340 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>主页</title>
+	<meta charset="UTF-8">
+	<title>主页</title>
 
-    <link rel="stylesheet" type="text/css" href="/static/css/resources/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/stylesheets/index.css"/>
-    <script type="text/javascript" src="/static/js/resources/jquery.min.js"></script>
-    <script src="/static/js/resources/bootstrap.min.js"></script>
-    <script src="/static/js/resources/bootstrapValidator.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/css/resources/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/static/css/stylesheets/index.css"/>
+	<script type="text/javascript" src="/static/js/resources/jquery.min.js"></script>
+	<script src="/static/js/resources/bootstrap.min.js"></script>
+	<script src="/static/js/resources/bootstrapValidator.js"></script>
 
 
-    <script type="text/javascript" src="/resources/ueditor.config.js"></script>
-    <script type="text/javascript" src="/resources/ueditor.all.js"></script>
+	<script type="text/javascript" src="/resources/ueditor.config.js"></script>
+	<script type="text/javascript" src="/resources/ueditor.all.js"></script>
 
 </head>
 <body>
-
-<div class="nav">
-    <div class="nav-box">
-        <div class=".col-md-2 logo"></div>
-        <span class="logo-txt">SC Blog</span>
-
-        <div class=".col-md-4 search">
-            <input type="text" class="search-box" placeholder="搜索..."/>
-            <a href="javascript:void(0);" class="search-icon glyphicon glyphicon-search"></a>
-        </div>
-        <div class=".col-md-6 nav-item">
-            <a href="/index">
-                <span class="glyphicon glyphicon-home icon"></span>
-                <span class="index">首页</span>
-            </a>
-            <a href="/personalCenter">
-                <span class="glyphicon glyphicon-user icon"></span>
-                <span class="index">火火Viann</span>
-            </a>
-            <a href="/loginOut">
-                <span class="index">退出登录</span>
-            </a>
-        </div>
-    </div>
+<div class="nav" th:include="pages/common/nav ::nav">
 </div>
 
+
 <div class="container-box">
-    <div class="col-md-8 cont-left">
+	<div class="col-md-8 cont-left">
 
-        <!--富文本部分-->
-        <div class="editor">
-            <div class="text-editor">
-                <textarea name="后台取值的key" id="myEditor"></textarea>
-            </div>
-            <a href="javascript:void(0);" class="publish" id="publish-btn">发布</a>
-        </div>
+		<!--富文本部分-->
+		<div class="editor">
+			<div class="text-editor">
+				<textarea name="后台取值的key" id="myEditor"></textarea>
+			</div>
+			<a href="javascript:void(0);" class="publish" id="publish-btn">发布</a>
+		</div>
 
 
-        <!--已关注人状态-->
-        <div class="fri-news" id="fri-news">
+		<!--已关注人状态-->
+		<div class="fri-news" id="fri-news">
 
-            <div class="news-item">
-                <div class="item-top">
-                    <div class="user-head">
-                        <img src="/static/images/test/head.jpg" class="head-img"/>
-                    </div>
-                    <div class="item-info">
-                        <div class="user-name">AAA</div>
-                        <div class="create-time">2016-4-16</div>
-                        <p class="text">asdfasdfasdfasdfasdfasdfasdfasfssaf</p>
-                        <!--图片??-->
-                    </div>
-                </div>
-                <div class="item-botm">
-                    <a href="javascript:void(0);" class="comment comment-list-btn">
-                        <span class="glyphicon glyphicon-pencil icon"></span>评论
-                    </a>
-                    <span class="cut"></span>
-                    <a href="javascript:void(0);" class="good" data-status=false>
-                        <span class="glyphicon glyphicon-thumbs-up icon"></span>点赞
-                    </a>
-                </div>
-                <div class="comment-list">
-                    <span class="triangle"></span>
+			<div class="news-item">
+				<div class="item-top">
+					<div class="user-head">
+						<img src="/static/images/test/head.jpg" class="head-img"/>
+					</div>
+					<div class="item-info">
+						<div class="user-name">AAA</div>
+						<div class="create-time">2016-4-16</div>
+						<p class="text">asdfasdfasdfasdfasdfasdfasdfasfssaf</p>
+						<!--图片??-->
+					</div>
+				</div>
+				<div class="item-botm">
+					<a href="javascript:void(0);" class="comment comment-list-btn">
+						<span class="glyphicon glyphicon-pencil icon"></span>评论
+					</a>
+					<span class="cut"></span>
+					<a href="javascript:void(0);" class="good" data-status=false>
+						<span class="glyphicon glyphicon-thumbs-up icon"></span>点赞
+					</a>
+				</div>
+				<div class="comment-list">
+					<span class="triangle"></span>
 
-                    <div class="comment-left">
-                        <img src="/static/images/test/head.jpg" class="head">
-                    </div>
-                    <div class="comment-rit">
-                        <div class="add-comment">
-                            <textarea name="" class="text"></textarea>
-                            <a href="javascript:void(0);" class="comment-btn">评论</a>
-                        </div>
-                        <div class="comment-container">
+					<div class="comment-left">
+						<img src="/static/images/test/head.jpg" class="head">
+					</div>
+					<div class="comment-rit">
+						<div class="add-comment">
+							<textarea name="" class="text"></textarea>
+							<a href="javascript:void(0);" class="comment-btn">评论</a>
+						</div>
+						<div class="comment-container">
 
-                            <div class="fri-comment">
-                                <img src="/static/images/test/head.jpg" class="head">
+							<div class="fri-comment">
+								<img src="/static/images/test/head.jpg" class="head">
 
-                                <div class="info-box">
+								<div class="info-box">
                                 <span class="text">
                                     <span class="fir-name">张三</span>:&nbsp
                                     是打发撒打发士大夫撒打发士大夫dfaffsff
                                     asdfasdfsafasdfsadfdsafafdfafdafafafadfsdafasdfafdfaffsff
                                     asdfasdffffff的水电费等丰富的的丰富的地方fafadfsdafasdfafdfaffsff
                                 </span>
-                                    <span class="create-time">2016-4-18</span>
-                                </div>
-                            </div>
+									<span class="create-time">2016-4-18</span>
+								</div>
+							</div>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+						</div>
+					</div>
+				</div>
+			</div>
 
 
-        </div>
-    </div>
-    <div class="col-md-4 cont-rit">
-        <!--部分个人信息-->
-        <div class="personal">
-            <img src="/static/images/test/1.jpg" class="background-img">
+		</div>
+	</div>
+	<div class="col-md-4 cont-rit">
+		<!--部分个人信息-->
+		<div class="personal">
+			<img src="/static/images/test/1.jpg" class="background-img">
 
-            <div class="head-box">
-                <img src="/static/images/test/head.jpg" class="user-head">
-            </div>
-            <span class="user-name">火火</span>
+			<div class="head-box">
+				<img src="/static/images/test/head.jpg" class="user-head">
+			</div>
+			<span class="user-name">火火</span>
 
-            <div class="info">
-                <div class="item">
-                    <a href="/personalCenter#follow">
-                        <span class="num">112</span>
-                        <span class="text">关注</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="/personalCenter#fans">
-                        <span class="num">234</span>
-                        <span class="text">粉丝</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="/personalCenter#news">
-                        <span class="num">96</span>
-                        <span class="text">微博</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+			<div class="info">
+				<div class="item">
+					<a href="/personalCenter?type=01">
+						<span class="num">112</span>
+						<span class="text">关注</span>
+					</a>
+				</div>
+				<div class="item">
+					<a href="/personalCenter?type=02">
+						<span class="num">234</span>
+						<span class="text">粉丝</span>
+					</a>
+				</div>
+				<div class="item">
+					<a href="/personalCenter?type=03">
+						<span class="num">96</span>
+						<span class="text">微博</span>
+					</a>
+				</div>
+			</div>
+		</div>
 
-        <!--公告栏-->
-        <div class="notice">
-            <span class="head">公告栏</span>
+		<!--公告栏-->
+		<div class="notice">
+			<span class="head">公告栏</span>
 
-            <div class="notice-box">
-                <a href="http://weibo.com/p/1001603849727862021333?rightmod=1&wvr=6&mod=noticeboard">
-                    <span class="tit">《​关于色情信息处置标准的公告》</span>
-                </a>
-                <a href="http://news.sina.com.cn/c/2013-08-14/154027948112.shtml?rightmod=1&wvr=6">
-                    <span class="tit">《首都互联网协会发布坚守七条底线倡议书》</span>
-                </a>
-            </div>
-        </div>
-    </div>
+			<div class="notice-box">
+				<a href="http://weibo.com/p/1001603849727862021333?rightmod=1&wvr=6&mod=noticeboard">
+					<span class="tit">《​关于色情信息处置标准的公告》</span>
+				</a>
+				<a href="http://news.sina.com.cn/c/2013-08-14/154027948112.shtml?rightmod=1&wvr=6">
+					<span class="tit">《首都互联网协会发布坚守七条底线倡议书》</span>
+				</a>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!--返回顶部-->
 <a href="javascript:void(0);" id="to-top" class="to-top">
-    <span class="glyphicon glyphicon-arrow-up top-icon"></span>
+	<span class="glyphicon glyphicon-arrow-up top-icon"></span>
 </a>
-
-
-
-
-
-
-
-
 
 
 <script type="text/javascript">
 
-    /*发布微博, 添加评论*/
-    $(function () {
-        var fri_news = $("div#fri-news"),
-                news_item = fri_news.find("div.news-item");
+	/*发布微博, 添加评论*/
+	$(function () {
+		var fri_news = $("div#fri-news"),
+				news_item = fri_news.find("div.news-item");
 
-        function init(e) {
-            var $this = $(e),
-                    comment_list = $this.find("div.comment-list"),
-                    add_comment = comment_list.find("textarea.text"),
-                    comment_val = add_comment.val(),
-                    add_comment_btn = comment_list.find("a.comment-btn"),
-                    comment_container = $this.find("div.comment-container"),
-                    comment_list_btn = $this.find("a.comment-list-btn");
+		function init(e) {
+			var $this = $(e),
+					comment_list = $this.find("div.comment-list"),
+					add_comment = comment_list.find("textarea.text"),
+					comment_val = add_comment.val(),
+					add_comment_btn = comment_list.find("a.comment-btn"),
+					comment_container = $this.find("div.comment-container"),
+					comment_list_btn = $this.find("a.comment-list-btn");
 
-            /*添加评论框获得和失去焦点*/
-            add_comment.bind({
-                focus: function () {
-                    add_comment.addClass("onfocus");
-                },
-                blur: function () {
-                    add_comment.removeClass("onfocus");
-                }
-            });
+			/*添加评论框获得和失去焦点*/
+			add_comment.bind({
+				focus: function () {
+					add_comment.addClass("onfocus");
+				},
+				blur: function () {
+					add_comment.removeClass("onfocus");
+				}
+			});
 
-            /*添加评论*/
-            add_comment_btn.bind("click", function () {
-                var new_comment = comment_list.find("textarea.text"),
-                        new_val = new_comment.val();
+			/*添加评论*/
+			add_comment_btn.bind("click", function () {
+				var new_comment = comment_list.find("textarea.text"),
+						new_val = new_comment.val();
 
-                comment_container.append(get_comment(new_val));
-            });
+				comment_container.append(get_comment(new_val));
+			});
 
-            function get_comment(new_val) {
-                return "<div class='fri-comment'>" +
-                        "<img src='/static/images/test/head.jpg' class='head'>" +
-                        "<div class='info-box'><span class='text'><span class='fir-name'>张三</span>: " + new_val + "</span>" +
-                        "<span class='create-time'>2016-4-18</span></div>" +
-                        "</div>";
-            }
+			function get_comment(new_val) {
+				return "<div class='fri-comment'>" +
+						"<img src='/static/images/test/head.jpg' class='head'>" +
+						"<div class='info-box'><span class='text'><span class='fir-name'>张三</span>: " + new_val + "</span>" +
+						"<span class='create-time'>2016-4-18</span></div>" +
+						"</div>";
+			}
 
-            /*评论框所有评论隐藏显示*/
-            if (comment_container.children('.fri-comment').length > 0) {
-                comment_list.show();
-            }
-            else {
-                comment_list.hide();
-            }
+			/*评论框所有评论隐藏显示*/
+			if (comment_container.children('.fri-comment').length > 0) {
+				comment_list.show();
+			}
+			else {
+				comment_list.hide();
+			}
 
-            comment_list_btn.bind("click", function () {
-                comment_list.toggle();
-            });
-
-
-            /*点赞功能*/
-            var good_btn = $this.find("a.good");
-            good_btn.bind("click", function (){
-                var _this = $(this);
-                var status = _this.attr("data-status");
-                if(status == 'false') {
-                    $.ajax({
-                        url: "/pointBlog",
-                        data: {
-                            "blogId": 11111111111
-                        },
-                        type: 'POST',
-                        success: function(data){
-                            good_btn.addClass("active");
-                            status = true;
-                            _this.attr("data-status", true);
-                        }
-                    });
-                }
-                else if(status == 'true') {
-                    $.ajax({
-                        url: "/pointBlog",
-                        data: {
-                            "blogId": 11111111111
-                        },
-                        type: 'POST',
-                        success: function(data){
-                            good_btn.removeClass("active");
-                            status = false;
-                            _this.attr("data-status", false);
-                        }
-                    });
-                }
-            });
-
-        }
-        news_item.each(function(i,e){
-            init(e); //针对循环出的当前一个对象e ??
-        });
+			comment_list_btn.bind("click", function () {
+				comment_list.toggle();
+			});
 
 
+			/*点赞功能*/
+			var good_btn = $this.find("a.good");
+			good_btn.bind("click", function () {
+				var _this = $(this);
+				var status = _this.attr("data-status");
+				if (status == 'false') {
+					$.ajax({
+						url: "/pointBlog",
+						data: {
+							"blogId": 11111111111
+						},
+						type: 'POST',
+						success: function (data) {
+							good_btn.addClass("active");
+							status = true;
+							_this.attr("data-status", true);
+						}
+					});
+				}
+				else if (status == 'true') {
+					$.ajax({
+						url: "/pointBlog",
+						data: {
+							"blogId": 11111111111
+						},
+						type: 'POST',
+						success: function (data) {
+							good_btn.removeClass("active");
+							status = false;
+							_this.attr("data-status", false);
+						}
+					});
+				}
+			});
+
+		}
+
+		news_item.each(function (i, e) {
+			init(e); //针对循环出的当前一个对象e ??
+		});
 
 
-    /*富文本, 发布新状态*/
-        /*富文本初始化*/
-        var editor = new UE.ui.Editor();
-        editor.render("myEditor");
-        //1.2.4以后可以使用一下代码实例化编辑器
-        //UE.getEditor('myEditor')
+		/*富文本, 发布新状态*/
+		/*富文本初始化*/
+		var editor = new UE.ui.Editor();
+		editor.render("myEditor");
+		//1.2.4以后可以使用一下代码实例化编辑器
+		//UE.getEditor('myEditor')
 
-        var myeditor = $("textarea#myEditor"),
-                publish_btn = $("a#publish-btn"),
-                fri_news = $("div#fri-news");
+		var myeditor = $("textarea#myEditor"),
+				publish_btn = $("a#publish-btn"),
+				fri_news = $("div#fri-news");
 
-        publish_btn.bind("click", function () {
-            var content = UE.getEditor('myEditor').getContent();    //UEditor取得内容Html的方法
+		publish_btn.bind("click", function () {
+			var content = UE.getEditor('myEditor').getContent();    //UEditor取得内容Html的方法
 
-            function publish_info(info) {
-                return "<div class='news-item'><div class='item-top'>" +
-                        "<div class='user-head'><img src='/static/images/test/head.jpg' class='head-img'/></div>" +
-                        "<div class='item-info'><div class='user-name'>AAA</div>" +
-                        "<div class='create-time'>2016-4-16</div>" +
-                        "<p class='text'>" + info + "</p></div></div>" +
+			function publish_info(info) {
+				return "<div class='news-item'><div class='item-top'>" +
+						"<div class='user-head'><img src='/static/images/test/head.jpg' class='head-img'/></div>" +
+						"<div class='item-info'><div class='user-name'>AAA</div>" +
+						"<div class='create-time'>2016-4-16</div>" +
+						"<p class='text'>" + info + "</p></div></div>" +
 
-                        "<div class='item-botm'>" +
-                        "<a href='javascript:void(0);' class='comment comment-list-btn'>" +
-                        "<span class='glyphicon glyphicon-pencil icon'></span>评论</a><span class='cut'></span>" +
-                        "<a href='javascript:void(0);' class='good' data-status=false>" +
-                        "<span class='glyphicon glyphicon-thumbs-up icon'></span>点赞</a><span class='cut'></span>" +
-                        "<a href='javascript:void(0);' class='report'>" +
+						"<div class='item-botm'>" +
+						"<a href='javascript:void(0);' class='comment comment-list-btn'>" +
+						"<span class='glyphicon glyphicon-pencil icon'></span>评论</a><span class='cut'></span>" +
+						"<a href='javascript:void(0);' class='good' data-status=false>" +
+						"<span class='glyphicon glyphicon-thumbs-up icon'></span>点赞</a><span class='cut'></span>" +
+						"<a href='javascript:void(0);' class='report'>" +
 
-                        "<div class='comment-list'><span class='triangle'></span>" +
-                        "<div class='comment-left'><img src='/static/images/test/head.jpg' class='head'></div>" +
-                        "<div class='comment-rit'><div class='add-comment'><textarea name='' class='text'></textarea>" +
-                        "<a href='javascript:void(0);' class='comment-btn'>评论</a></div>" +
-                        "<div class='comment-container'></div></div></div></div>";
-            }
+						"<div class='comment-list'><span class='triangle'></span>" +
+						"<div class='comment-left'><img src='/static/images/test/head.jpg' class='head'></div>" +
+						"<div class='comment-rit'><div class='add-comment'><textarea name='' class='text'></textarea>" +
+						"<a href='javascript:void(0);' class='comment-btn'>评论</a></div>" +
+						"<div class='comment-container'></div></div></div></div>";
+			}
 
-            //新发布的微博显示为第一个
-            fri_news.prepend(publish_info(content));
+			//新发布的微博显示为第一个
+			fri_news.prepend(publish_info(content));
 
-            //页面已加载完,新发布的微博无法取到,所以需要重新循环,取得父元素的第一个子元素也就是新发布的微博.
-            init(fri_news.children('div.news-item')[0]);
-
-
-            $.ajax({
-                url: "/publishBlog",
-                data: {
-                    "context": content
-                },
-                type: 'POST',
-                success: function (data) {
-                    // var result = $.parseJSON(data);
-                    console.log(data);
-                }
-            })
-
-        });
+			//页面已加载完,新发布的微博无法取到,所以需要重新循环,取得父元素的第一个子元素也就是新发布的微博.
+			init(fri_news.children('div.news-item')[0]);
 
 
-    });
+			$.ajax({
+				url: "/publishBlog",
+				data: {
+					"context": content
+				},
+				type: 'POST',
+				success: function (data) {
+					// var result = $.parseJSON(data);
+					console.log(data);
+				}
+			})
 
-    /*返回顶部*/
-    $(function () {
-        var to_top = $("a#to-top"),
-                body = $("body,html"),
-                body_scrolltop = body.scrollTop(),
-                isTop = true;
-
-        if (body_scrolltop > 0) {
-            to_top.show();
-        }
-        else {
-            to_top.hide();
-        }
-
-        to_top.bind("click", function () {
-            body.animate({scrollTop: 0}, 200);
-            to_top.hide(0, function () {
-
-            });
-        });
-
-        $(window).scroll(function () {
-            var body_scrolltop = body.scrollTop();
-
-            if (body_scrolltop > 0 && isTop == true) {
-                isTop = false;
-                to_top.fadeIn(200);
-            }
-            else if (body_scrolltop <= 0) {
-                isTop = true;
-                to_top.fadeOut(200);
-            }
-        });
-    });
+		});
 
 
+	});
+
+	/*返回顶部*/
+	$(function () {
+		var to_top = $("a#to-top"),
+				body = $("body,html"),
+				body_scrolltop = body.scrollTop(),
+				isTop = true;
+
+		if (body_scrolltop > 0) {
+			to_top.show();
+		}
+		else {
+			to_top.hide();
+		}
+
+		to_top.bind("click", function () {
+			body.animate({scrollTop: 0}, 200);
+			to_top.hide(0, function () {
+
+			});
+		});
+
+		$(window).scroll(function () {
+			var body_scrolltop = body.scrollTop();
+
+			if (body_scrolltop > 0 && isTop == true) {
+				isTop = false;
+				to_top.fadeIn(200);
+			}
+			else if (body_scrolltop <= 0) {
+				isTop = true;
+				to_top.fadeOut(200);
+			}
+		});
+	});
 
 
 </script>

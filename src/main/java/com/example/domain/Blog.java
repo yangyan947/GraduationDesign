@@ -3,7 +3,9 @@ package com.example.domain;
 import com.example.domain.base.BaseObject;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by SunYi on 2016/4/15/0015.
@@ -14,10 +16,12 @@ public class Blog extends BaseObject {
     @ManyToOne
     private User user;
     @OneToMany(fetch = FetchType.EAGER)
+    @OrderBy(value = "createTime DESC")
     private Set<Comment> comments;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_point_blog", joinColumns = @JoinColumn(name = "blog"), inverseJoinColumns = @JoinColumn(name = "user"))
+    @OrderBy(value = "createTime DESC")
     private Set<User> pointsUsers;
 
 
@@ -73,5 +77,9 @@ public class Blog extends BaseObject {
             return "热门";
         }
         return "状态异常";
+    }
+    public boolean isPoint(Long userId) {
+        List<Long> userIdList = getPointsUsers().stream().map(User::getId).collect(Collectors.toList());
+        return userIdList.contains(userId);
     }
 }

@@ -11,7 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -86,7 +85,7 @@ public class UserService {
     public Message changeUser(User user, User loginUser) {
         Message message;
         //通过用户名获取用户
-        Optional<User> dbUser = userDao.getByEmail(user.getNickname());
+        Optional<User> dbUser = userDao.getByEmail(user.getEmail());
         //若获取失败
         if (loginUser == null) {
             message = new Message(false, "未登录");
@@ -95,6 +94,19 @@ public class UserService {
         } else {
             user = userDao.save(dbUser.get().update(user));
             message = new Message(true, "修改成功", user);
+        }
+        return message;
+    }
+
+    public Message changeUserPassword(User user, String oldPsd, String newPsd) {
+        Message message;
+        //通过用户名获取用户
+        if (user == null) {
+            message = new Message(false, "未登录");
+        } else if (!user.getPassword().equals(oldPsd)) {
+            message = new Message(false, "原始密码错误");
+        } else {
+            message = new Message(true, "修改成功,请重新登陆");
         }
         return message;
     }
@@ -184,7 +196,17 @@ public class UserService {
     }
 
     public User update(User user) {
-        return userDao.getOne(user.getId());
+        return userDao.findOne(user.getId());
     }
 
+    public Message getUserById(Long id) {
+        Message message;
+        User user = userDao.findOne(id);
+        if (user == null) {
+            message = new Message(false, "用户不存在");
+        }else{
+            message = new Message(true, "查找成功", user);
+        }
+        return message;
+    }
 }

@@ -1,0 +1,157 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>个人主页</title>
+
+	<link rel="stylesheet" type="text/css" href="/static/css/resources/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/static/css/stylesheets/personal.css"/>
+	<script type="text/javascript" src="/static/js/resources/jquery.min.js"></script>
+	<script src="/static/js/resources/bootstrap.min.js"></script>
+	<script src="/static/js/resources/bootstrapValidator.js"></script>
+
+
+	<script type="text/javascript" src="/resources/ueditor.config.js"></script>
+	<script type="text/javascript" src="/resources/ueditor.all.js"></script>
+
+</head>
+<body>
+<div class="nav" th:include="pages/common/nav ::nav">
+</div>
+
+<div class="container-box">
+	<div class="cont-top">
+		<img src="/static/images/test/1.jpg" class="background-img">
+
+		<div class="head-box">
+			<img th:src="${user.getImgUrl()}" class="user-head">
+		</div>
+		<span class="user-name">火火</span>
+	</div>
+
+	<div class="col-md-4 cont-rit">
+		<!--部分个人信息-->
+		<div class="personal">
+
+			<div class="info">
+				<div class="item">
+					<a href="/personalCenter?type=01">
+						<span class="num">112</span>
+						<span class="text">关注</span>
+					</a>
+				</div>
+				<div class="item">
+					<a href="/personalCenter?type=02">
+						<span class="num">234</span>
+						<span class="text">粉丝</span>
+					</a>
+				</div>
+				<div class="item">
+					<a href="/personalCenter?type=03">
+						<span class="num">96</span>
+						<span class="text">微博</span>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- 个人资料 -->
+		<div class="per-info">
+			<span class="head">个人资料</span>
+
+			<ul class="info-box">
+				<li>
+					<span class="tit">昵称:</span>
+					<span class="info" th:text="${user.getNickname()}">111</span>
+				</li>
+				<li>
+					<span class="tit">邮箱:</span>
+					<span class="info" th:text="${user.getEmail()}"></span>
+				</li>
+				<li>
+					<span class="tit">性别:</span>
+					<span class="info" th:text="${user.getSex()}"></span>
+				</li>
+				<li>
+					<span class="tit">电话:</span>
+					<span class="info" th:text="${user.getPhone()}"></span>
+				</li>
+			</ul>
+
+			<div class="edit">
+				<a href="javascript:void(0);" class="info-edit">编辑个人资料 ></a>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="col-md-8 cont-left">
+		<!--自己发布的微博-->
+		<div class="fri-news" id="fri-news" style="">
+			<div class="news-item" th:each="blog: ${blogPage.getContent()}">
+				<a href="javascript:void(0);" class="dele-news" th:attr="data-blogId=${blog.getId()}">删除</a>
+				<div class="item-top">
+					<div class="user-head">
+						<img src="/static/images/test/head.jpg" class="head-img"/>
+					</div>
+					<div class="item-info">
+						<div class="user-name" th:text="${blog.getUser().getNickname()}"></div>
+						<div class="create-time" th:text="${#dates.format(blog.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></div>
+						<p class="text" th:utext="${blog.getContext()}"></p>
+						<!--图片??-->
+					</div>
+				</div>
+				<div class="item-botm">
+					<a href="javascript:void(0);" class="comment comment-list-btn">
+						<span class="glyphicon glyphicon-pencil icon"></span>评论
+					</a>
+					<span class="cut"></span>
+					<a href="javascript:void(0);" class="good" data-status=false th:attr="data-blogId=${blog.getId()}">
+						<span class="glyphicon glyphicon-thumbs-up icon"></span>点赞
+					</a>
+				</div>
+				<div class="comment-list">
+					<span class="triangle"></span>
+
+					<div class="comment-left">
+						<img th:src="${user.getImgUrl()}" class="head">
+					</div>
+					<div class="comment-rit">
+						<div class="add-comment">
+							<textarea name="" class="text" th:attr="data-blogId=${blog.getId()}"></textarea>
+							<a href="javascript:void(0);" class="comment-btn">评论</a>
+						</div>
+						<div class="comment-container">
+
+							<div class="fri-comment" th:each="comment: ${blog.getComments()}">
+								<img th:src="${comment.getUser().getImgUrl()}" class="head">
+
+								<div class="info-box">
+                                <span class="text">
+                                    <span class="fir-name" th:text="${comment.getUser().getNickname()}"></span>:&nbsp
+                                    <span th:text="${comment.getContext()}"></span>
+                                </span>
+									<span class="create-time"
+												th:text="${#dates.format(comment.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></span>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<ul class="pagination">
+				<li th:unless="${blogPage.getNumber()} == 0"><a
+						th:href="'/search?page=' + ${blogPage.getNumber()} +'&&search=' + ${param.search!=null?param.search[0]:'all'}">&laquo;</a>
+				</li>
+				<li><a href="javascript:;">当前页面 第<span th:text="${blogPage.getNumber()+1}"></span>页</a></li>
+				<li th:unless="${blogPage.getNumber()} == ${blogPage.getTotalPages() -1}"><a
+						th:href="'/search?page=' + ${blogPage.getNumber() + 2} +'&&search=' + ${param.search!=null?param.search[0]:'all'}">&raquo;</a>
+				</li>
+				<li><a href="javascript:;">共 <span th:text="${blogPage.getTotalPages()}"></span>页</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -35,6 +35,7 @@ public class BlogService {
 
     /**
      * 发布微博
+     *
      * @param blog
      * @param user
      * @return
@@ -56,8 +57,9 @@ public class BlogService {
 
     /**
      * 删除微博
+     *
      * @param blogId 删除微博Id
-     * @param user 操作用户
+     * @param user   操作用户
      * @return
      */
     public Message deleteBlog(Long blogId, User user) {
@@ -75,8 +77,9 @@ public class BlogService {
 
     /**
      * 点赞
+     *
      * @param blogId 对应微博Id
-     * @param user 点赞用户
+     * @param user   点赞用户
      * @return
      */
     public Message pointBlog(Long blogId, User user) {
@@ -100,8 +103,9 @@ public class BlogService {
 
     /**
      * 取消点赞
+     *
      * @param blogId 对应微博Id
-     * @param user 点赞用户
+     * @param user   点赞用户
      * @return
      */
     public Message unPointBlog(Long blogId, User user) {
@@ -125,7 +129,8 @@ public class BlogService {
 
     /**
      * 获得所有关注微博
-     * @param user 操作用户
+     *
+     * @param user  操作用户
      * @param index 分页
      * @return message Page<Blog>
      */
@@ -147,33 +152,34 @@ public class BlogService {
 
     /**
      * 设置微博状态
+     *
      * @param blogId 操作微博id
-     * @param admin 管理员
+     * @param admin  管理员
      * @param status 设置微博状态
      * @return
      */
-    public Message setBlogStatus(Long blogId, Admin admin,String status) {
+    public Message setBlogStatus(Long blogId, Admin admin, String status) {
         Message message;
         Blog blog = blogDao.findOne(blogId);
         if (!status.equals(STATUS_FREEZE) && !status.equals(STATUS_HOT) && !status.equals(STATUS_NORMAL)) {
             message = new Message(false, "状态设置错误");
-        }
-        else if (admin == null) {
+        } else if (admin == null) {
             message = new Message(false, "权限不足");
         } else if (blog == null) {
             message = new Message(false, "微博不存在");
         } else if (!blog.getStatus().equals(status)) {
             blog.setStatus(status);
             blogDao.save(blog);
-            message = new Message(true, "设置微博状态"+status+"成功", blog.getStatusZn());
+            message = new Message(true, "设置微博状态" + status + "成功", blog.getStatusZn());
         } else {
-            message = new Message(false, "微博已经状态为" +  blog.getStatusZn()+ "，不需要再次设置");
+            message = new Message(false, "微博已经状态为" + blog.getStatusZn() + "，不需要再次设置");
         }
         return message;
     }
 
     /**
      * 获得所有blog
+     *
      * @param index 页码
      * @return
      */
@@ -182,10 +188,20 @@ public class BlogService {
             index = 1;
         }
 //        return blogDao.findAll(new PageRequest(index - 1, PAGE_SIZE));
-        return blogDao.findAll(new PageRequest(index - 1, PAGE_SIZE, new Sort(Sort.Direction.DESC,"createTime")));
+        return blogDao.findAll(new PageRequest(index - 1, PAGE_SIZE, new Sort(Sort.Direction.DESC, "createTime")));
     }
+
+    public Page<Blog> getSearch(Integer index, String search) {
+        if (index <= 0) {
+            index = 1;
+        }
+        search = "%" + search + "%";
+        return blogDao.getByContextLike(search, new PageRequest(index - 1, PAGE_SIZE, new Sort(Sort.Direction.DESC, "createTime")));
+    }
+
     /**
      * 获得所有blog
+     *
      * @param index 页码
      * @return
      */
@@ -193,6 +209,6 @@ public class BlogService {
         if (index <= 0) {
             index = 1;
         }
-        return blogDao.getByStatus(status,new PageRequest(index - 1, PAGE_SIZE, new Sort(Sort.Direction.DESC,"createTime")));
+        return blogDao.getByStatus(status, new PageRequest(index - 1, PAGE_SIZE, new Sort(Sort.Direction.DESC, "createTime")));
     }
 }

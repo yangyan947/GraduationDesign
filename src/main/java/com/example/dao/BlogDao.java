@@ -31,6 +31,7 @@ public interface BlogDao extends JpaRepository<Blog, Long> {
 
     Page<Blog> findAll(Pageable pageable);
     Page<Blog> getByStatus(String status,Pageable pageable);
+    Page<Blog> getByStatusIsNot(String status,Pageable pageable);
 
     Page<Blog> getByContextLike(String fragment, Pageable pageable);
 }

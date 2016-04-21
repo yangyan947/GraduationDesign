@@ -4,7 +4,6 @@ import com.example.domain.base.BaseObject;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -41,11 +40,11 @@ public class User extends BaseObject {
     @OneToMany(fetch = FetchType.EAGER)
     @OrderBy(value = "createTime DESC")
     private List<Comment> comments;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_point_blog", joinColumns = @JoinColumn(name = "pointsUser"), inverseJoinColumns = @JoinColumn(name = "pointsBlog"))
-    @OrderBy(value = "createTime DESC")
-    private Set<Blog> pointsBlogs;
+//
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "user_point_blog", joinColumns = @JoinColumn(name = "pointsUser"), inverseJoinColumns = @JoinColumn(name = "pointsBlog"))
+//    @OrderBy(value = "createTime DESC")
+//    private Set<Blog> pointsBlogs;
 
     public String getNickname() {
         return nickname;
@@ -167,13 +166,13 @@ public class User extends BaseObject {
         return this;
     }
 
-    public Set<Blog> getPointsBlogs() {
-        return pointsBlogs;
-    }
-
-    public void setPointsBlogs(Set<Blog> pointsBlogs) {
-        this.pointsBlogs = pointsBlogs;
-    }
+//    public Set<Blog> getPointsBlogs() {
+//        return pointsBlogs;
+//    }
+//
+//    public void setPointsBlogs(Set<Blog> pointsBlogs) {
+//        this.pointsBlogs = pointsBlogs;
+//    }
 
     //    public List<Comment> getReceiveComments() {
 //        return receiveComments;
@@ -195,10 +194,10 @@ public class User extends BaseObject {
         return "状态异常";
     }
 
-    public boolean isPoint(Long blogId) {
-        List<Long> blogIdList = getPointsBlogs().stream().map(Blog::getId).collect(Collectors.toList());
-        return blogIdList.contains(blogId);
-    }
+//    public boolean isPoint(Long blogId) {
+//        List<Long> blogIdList = getPointsBlogs().stream().map(Blog::getId).collect(Collectors.toList());
+//        return blogIdList.contains(blogId);
+//    }
     public boolean isOwner(Long blogId) {
         List<Long> blogIdList = getBlogs().stream().map(Blog::getId).collect(Collectors.toList());
         return blogIdList.contains(blogId);

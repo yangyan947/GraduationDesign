@@ -19,8 +19,8 @@ public class Blog extends BaseObject {
     @OrderBy(value = "createTime DESC")
     private Set<Comment> comments;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_point_blog", joinColumns = @JoinColumn(name = "pointsBlog"), inverseJoinColumns = @JoinColumn(name = "pointsUser"))
+    @OneToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "user_point_blog", joinColumns = @JoinColumn(name = "pointsBlog"), inverseJoinColumns = @JoinColumn(name = "pointsUser"))
     @OrderBy(value = "createTime DESC")
     private Set<User> pointsUsers;
 

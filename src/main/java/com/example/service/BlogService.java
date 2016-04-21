@@ -91,13 +91,11 @@ public class BlogService {
             message = new Message(false, "微博不存在!");
         } else if (user.isOwner(blogId)) {
             message = new Message(false, "无法点赞自己的微博");
-        } else if (blog.isPoint(user.getId()) || user.isPoint(blogId)){
+        } else if (blog.isPoint(user.getId()) ){
             message = new Message(false, "已经点过赞了");
         }else{
             blog.getPointsUsers().add(user);
-            user.getPointsBlogs().add(blog);
-            user = userDao.save(user);
-//            blog = blogDao.save(blog);
+            blog = blogDao.save(blog);
             message = new Message(true, "点赞成功");
         }
         return message;
@@ -121,9 +119,7 @@ public class BlogService {
             message = new Message(false, "未点赞，无法取消点赞。");
         } else {
             blog.getPointsUsers().remove(user);
-            user.getPointsBlogs().remove(blog);
             blog = blogDao.save(blog);
-            user = userDao.save(user);
             message = new Message(true, "点赞成功");
         }
         return message;
@@ -208,6 +204,18 @@ public class BlogService {
      * @return
      */
     public Page<Blog> getAllBlogNyStatus(Integer index, String status) {
+        if (index <= 0) {
+            index = 1;
+        }
+        return blogDao.getByStatus(status, new PageRequest(index - 1, PAGE_SIZE, new Sort(Sort.Direction.DESC, "createTime")));
+    }
+    /**
+     * 获得所有blog
+     *
+     * @param index 页码
+     * @return
+     */
+    public Page<Blog> getByStatusIsNot(Integer index, String status) {
         if (index <= 0) {
             index = 1;
         }

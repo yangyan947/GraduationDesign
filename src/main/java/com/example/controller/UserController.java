@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.domain.User;
+import com.example.service.BlogService;
 import com.example.service.UserService;
 import com.example.service.message.Message;
 import com.example.util.ImageUtil;
@@ -27,6 +28,8 @@ public class UserController {
     //自动注入userService，用来处理业务
     @Autowired
     private UserService userService;
+    @Autowired
+    private BlogService blogService;
     public static final String USER = "user";
 
     //跳转链接，跳转到主页xx
@@ -41,7 +44,8 @@ public class UserController {
     // 这个XXXXX是你的域名，自己电脑上的话一般都是127.0.0.1:8080或者是localhost：8080
     // 8080是端口号，端口号根据tomcat设置而改变，默认值是8080
     @RequestMapping("/index")
-    public String home(Model model, @RequestParam(value = "result", defaultValue = "") String result, HttpSession session) {
+    public String home(Model model, @RequestParam(value = "result", defaultValue = "")
+                       String result,@RequestParam(value = "page", defaultValue = "1") Integer index, HttpSession session) {
         if (session.getAttribute(USER) == null && result.equals("")) {
             model.addAttribute("result", "请先登录");
             return "pages/login";
@@ -51,6 +55,7 @@ public class UserController {
             model.addAttribute("result", result);
         }
 
+        model.addAttribute("blogPage", blogService.getByStatusIsNot(index, "freeze"));
         return "index";
     }
 

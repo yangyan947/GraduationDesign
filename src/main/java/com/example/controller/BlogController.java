@@ -29,17 +29,13 @@ public class BlogController {
     private BlogService blogService;
 
     //发布微博
-    @RequestMapping(value = "/publishBlog", method = RequestMethod.POST)
+    @RequestMapping(value = "/publishBlog", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @ResponseBody
     public String publishBlog(HttpSession session, Model model, @ModelAttribute(value = "blog") Blog blog) {
         Message message = blogService.publishBlog(blog, (User) session.getAttribute(USER));
-        model.addAttribute("result", message.getReason());
+//        model.addAttribute("result", message.getReason());
 
-        if (message.isSuccess()) {
-
-        } else {
-            model.addAttribute("result", message.getReason());
-        }
-        return "index";
+        return message.toString();
     }
 
     //点赞

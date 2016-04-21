@@ -540,7 +540,7 @@ div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.
   display: inline-block;
   margin-left: 10px;
   vertical-align: top;
-  width: 540px;
+  width: 530px;
 }
 /* line 452, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.add-comment {
@@ -613,7 +613,7 @@ div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.
 /* line 518, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment div.info-box {
   display: inline-block;
-  width: 495px;
+  width: 485px;
   font-size: 12px;
   line-height: 20px;
   color: #333;

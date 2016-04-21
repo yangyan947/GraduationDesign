@@ -50,7 +50,10 @@
             <img src="/static/images/test/head.jpg" class="user-head">
         </div>
         <span class="user-name">火火</span>
-        <span class="introduction">暗示法第三方爱妃答复阿斯蒂芬是打发是打发撒地方是打发是撒房东撒地方</span>
+
+        <div class="follow-box">
+            <a th:href="'/attendUser?userId=' + ${user.getId()}" class="follow">已关注</a>
+        </div>
     </div>
 
     <div class="col-md-4 cont-rit">
@@ -99,6 +102,10 @@
                 <li>
                     <span class="tit">电话:</span>
                     <span class="info" th:text="${user.getPhone()}"></span>
+                </li>
+                <li>
+                    <span class="tit">简介:</span>
+                    <span class="info" th:text="${user.getResume()}"></span>
                 </li>
             </ul>
 

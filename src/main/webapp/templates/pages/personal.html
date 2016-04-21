@@ -95,8 +95,8 @@
         <div class="head-box">
             <img th:src="${user.getImgUrl()}" class="user-head">
         </div>
-        <span class="user-name">火火</span>
-        <span class="introduction">暗示法第三方爱妃答复阿斯蒂芬是打发是打发撒地方是打发是撒房东撒地方</span>
+        <span class="user-name" th:text="${user.getNickname()}">火火</span>
+        <span class="introduction" th:text="${user.getResume()}"></span>
     </div>
 
     <div class="col-md-4 cont-rit">
@@ -106,19 +106,19 @@
             <div class="info">
                 <div class="item">
                     <a href="javascript:void(0);" id="follow-btn">
-                        <span class="num">112</span>
+                        <span class="num" th:text="${user.getAttentionUsers().size()}">112</span>
                         <span class="text">关注</span>
                     </a>
                 </div>
                 <div class="item">
                     <a href="javascript:void(0);" id="fans-btn">
-                        <span class="num">234</span>
+                        <span class="num" th:text="${user.getFollowUsers().size()}">234</span>
                         <span class="text">粉丝</span>
                     </a>
                 </div>
                 <div class="item">
                     <a href="javascript:void(0);" id="news-btn">
-                        <span class="num">96</span>
+                        <span class="num" th:text="${user.getBlogs().size()}">96</span>
                         <span class="text">微博</span>
                     </a>
                 </div>
@@ -230,31 +230,31 @@
 
 
         <!--粉丝列表-->
-        <div class="fri-list follow-list" id="fans-list" data-name="fans">
+        <div class="fri-list follow-list" id="fans-list" data-name="fans" th:each="aUser : ${user.getFollowUsers()}">
             <span class="title">粉丝</span>
             <div class="item">
                 <div class="img-box">
-                    <img src="/static/images/test/head.jpg" class="head">
+                    <img th:src="${aUser.getImgUrl()}" class="head">
                 </div>
                 <div class="info">
-                    <span class="name">名字这个粉丝</span>
+                    <span class="name" th:text="${aUser.getNickname()}">名字这个粉丝</span>
                     <div class="num-box">
                         <span class="num-item">
                             关注:
-                            <span class="num">123</span>
+                            <span class="num" th:text="${aUser.getAttentionUsers().size()}">123</span>
                         </span>
                         <span class="num-item">
                             粉丝:
-                            <span class="num">223</span>
+                            <span class="num" th:text="${aUser.getFollowUsers().size()}">223</span>
                         </span>
                         <span class="num-item">
                             微博:
-                            <span class="num">333</span>
+                            <span class="num" th:text="${aUser.getBlogs().size()}">333</span>
                         </span>
                     </div>
                     <div class="introduction">
                         简介:
-                        <span class="intro">啊啊是发达是分散 阿斯蒂芬阿斯蒂芬啊发发撒</span>
+                        <span class="intro" th:text="${aUser.getResume()}">啊啊是发达是分散 </span>
                     </div>
                 </div>
             </div>
@@ -262,31 +262,31 @@
         <!--粉丝列表end-->
 
         <!--关注的人列表-->
-        <div class="fri-list fans-list" id="follow-list" data-name="follow">
+        <div class="fri-list fans-list" id="follow-list" data-name="follow" th:each="aUser : ${user.getAttentionUsers()}">
             <span class="title">关注</span>
             <div class="item">
                 <div class="img-box">
-                    <img src="/static/images/test/head.jpg" class="head">
+                    <img th:src="${aUser.getImgUrl()}" class="head">
                 </div>
                 <div class="info">
-                    <span class="name">名字这个关注</span>
+                    <span class="name" th:text="${aUser.getNickname()}">名字这个粉丝</span>
                     <div class="num-box">
                         <span class="num-item">
                             关注:
-                            <span class="num">123</span>
+                            <span class="num" th:text="${aUser.getAttentionUsers().size()}">123</span>
                         </span>
                         <span class="num-item">
                             粉丝:
-                            <span class="num">223</span>
+                            <span class="num" th:text="${aUser.getFollowUsers().size()}">223</span>
                         </span>
                         <span class="num-item">
                             微博:
-                            <span class="num">333</span>
+                            <span class="num" th:text="${aUser.getBlogs().size()}">333</span>
                         </span>
                     </div>
                     <div class="introduction">
                         简介:
-                        <span class="intro">啊啊是发达是分散 阿斯蒂芬阿斯蒂芬啊发发撒</span>
+                        <span class="intro" th:text="${aUser.getResume()}">啊啊是发达是分散 </span>
                     </div>
                 </div>
             </div>
@@ -299,6 +299,10 @@
             <span class="title">编辑个人资料</span>
 
             <div class="item-box">
+                <div class="item fixed">
+                    <span class="tit">邮箱:</span>
+                    <span class="email">123123@1212121</span>
+                </div>
 
                 <form class="head-form" action="/changeUserImg" method="post" enctype="multipart/form-data">
                     <div class="item fixed">
@@ -306,16 +310,11 @@
                         <input type="file" name="img" class="head">
                     </div>
                     <button type="submit" class="btn-item">确定</button>
-
-                    <div class="item fixed">
-                        <span class="tit">邮箱:</span>
-                        <span class="email">123123@1212121</span>
-                    </div>
                 </form>
 
 
 
-                <form id="password-form" class="form-horizontal">
+                <form id="password-form" class="form-horizontal" action="/changeUserPassword" method="post">
                     <div class="item form-group">
                         <span class="tit">旧密码:</span>
                         <input type="password" class="form-control edit old-password" name="oldPassword">
@@ -332,8 +331,8 @@
                 </form>
 
 
-                <form id="edit-form" class="form-horizontal">
-                    <div class="item sex fixed">
+                <form id="edit-form" class="form-horizontal" method="post" th:action="@{/changeUser}" th:object="${user}">
+                    <div class="item sex fixed  form-group">
                         <span class="tit">性别:</span>
                         <label>
                             <input type="radio" name="sex" value="0">男
@@ -389,26 +388,29 @@
                     },
                     fields: {
                         nickname: {
-                            message: '无效的用户名',
+                            message: '无效的昵称',
                             validators: {
                                 notEmpty: {
-                                    message: '用户名不能为空'
+                                    message: '昵称不能为空'
                                 },
                                 stringLength: {
-                                    min: 5,
-                                    max: 30,
-                                    message: '用户名长度大于5小于30'
-                                },
-                                regexp: {
-                                    regexp: /^[a-zA-Z0-9_\.]+$/,
-                                    message: '用户名只能为英文字符数组或者下划线'
+                                    min: 1,
+                                    max: 8,
+                                    message: '昵称长度大于1小于8'
+                                }
+                            }
+                        },
+                        sex:{
+                            validators: {
+                                notEmpty: {
+                                    message: '性别不能为空'
                                 }
                             }
                         },
                         phone: {
                             validators: {
                                 notEmpty: {
-                                    message: '手机号'
+                                    message: '手机号不能为空'
                                 },
                                 stringLength: {
                                     min: 11,

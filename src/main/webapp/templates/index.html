@@ -38,7 +38,6 @@
 			<div class="news-item" th:each="blog: ${blogPage.getContent()}">
 
 
-
 				<div class="item-top">
 					<div class="user-head">
 						<img th:src="${blog.getUser().getImgUrl()}" class="head-img"/>
@@ -76,11 +75,12 @@
 								<img th:src="${comment.getUser().getImgUrl()}" class="head">
 
 								<div class="info-box">
-                                <span class="text" >
+                                <span class="text">
                                     <span class="fir-name" th:text="${comment.getUser().getNickname()}"></span>:&nbsp
                                     <span th:text="${comment.getContext()}"></span>
                                 </span>
-									<span class="create-time" th:text="${#dates.format(comment.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></span>
+									<span class="create-time"
+												th:text="${#dates.format(comment.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></span>
 								</div>
 							</div>
 
@@ -190,18 +190,18 @@
 					url: "/addComment",
 					data: {
 						"blogId": blogId,
-						"context" : new_val
+						"context": new_val
 					},
-					contentType : "application/x-www-form-urlencoded; charset=utf-8",
+					contentType: "application/x-www-form-urlencoded; charset=utf-8",
 					type: 'POST',
-					success: function(data){
+					success: function (data) {
 						console.info(data);
 						if (data.isSuccess) {
 							good_btn.addClass("active");
 							status = true;
 							comment_container.append(get_comment(new_val));
 						}
-						else{
+						else {
 							alert(data.reason);
 						}
 					}
@@ -232,35 +232,37 @@
 			/*点赞功能*/
 			var good_btn = $this.find("a.good");
 
-			good_btn.bind("click", function (){
+			good_btn.bind("click", function () {
 				var _this = $(this);
 				var status = _this.attr("data-status");
 				var blogId = _this.attr('data-blogId');
 
-				if(status == 'false') {
+				if (status == 'false') {
 					$.ajax({
 						url: "/unPointBlog",
 						data: {
-						data: {
-							"blogId": blogId
-						},
-						type: 'POST',
-						success: function(data){
-							console.info(data);
-							good_btn.addClass("active");
-							status = true;
-							_this.attr("data-status", true);
+							data: {
+								"blogId": blogId
+							},
+							type: 'POST',
+							success: function (data) {
+								console.info(data);
+								good_btn.addClass("active");
+								status = true;
+								_this.attr("data-status", true);
+							}
 						}
 					});
 				}
-				else if(status == 'true') {
+
+				else if (status == 'true') {
 					$.ajax({
 						url: "/unPointBlog",
 						data: {
 							"blogId": blogId
 						},
 						type: 'POST',
-						success: function(data){
+						success: function (data) {
 							good_btn.removeClass("active");
 							status = false;
 							_this.attr("data-status", false);
@@ -270,10 +272,9 @@
 			});
 
 
-
 		}
 
-		news_item.each(function(i,e){
+		news_item.each(function (i, e) {
 			init(e); //针对循环出的当前一个对象e ??
 		});
 

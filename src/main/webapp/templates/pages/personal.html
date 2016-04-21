@@ -61,7 +61,7 @@
             </a>
             <a href="/personalCenter">
                 <span class="glyphicon glyphicon-user icon"></span>
-                <span class="index">火火Viann</span>
+                <span class="index" th:text="${session.user.getNickname()}">火火Viann</span>
             </a>
             <a href="/loginOut">
                 <span class="index">退出登录</span>

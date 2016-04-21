@@ -35,15 +35,18 @@
 		<!--已关注人状态-->
 		<div class="fri-news" id="fri-news">
 
-			<div class="news-item">
+			<div class="news-item" th:each="blog: ${blogPage.getContent()}">
+
+
+
 				<div class="item-top">
 					<div class="user-head">
-						<img src="/static/images/test/head.jpg" class="head-img"/>
+						<img th:src="${blog.getUser().getImgUrl()}" class="head-img"/>
 					</div>
 					<div class="item-info">
-						<div class="user-name">AAA</div>
-						<div class="create-time">2016-4-16</div>
-						<p class="text">asdfasdfasdfasdfasdfasdfasdfasfssaf</p>
+						<div class="user-name" th:text="${blog.getUser().getNickname()}"></div>
+						<div class="create-time" th:text="${#dates.format(blog.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></div>
+						<p class="text" th:utext="${blog.getContext()}"></p>
 						<!--图片??-->
 					</div>
 				</div>
@@ -52,34 +55,32 @@
 						<span class="glyphicon glyphicon-pencil icon"></span>评论
 					</a>
 					<span class="cut"></span>
-					<a href="javascript:void(0);" class="good" data-status=false>
-						<span class="glyphicon glyphicon-thumbs-up icon"></span>点赞
+					<a href="javascript:void(0);" class="good" data-status=false th:attr="data-blogId=${blog.getId()}">
+						<span class="glyphicon glyphicon-thumbs-up icon"></span>点赞 <span th:text="${blog.getPoints()}"></span>
 					</a>
 				</div>
 				<div class="comment-list">
 					<span class="triangle"></span>
 
 					<div class="comment-left">
-						<img src="/static/images/test/head.jpg" class="head">
+						<img th:src="${session.user.getImgUrl()}" class="head">
 					</div>
 					<div class="comment-rit">
 						<div class="add-comment">
-							<textarea name="" class="text"></textarea>
+							<textarea name="" class="text" th:attr="data-blogId=${blog.getId()}"></textarea>
 							<a href="javascript:void(0);" class="comment-btn">评论</a>
 						</div>
 						<div class="comment-container">
 
-							<div class="fri-comment">
-								<img src="/static/images/test/head.jpg" class="head">
+							<div class="fri-comment" th:each="comment: ${blog.getComments()}">
+								<img th:src="${comment.getUser().getImgUrl()}" class="head">
 
 								<div class="info-box">
-                                <span class="text">
-                                    <span class="fir-name">张三</span>:&nbsp
-                                    是打发撒打发士大夫撒打发士大夫dfaffsff
-                                    asdfasdfsafasdfsadfdsafafdfafdafafafadfsdafasdfafdfaffsff
-                                    asdfasdffffff的水电费等丰富的的丰富的地方fafadfsdafasdfafdfaffsff
+                                <span class="text" >
+                                    <span class="fir-name" th:text="${comment.getUser().getNickname()}"></span>:&nbsp
+                                    <span th:text="${comment.getContext()}"></span>
                                 </span>
-									<span class="create-time">2016-4-18</span>
+									<span class="create-time" th:text="${#dates.format(comment.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></span>
 								</div>
 							</div>
 
@@ -88,7 +89,16 @@
 				</div>
 			</div>
 
-
+			<ul class="pagination">
+				<li th:unless="${blogPage.getNumber()} == 0"><a
+						th:href="'/index?page=' + ${blogPage.getNumber()}">&laquo;</a>
+				</li>
+				<li><a href="javascript:;">当前页面 第<span th:text="${blogPage.getNumber()+1}"></span>页</a></li>
+				<li th:unless="${blogPage.getNumber()} == ${blogPage.getTotalPages() -1}"><a
+						th:href="'/index?page=' + ${blogPage.getNumber() + 2}">&raquo;</a>
+				</li>
+				<li><a href="javascript:;">共 <span th:text="${blogPage.getTotalPages()}"></span>页</a></li>
+			</ul>
 		</div>
 	</div>
 	<div class="col-md-4 cont-rit">
@@ -174,16 +184,35 @@
 			/*添加评论*/
 			add_comment_btn.bind("click", function () {
 				var new_comment = comment_list.find("textarea.text"),
-						new_val = new_comment.val();
-
-				comment_container.append(get_comment(new_val));
+						new_val = new_comment.val(),
+						blogId = new_comment.attr('data-blogId');
+				$.ajax({
+					url: "/addComment",
+					data: {
+						"blogId": blogId,
+						"context" : new_val
+					},
+					contentType : "application/x-www-form-urlencoded; charset=utf-8",
+					type: 'POST',
+					success: function(data){
+						console.info(data);
+						if (data.isSuccess) {
+							good_btn.addClass("active");
+							status = true;
+							comment_container.append(get_comment(new_val));
+						}
+						else{
+							alert(data.reason);
+						}
+					}
+				});
 			});
 
 			function get_comment(new_val) {
 				return "<div class='fri-comment'>" +
 						"<img src='/static/images/test/head.jpg' class='head'>" +
-						"<div class='info-box'><span class='text'><span class='fir-name'>张三</span>: " + new_val + "</span>" +
-						"<span class='create-time'>2016-4-18</span></div>" +
+						"<div class='info-box'><span class='text'><span class='fir-name' th:text='${comment.getUser().getNickname()}'></span>: " + new_val + "</span>" +
+						"<span class='create-time' th:text='${#dates.format(comment.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}'></span></div>" +
 						"</div>";
 			}
 
@@ -202,31 +231,36 @@
 
 			/*点赞功能*/
 			var good_btn = $this.find("a.good");
-			good_btn.bind("click", function () {
+
+			good_btn.bind("click", function (){
 				var _this = $(this);
 				var status = _this.attr("data-status");
-				if (status == 'false') {
+				var blogId = _this.attr('data-blogId');
+
+				if(status == 'false') {
 					$.ajax({
-						url: "/pointBlog",
+						url: "/unPointBlog",
 						data: {
-							"blogId": 11111111111
+						data: {
+							"blogId": blogId
 						},
 						type: 'POST',
-						success: function (data) {
+						success: function(data){
+							console.info(data);
 							good_btn.addClass("active");
 							status = true;
 							_this.attr("data-status", true);
 						}
 					});
 				}
-				else if (status == 'true') {
+				else if(status == 'true') {
 					$.ajax({
-						url: "/pointBlog",
+						url: "/unPointBlog",
 						data: {
-							"blogId": 11111111111
+							"blogId": blogId
 						},
 						type: 'POST',
-						success: function (data) {
+						success: function(data){
 							good_btn.removeClass("active");
 							status = false;
 							_this.attr("data-status", false);
@@ -235,9 +269,11 @@
 				}
 			});
 
+
+
 		}
 
-		news_item.each(function (i, e) {
+		news_item.each(function(i,e){
 			init(e); //针对循环出的当前一个对象e ??
 		});
 

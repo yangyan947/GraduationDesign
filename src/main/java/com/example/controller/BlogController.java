@@ -53,7 +53,7 @@ public class BlogController {
     @RequestMapping(value = "/unPointBlog", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String unPointBlog(HttpSession session, @ModelAttribute(value = "blogId") Long blogId) {
-        Message message = blogService.pointBlog(blogId, (User) session.getAttribute(USER));
+        Message message = blogService.unPointBlog(blogId, (User) session.getAttribute(USER));
         if (message.isSuccess()) {
             update(session);
         }

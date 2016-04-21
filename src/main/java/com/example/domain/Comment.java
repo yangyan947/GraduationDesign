@@ -2,10 +2,7 @@ package com.example.domain;
 
 import com.example.domain.base.BaseObject;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by SunYi on 2016/4/15/0015.
@@ -16,7 +13,7 @@ public class Comment extends BaseObject {
     private String context;
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private Blog blog;
 
     public String getContext() {

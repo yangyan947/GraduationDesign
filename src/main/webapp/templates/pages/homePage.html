@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>个人主页</title>
+    <title>Blog</title>
 
     <link rel="stylesheet" type="text/css" href="/static/css/resources/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/stylesheets/personal.css"/>
@@ -17,32 +17,8 @@
 </head>
 <body>
 
-<!--发布微博模态框-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">有什么新鲜事想要告诉大家?</h4>
-            </div>
-            <div class="modal-body">
-                <div class="editor">
-                    <div class="text-editor">
-                        <textarea name="后台取值的key" id="myEditor"></textarea>
-                    </div>
-                    <a href="javascript:void(0);" class="publish" id="publish-btn">发布</a>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" id="close-btn">关闭</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--头部导航-->
 <div class="nav">
-    <div class="nav-box">
+    <div class="nav-box"`>
         <div class=".col-md-2 logo"></div>
         <span class="logo-txt">SC Blog</span>
 
@@ -63,24 +39,6 @@
                 <span class="index">退出登录</span>
             </a>
         </div>
-
-        <!--发布新微博btn-->
-        <a href="javascript:void(0);" class="public-news" id="public-news" data-toggle="modal" data-target="#myModal">
-            <span class="glyphicon glyphicon-edit public"></span>
-        </a>
-
-        <!--发布新微博-->
-        <script type="text/javascript">
-            $(function (){
-                var public_btn = $("a#public-news"),
-                        my_modal = $("div#myModal");
-
-                public_btn.bind("click", function(){
-                    my_modal.modal('show');
-                });
-            });
-        </script>
-
     </div>
 </div>
 
@@ -144,13 +102,10 @@
                 </li>
             </ul>
 
-            <div class="edit">
-                <a href="javascript:void(0);" class="info-edit" id="info-edit-btn">编辑个人资料 ></a>
-            </div>
         </div>
     </div>
 
-    
+
     <div class="col-md-8 cont-left" id="cont-box">
 
         <!--富文本部分-->
@@ -166,8 +121,6 @@
         <div class="fri-news" id="fri-news" data-name="news">
 
             <div class="news-item" th:each="blog: ${user.getBlogs()}">
-
-                <a href="javascript:void(0);" class="dele-news" th:attr="data-blogId=${blog.getId()}">删除</a>
 
                 <div class="item-top">
                     <div class="user-head">
@@ -286,63 +239,6 @@
         </div>
         <!--关注的人列表end-->
 
-        <!--修改个人信息-->
-        <form id="edit-form" class="form-horizontal" class="edit-form">
-            <div class="edit-per-info">
-                <span class="title">编辑个人资料</span>
-
-                <div class="item-box">
-                    <div class="item fixed">
-                        <span class="tit">头像:</span>
-                        <input type="file" class="head">
-                    </div>
-                    <div class="item fixed">
-                        <span class="tit">邮箱:</span>
-                        <span class="email">123123@1212121</span>
-                    </div>
-                    <div class="item form-group">
-                        <span class="tit">昵称:</span>
-                        <input type="text" class="form-control edit nick-name" name="nickname">
-                    </div>
-                    <div class="item sex fixed">
-                        <span class="tit">性别:</span>
-                        <label>
-                            <input type="radio" name="sex" value="0">男
-                        </label>
-                        <label>
-                            <input type="radio" name="sex" value="1">女
-                        </label>
-                        <label>
-                            <input type="radio" name="sex" value="2">保密
-                        </label>
-                    </div>
-                    <div class="item form-group">
-                        <span class="tit">电话:</span>
-                        <input type="text" class="form-control edit phone" name="phone">
-                    </div>
-                    <div class="item form-group">
-                        <span class="tit">旧密码:</span>
-                        <input type="password" class="form-control edit old-password">
-                    </div>
-                    <div class="item form-group">
-                        <span class="tit">新密码:</span>
-                        <input type="password" class="form-control edit new-password" name="password">
-                    </div>
-                    <div class="item form-group">
-                        <span class="tit">确认新密码:</span>
-                        <input type="password" class="form-control edit new-password2" name="password2">
-                    </div>
-                    <div class="item introduction form-group">
-                        <span class="tit">个人简介:</span>
-                        <textarea name="" class="introduction"></textarea>
-                    </div>
-                </div>
-                <a href="javascript:void(0);" class="edit-btn">确认修改</a>
-            </div>
-        </form>
-        <!--修改个人信息end-->
-
-
     </div>
 
 </div>
@@ -351,6 +247,9 @@
 <a href="javascript:void(0);" id="to-top" class="to-top">
     <span class="glyphicon glyphicon-arrow-up top-icon"></span>
 </a>
+
+
+
 
 <!--修改个人资料验证-->
 <script type="text/javascript">

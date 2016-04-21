@@ -40,7 +40,9 @@
 
 				<div class="item-top">
 					<div class="user-head">
-						<img th:src="${blog.getUser().getImgUrl()}" class="head-img"/>
+						<a th:href="'/personalCenter/' + ${blog.getUser().getId()}">
+							<img th:src="${blog.getUser().getImgUrl()}" class="head-img"/>
+						</a>
 					</div>
 					<div class="item-info">
 						<div class="user-name" th:text="${blog.getUser().getNickname()}"></div>
@@ -65,7 +67,9 @@
 					<span class="triangle"></span>
 
 					<div class="comment-left">
-						<img th:src="${session.user.getImgUrl()}" class="head">
+						<a th:href="'/personalCenter/' + ${session.user.getId()}">
+							<img th:src="${session.user.getImgUrl()}" class="head">
+						</a>
 					</div>
 					<div class="comment-rit">
 						<div class="add-comment">
@@ -75,8 +79,9 @@
 						<div class="comment-container">
 
 							<div class="fri-comment" th:each="comment: ${blog.getComments()}">
-								<img th:src="${comment.getUser().getImgUrl()}" class="head">
-
+								<a th:href="'/personalCenter/' + ${comment.getUser().getId()}">
+									<img th:src="${comment.getUser().getImgUrl()}" class="head">
+								</a>
 								<div class="info-box">
                                 <span class="text">
                                     <span class="fir-name" th:text="${comment.getUser().getNickname()}"></span>:&nbsp

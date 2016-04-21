@@ -17,29 +17,8 @@
 </head>
 <body>
 
-<div class="nav">
-    <div class="nav-box"`>
-        <div class=".col-md-2 logo"></div>
-        <span class="logo-txt">SC Blog</span>
+<div class="nav" th:include="pages/common/nav ::nav">
 
-        <div class=".col-md-4 search">
-            <input type="text" class="search-box" placeholder="搜索..."/>
-            <a href="javascript:void(0);" class="search-icon glyphicon glyphicon-search"></a>
-        </div>
-        <div class=".col-md-6 nav-item">
-            <a href="/index">
-                <span class="glyphicon glyphicon-home icon"></span>
-                <span class="index">首页</span>
-            </a>
-            <a href="/personalCenter">
-                <span class="glyphicon glyphicon-user icon"></span>
-                <span class="index">火火Viann</span>
-            </a>
-            <a href="/loginOut">
-                <span class="index">退出登录</span>
-            </a>
-        </div>
-    </div>
 </div>
 
 <div class="container-box">
@@ -49,10 +28,11 @@
         <div class="head-box">
             <img src="/static/images/test/head.jpg" class="user-head">
         </div>
-        <span class="user-name">火火</span>
+        <span class="user-name" th:text="${user.getNickname()}">火火</span>
 
         <div class="follow-box">
-            <a th:href="'/attendUser?userId=' + ${user.getId()}" class="follow">已关注</a>
+            <a th:href="'/attendUser?userId=' + ${user.getId()}" th:if="${session.user.isAttend(user.getId())}" class="follow">关注</a>
+            <a th:href="'/unAttendUser?userId=' + ${user.getId()}"  th:unless="${session.user.isAttend(user.getId())}" class="follow">取消关注</a>
         </div>
     </div>
 
@@ -63,19 +43,19 @@
             <div class="info">
                 <div class="item">
                     <a href="javascript:void(0);" id="follow-btn">
-                        <span class="num">112</span>
+                        <span class="num" th:text="${user.getAttentionUsers().size()}">112</span>
                         <span class="text">关注</span>
                     </a>
                 </div>
                 <div class="item">
                     <a href="javascript:void(0);" id="fans-btn">
-                        <span class="num">234</span>
+                        <span class="num" th:text="${user.getFollowUsers().size()}">234</span>
                         <span class="text">粉丝</span>
                     </a>
                 </div>
                 <div class="item">
                     <a href="javascript:void(0);" id="news-btn">
-                        <span class="num">96</span>
+                        <span class="num" th:text="${user.getBlogs().size()}">96</span>
                         <span class="text">微博</span>
                     </a>
                 </div>

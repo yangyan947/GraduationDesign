@@ -48,23 +48,7 @@
     </div>
 
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    <p id="result" data-result=""></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" id="close-btn">关闭</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" th:include="pages/common/modal :: modal"></div>
 
 
 
@@ -120,8 +104,6 @@
 <script type="text/javascript">
     var login_btn = $("#login-btn");
     var login_form = $("#login-form");
-    var modal = $("#myModal");
-    var modal_result = $("#result");
     var isSuccess = false;
     $("#close-btn").bind("click", function () {
         if (isSuccess){
@@ -136,9 +118,9 @@
             type: 'POST',
             success: function(data){
                 var result = $.parseJSON(data);
-                modal_result.text(result.reason);
+
                 isSuccess = result.isSuccess;
-                modal.modal('show');
+                myAlert(result.reason);
             }
         })
     })

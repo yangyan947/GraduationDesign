@@ -161,15 +161,6 @@
 
     <div class="col-md-8 cont-left" id="cont-box">
 
-        <!--富文本部分-->
-        <!--<div class="editor">
-            <div class="text-editor">
-                <textarea name="后台取值的key" id="myEditor"></textarea>
-            </div>
-            <a href="javascript:void(0);" class="publish" id="publish-btn">发布</a>
-        </div>-->
-
-
         <!--自己发布的微博-->
         <div class="fri-news" id="fri-news" data-name="news">
 
@@ -179,13 +170,14 @@
 
                 <div class="item-top">
                     <div class="user-head">
-                        <img src="/static/images/test/head.jpg" class="head-img"/>
+                        <a th:href="'/personalCenter/' + ${blog.getUser().getId()}">
+                            <img src="/static/images/test/head.jpg" class="head-img"/>
+                        </a>
                     </div>
                     <div class="item-info">
                         <div class="user-name" th:text="${blog.getUser().getNickname()}"></div>
                         <div class="create-time" th:text="${#dates.format(blog.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></div>
                         <p class="text" th:utext="${blog.getContext()}"></p>
-                        <!--图片??-->
                     </div>
                 </div>
                 <div class="item-botm">
@@ -204,7 +196,9 @@
                     <span class="triangle"></span>
 
                     <div class="comment-left">
-                        <img th:src="${user.getImgUrl()}" class="head">
+                        <a th:href="'/personalCenter/' + ${session.user.getId()}">
+                            <img th:src="${session.user.getImgUrl()}" class="head">
+                        </a>
                     </div>
                     <div class="comment-rit">
                         <div class="add-comment">
@@ -214,7 +208,9 @@
                         <div class="comment-container">
 
                             <div class="fri-comment" th:each="comment: ${blog.getComments()}">
-                                <img th:src="${comment.getUser().getImgUrl()}" class="head">
+                                <a th:href="'/personalCenter/' + ${comment.getUser().getId()}">
+                                    <img th:src="${comment.getUser().getImgUrl()}" class="head">
+                                </a>
 
                                 <div class="info-box">
                                 <span class="text" >
@@ -234,11 +230,13 @@
 
 
         <!--粉丝列表-->
-        <div class="fri-list follow-list" id="fans-list" data-name="fans" th:each="aUser : ${user.getFollowUsers()}">
+        <div class="fri-list follow-list" id="fans-list" data-name="fans">
             <span class="title">粉丝</span>
-            <div class="item">
+            <div class="item" th:each="aUser : ${user.getFollowUsers()}">
                 <div class="img-box">
-                    <img th:src="${aUser.getImgUrl()}" class="head">
+                    <a th:href="'/personalCenter/' + ${aUser.getId()}">
+                        <img th:src="${aUser.getImgUrl()}" class="head">
+                    </a>
                 </div>
                 <div class="info">
                     <span class="name" th:text="${aUser.getNickname()}">名字这个粉丝</span>
@@ -266,11 +264,13 @@
         <!--粉丝列表end-->
 
         <!--关注的人列表-->
-        <div class="fri-list fans-list" id="follow-list" data-name="follow" th:each="aUser : ${user.getAttentionUsers()}">
+        <div class="fri-list fans-list" id="follow-list" data-name="follow" >
             <span class="title">关注</span>
-            <div class="item">
+            <div class="item" th:each="aUser : ${user.getAttentionUsers()}">
                 <div class="img-box">
-                    <img th:src="${aUser.getImgUrl()}" class="head">
+                    <a th:href="'/personalCenter/' + ${aUser.getId()}">
+                        <img th:src="${aUser.getImgUrl()}" class="head">
+                    </a>
                 </div>
                 <div class="info">
                     <span class="name" th:text="${aUser.getNickname()}">名字这个粉丝</span>

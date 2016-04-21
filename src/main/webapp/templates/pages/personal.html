@@ -47,8 +47,12 @@
         <span class="logo-txt">SC Blog</span>
 
         <div class=".col-md-4 search">
-            <input type="text" class="search-box" placeholder="搜索..."/>
-            <a href="javascript:void(0);" class="search-icon glyphicon glyphicon-search"></a>
+            <form action="/search">
+                <input type="text" name="search" class="search-box" placeholder="搜索..."/>
+                <a href="javascript:void(0);" class="search-icon glyphicon glyphicon-search">
+                    <button id="search-btn" style="position: absolute;border: none;opacity: 0;width: 100%;height: 100%" class=" glyphicon glyphicon-search" type="submit"></button>
+                </a>
+            </form>
         </div>
         <div class=".col-md-6 nav-item">
             <a href="/index">
@@ -657,24 +661,26 @@
                         "<div class='comment-container'></div></div></div></div>";
             }
 
-            //新发布的微博显示为第一个
-            fri_news.prepend(publish_info(content));
+            $.ajax({
+                url: "/publishBlog",
+                data: {
+                    "context": content
+                },
+                type: 'POST',
+                success: function (data) {
+                    var news = $.parseJSON(data);
 
-            //页面已加载完,新发布的微博无法取到,所以需要重新循环,取得父元素的第一个子元素也就是新发布的微博.
-            init(fri_news.children('div.news-item')[0]);
-
-
-//            $.ajax({
-//                url: "/publishBlog",
-//                data: {
-//                    "content": content,
-//                },
-//                type: 'POST',
-//                success: function (data) {
-//                    // var result = $.parseJSON(data);
-//                    console.log(data);
-//                }
-//            })
+                    if(news.isSuccess) {
+                        //新发布的微博显示为第一个
+                        fri_news.prepend(publish_info(content));
+                        //页面已加载完,新发布的微博无法取到,所以需要重新循环,取得父元素的第一个子元素也就是新发布的微博.
+                        init(fri_news.children('div.news-item')[0]);
+                    }
+                    else {
+                        alert("发布失败");
+                    }
+                }
+            })
 
         });
 

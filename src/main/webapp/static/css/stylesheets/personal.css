@@ -382,7 +382,7 @@ div.container-box div.cont-left div.fri-news div.news-item div.item-top div.item
   display: inline-block;
   vertical-align: top;
   margin-left: 10px;
-  width: 540px;
+  width: 535px;
   line-height: 20px;
 }
 /* line 294, ../sass/personal.scss */
@@ -415,7 +415,7 @@ div.container-box div.cont-left div.fri-news div.news-item div.item-botm a {
   line-height: 36px;
   text-align: center;
   text-decoration: none;
-  width: 49.2%;
+  width: 48.5%;
   outline: none;
 }
 /* line 327, ../sass/personal.scss */
@@ -830,7 +830,7 @@ div.container-box div.cont-rit div.personal div.info {
 }
 /* line 735, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal div.info div.item {
-  width: 32.2%;
+  width: 31%;
   display: inline-block;
 }
 /* line 739, ../sass/personal.scss */

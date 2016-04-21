@@ -291,26 +291,45 @@
         <!--关注的人列表end-->
 
         <!--修改个人信息-->
-        <form id="edit-form" class="form-horizontal" class="edit-form">
-            <div class="edit-per-info">
-                <span class="title">编辑个人资料</span>
 
-                <div class="item-box">
+        <div class="edit-per-info" id="edit-info">
+            <span class="title">编辑个人资料</span>
+
+            <div class="item-box">
+
+                <form class="head-form" action="/changeUserImg" method="post" enctype="multipart/form-data">
                     <div class="item fixed">
-                        <form action="/changeUserImg" method="post" enctype="multipart/form-data">
-                            <span class="tit">头像:</span>
-                            <input type="file" name="img" class="head">
-                            <input type="submit" value="确定">
-                        </form>
+                        <span class="tit">头像:</span>
+                        <input type="file" name="img" class="head">
                     </div>
+                    <button type="submit" class="btn-item">确定</button>
+
                     <div class="item fixed">
                         <span class="tit">邮箱:</span>
                         <span class="email">123123@1212121</span>
                     </div>
+                </form>
+
+
+
+                <form id="password-form" class="form-horizontal">
                     <div class="item form-group">
-                        <span class="tit">昵称:</span>
-                        <input type="text" class="form-control edit nick-name" name="nickname">
+                        <span class="tit">旧密码:</span>
+                        <input type="password" class="form-control edit old-password" name="oldPassword">
                     </div>
+                    <div class="item form-group">
+                        <span class="tit">新密码:</span>
+                        <input type="password" class="form-control edit new-password" name="newPassword">
+                    </div>
+                    <div class="item form-group">
+                        <span class="tit">确认新密码:</span>
+                        <input type="password" class="form-control edit new-password2" name="newPassword2">
+                    </div>
+                    <button type="submit" class="btn-item">确定</button>
+                </form>
+
+
+                <form id="edit-form" class="form-horizontal">
                     <div class="item sex fixed">
                         <span class="tit">性别:</span>
                         <label>
@@ -324,29 +343,23 @@
                         </label>
                     </div>
                     <div class="item form-group">
+                        <span class="tit">昵称:</span>
+                        <input type="text" class="form-control edit nick-name" name="nickname">
+                    </div>
+                    <div class="item form-group">
                         <span class="tit">电话:</span>
                         <input type="text" class="form-control edit phone" name="phone">
                     </div>
-                    <div class="item form-group">
-                        <span class="tit">旧密码:</span>
-                        <input type="password" class="form-control edit old-password">
-                    </div>
-                    <div class="item form-group">
-                        <span class="tit">新密码:</span>
-                        <input type="password" class="form-control edit new-password" name="password">
-                    </div>
-                    <div class="item form-group">
-                        <span class="tit">确认新密码:</span>
-                        <input type="password" class="form-control edit new-password2" name="password2">
-                    </div>
+
                     <div class="item introduction form-group">
                         <span class="tit">个人简介:</span>
                         <textarea name="" class="introduction"></textarea>
                     </div>
-                </div>
-                <a href="javascript:void(0);" class="edit-btn">确认修改</a>
+                    <button type="submit" class="btn-item">确定</button>
+                </form>
             </div>
-        </form>
+        </div>
+
         <!--修改个人信息end-->
 
 
@@ -404,8 +417,21 @@
                                     message: '手机号应该为数字'
                                 }
                             }
-                        },
-                        password: {
+                        }
+                    }
+                });
+
+        $('#password-form')
+                .bootstrapValidator({
+                    message: '这个值无效',
+                    //live: 'submitted',
+                    feedbackIcons: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        oldPassword: {
                             validators: {
                                 notEmpty: {
                                     message: '密码不能为空'
@@ -417,13 +443,25 @@
                                 }
                             }
                         },
-                        password2: {
+                        newPassword: {
+                            validators: {
+                                notEmpty: {
+                                    message: '密码不能为空'
+                                },
+                                stringLength: {
+                                    min: 5,
+                                    max: 30,
+                                    message: '密码长度大于5小于30'
+                                }
+                            }
+                        },
+                        newPassword2: {
                             validators: {
                                 notEmpty: {
                                     message: '密码不能为空'
                                 },
                                 identical: {
-                                    field: 'password',
+                                    field: 'newPassword',
                                     message: '两次密码应该一致'
                                 },
                                 stringLength: {
@@ -447,7 +485,7 @@
                 fri_news = cont_box.find("div#fri-news"),
                 follow_list = cont_box.find("div#follow-list"),
                 fans_list = cont_box.find("div#fans-list"),
-                edit_form = cont_box.find("form#edit-form"),
+                edit_info = cont_box.find("div#edit-info"),
                 follow_btn = $("a#follow-btn"),
                 fans_btn = $("a#fans-btn"),
                 news_btn = $("a#news-btn"),
@@ -467,7 +505,7 @@
         });
         edit_btn.bind("click", function (){
             cont_box.children().fadeOut(200);
-            edit_form.fadeIn(200);
+            edit_info.fadeIn(200);
         });
     });
 

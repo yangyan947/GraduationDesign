@@ -85,7 +85,7 @@ public class UserService {
     public Message changeUser(User user, User loginUser) {
         Message message;
         //通过用户名获取用户
-        Optional<User> dbUser = userDao.getByEmail(user.getEmail());
+        Optional<User> dbUser = userDao.getByEmail(loginUser.getEmail());
         //若获取失败
         if (loginUser == null) {
             message = new Message(false, "未登录");
@@ -106,6 +106,8 @@ public class UserService {
         } else if (!user.getPassword().equals(oldPsd)) {
             message = new Message(false, "原始密码错误");
         } else {
+            user.setPassword(newPsd);
+            userDao.save(user);
             message = new Message(true, "修改成功,请重新登陆");
         }
         return message;

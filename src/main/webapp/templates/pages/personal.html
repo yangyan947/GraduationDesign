@@ -350,16 +350,16 @@
                     </div>
                     <div class="item form-group">
                         <span class="tit">昵称:</span>
-                        <input type="text" class="form-control edit nick-name" name="nickname">
+                        <input type="text" class="form-control edit nick-name" name="nickname" th:value="${user.getNickname()}">
                     </div>
                     <div class="item form-group">
                         <span class="tit">电话:</span>
-                        <input type="text" class="form-control edit phone" name="phone">
+                        <input type="text" class="form-control edit phone" name="phone" th:value="${user.getPhone()}">
                     </div>
 
                     <div class="item introduction form-group">
                         <span class="tit">个人简介:</span>
-                        <textarea name="" class="introduction"></textarea>
+                        <textarea name="" class="introduction" name="resume" th:text="${user.getResume()}"></textarea>
                     </div>
                     <button type="submit" class="btn-item">确定</button>
                 </form>

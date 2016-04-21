@@ -142,7 +142,7 @@ public class UserController {
                 model.addAttribute("result", message.getReason());
                 if (message.isSuccess()) {
                     model.addAttribute("user", message.getOthers());
-                    return "pages/personalNormal";
+                    return "pages/homePage";
                 } else {
                     return "index";
                 }
@@ -179,22 +179,21 @@ public class UserController {
 
         if (message.isSuccess()) {
             session.setAttribute(USER, message.getOthers());
-            return new RedirectView("/index", true, false, true);
+            return new RedirectView("/personalCenter", true, false, true);
         } else {
 
-            return new RedirectView("/index", true, false, true);
+            return new RedirectView("/personalCenter", true, false, true);
         }
     }
 
     @RequestMapping(value = "/changeUserImg", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    @ResponseBody
-    public String changeUserImg(HttpSession session, Model model, @RequestParam(value = "img") MultipartFile file) throws Exception {
+    public RedirectView changeUserImg(HttpSession session, Model model, @RequestParam(value = "img") MultipartFile file) throws Exception {
         User user = (User) session.getAttribute(USER);
         String imgUrl = saveFile(file, session);
         user.setImgUrl(imgUrl);
         Message message = userService.changeUser(user, user);
         update(session);
-        return message.toString();
+        return new RedirectView("/personalCenter", true, false, true);
     }
 
     @RequestMapping(value = "/changeUserPassword", method = RequestMethod.POST)
@@ -205,7 +204,7 @@ public class UserController {
         model.addAttribute("result", message.getReason());
         if (message.isSuccess()) {
             session.removeAttribute(USER);
-            return new RedirectView("/index", true, false, true);
+            return new RedirectView("/login", true, false, true);
         } else {
             return new RedirectView("/personalCenter", true, false, true);
         }

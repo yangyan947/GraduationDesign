@@ -202,4 +202,9 @@ public class User extends BaseObject {
         List<Long> blogIdList = getBlogs().stream().map(Blog::getId).collect(Collectors.toList());
         return blogIdList.contains(blogId);
     }
+
+    public boolean isAttend(Long userId) {
+        List<Long> userIdList = getAttentionUsers().stream().map(User::getId).collect(Collectors.toList());
+        return userIdList.contains(userId);
+    }
 }

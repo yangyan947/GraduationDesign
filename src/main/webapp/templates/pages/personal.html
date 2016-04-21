@@ -30,10 +30,10 @@
                     <div class="text-editor">
                         <textarea name="后台取值的key" id="myEditor"></textarea>
                     </div>
-                    <a href="javascript:void(0);" class="publish" id="publish-btn">发布</a>
                 </div>
             </div>
             <div class="modal-footer">
+                <a href="javascript:void(0);" class="publish" id="publish-btn">发布</a>
                 <button type="button" class="btn btn-default" data-dismiss="modal" id="close-btn">关闭</button>
             </div>
         </div>
@@ -105,20 +105,20 @@
 
             <div class="info">
                 <div class="item">
-                    <a href="/personalCenter?type=01">
-                        <span class="num"  th:text="${session.user.getAttentionUsers().size()}">112</span>
+                    <a href="javascript:void(0);" id="follow-btn">
+                        <span class="num">112</span>
                         <span class="text">关注</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/personalCenter?type=02">
-                        <span class="num" th:text="${session.user.getFollowUsers().size()}">234</span>
+                    <a href="javascript:void(0);" id="fans-btn">
+                        <span class="num">234</span>
                         <span class="text">粉丝</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/personalCenter?type=03">
-                        <span class="num" th:text="${session.user.getBlogs().size()}">96</span>
+                    <a href="javascript:void(0);" id="news-btn">
+                        <span class="num">96</span>
                         <span class="text">微博</span>
                     </a>
                 </div>
@@ -154,7 +154,7 @@
         </div>
     </div>
 
-    
+
     <div class="col-md-8 cont-left" id="cont-box">
 
         <!--富文本部分-->
@@ -570,17 +570,11 @@
                     contentType : "application/x-www-form-urlencoded; charset=utf-8",
                     type: 'POST',
                     success: function(data){
-                        console.info(data);
-                        if (data.isSuccess) {
-                            good_btn.addClass("active");
-                            status = true;
-                            comment_container.append(get_comment(new_val));
-                        }
-                        else{
-                            alert(data.reason);
-                        }
+                        good_btn.addClass("active");
+                        status = true;
                     }
                 });
+                comment_container.append(get_comment(new_val));
             });
 
             function get_comment(new_val) {
@@ -620,7 +614,6 @@
                         },
                         type: 'POST',
                         success: function(data){
-                            console.info(data);
                             good_btn.addClass("active");
                             status = true;
                             _this.attr("data-status", true);
@@ -713,6 +706,7 @@
                 },
                 type: 'POST',
                 success: function (data) {
+                    alert();
                     var news = $.parseJSON(data);
 
                     if(news.isSuccess) {

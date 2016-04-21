@@ -115,7 +115,6 @@ public class UserService {
 
     /**
      * 关注用户
-     *
      * @param user     操作用户
      * @param attendId 被关于用户id
      * @return
@@ -125,27 +124,45 @@ public class UserService {
         User attendUser = userDao.findOne(attendId);
         if (user == null) {
             message = new Message(false, "未登录");
-        } else if (attendUser != null) {
+        } else if (attendUser == null) {
+            message = new Message(false, "关注失败，关注的用户不存在");
+
+        } else if (user.isAttend(attendId)) {
+            message = new Message(false, "已关注，无法重复关注");
+        } else {
             user.getAttentionUsers().add(attendUser);
             attendUser.getFollowUsers().add(user);
             user = userDao.save(user);
-            attendUser = userDao.save(attendUser);
             message = new Message(true, "关注成功", user);
-        } else {
-            message = new Message(false, "关注失败，关注的用户不存在");
         }
         return message;
-
     }
 
-//    public User getOne(Long id) {
-//        return userDao.findOne(id);
-//    }
-//    public Message GetUserOwnProject(User user) {
-//        Message message ;
-//        user.getOwnProjects()
-//        return message;
-//    }
+
+    /**
+     * 关注用户
+     * @param user     操作用户
+     * @param attendId 被关于用户id
+     * @return
+     */
+    public Message unAttendUser(User user, Long attendId) {
+        Message message;
+        User attendUser = userDao.findOne(attendId);
+        if (user == null) {
+            message = new Message(false, "未登录");
+        } else if (attendUser == null) {
+            message = new Message(false, "取消关注失败，关注的用户不存在");
+
+        } else if (!user.isAttend(attendId)) {
+            message = new Message(false, "未关注，无法取消关注");
+        } else {
+            user.getAttentionUsers().remove(attendUser);
+            attendUser.getFollowUsers().remove(user);
+            user = userDao.save(user);
+            message = new Message(true, "关注成功", user);
+        }
+        return message;
+    }
 
     /**
      * 获得用户列表
@@ -206,7 +223,7 @@ public class UserService {
         User user = userDao.findOne(id);
         if (user == null) {
             message = new Message(false, "用户不存在");
-        }else{
+        } else {
             message = new Message(true, "查找成功", user);
         }
         return message;

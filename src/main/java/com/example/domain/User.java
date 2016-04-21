@@ -207,4 +207,22 @@ public class User extends BaseObject {
         List<Long> userIdList = getAttentionUsers().stream().map(User::getId).collect(Collectors.toList());
         return userIdList.contains(userId);
     }
+    public String relationship(Long userId) {
+        List<Long> attentionUsersList = getAttentionUsers().stream().map(User::getId).collect(Collectors.toList());
+        List<Long> followUsersList = getFollowUsers().stream().map(User::getId).collect(Collectors.toList());
+
+        if (attentionUsersList.contains(userId)) {
+            if (followUsersList.contains(userId)) {
+                return "互相关注";
+            } else {
+                return "已关注ta";
+            }
+        }else{
+            if (followUsersList.contains(userId)) {
+                return "已关注你";
+            } else {
+                return "未关注";
+            }
+        }
+    }
 }

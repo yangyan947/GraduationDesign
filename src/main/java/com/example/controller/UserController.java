@@ -150,13 +150,32 @@ public class UserController {
 
         }
     }
-
     //关注用户
     @RequestMapping(value = "/attendUser", method = RequestMethod.GET)
-    @ResponseBody
-    public String attendUser(HttpSession session, Model model, @RequestParam(value = "userId") Long userId) {
+    public RedirectView attendUser(HttpSession session, Model model, @RequestParam(value = "userId") Long userId) {
         User user = (User) session.getAttribute(USER);
         Message message = userService.attendUser(user, userId);
+        session.setAttribute(USER, message.getOthers());
+        return new RedirectView("/personalCenter/" + userId, true, false, true);
+
+    }
+    //关注用户
+    @RequestMapping(value = "/unAttendUser", method = RequestMethod.GET)
+    public RedirectView unAttendUser(HttpSession session, Model model, @RequestParam(value = "userId") Long userId) {
+        User user = (User) session.getAttribute(USER);
+        Message message = userService.attendUser(user, userId);
+        session.setAttribute(USER, message.getOthers());
+        return new RedirectView("/personalCenter/" + userId, true, false, true);
+
+    }
+
+    //关注用户
+    @RequestMapping(value = "/attendUserAjax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8" )
+    @ResponseBody
+    public String attendUserAjax(HttpSession session, Model model, @RequestParam(value = "userId") Long userId) {
+        User user = (User) session.getAttribute(USER);
+        Message message = userService.attendUser(user, userId);
+        session.setAttribute(USER, message.getOthers());
         return message.toString();
     }
 

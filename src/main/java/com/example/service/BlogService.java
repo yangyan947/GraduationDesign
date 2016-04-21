@@ -50,7 +50,6 @@ public class BlogService {
             user.getBlogs().add(blog);
             user = userDao.save(user);
             message = new Message(true, "发表成功!", blog);
-            ObjectMapper mapper = new ObjectMapper();
         }
         return message;
     }

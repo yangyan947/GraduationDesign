@@ -20,7 +20,7 @@ public class Blog extends BaseObject {
     private Set<Comment> comments;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_point_blog", joinColumns = @JoinColumn(name = "blog"), inverseJoinColumns = @JoinColumn(name = "user"))
+    @JoinTable(name = "user_point_blog", joinColumns = @JoinColumn(name = "pointsBlog"), inverseJoinColumns = @JoinColumn(name = "pointsUser"))
     @OrderBy(value = "createTime DESC")
     private Set<User> pointsUsers;
 

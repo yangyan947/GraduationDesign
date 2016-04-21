@@ -105,20 +105,20 @@
 
             <div class="info">
                 <div class="item">
-                    <a href="javascript:void(0);" id="follow-btn">
-                        <span class="num">112</span>
+                    <a href="/personalCenter?type=01">
+                        <span class="num"  th:text="${session.user.getAttentionUsers().size()}">112</span>
                         <span class="text">关注</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="javascript:void(0);" id="fans-btn">
-                        <span class="num">234</span>
+                    <a href="/personalCenter?type=02">
+                        <span class="num" th:text="${session.user.getFollowUsers().size()}">234</span>
                         <span class="text">粉丝</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="javascript:void(0);" id="news-btn">
-                        <span class="num">96</span>
+                    <a href="/personalCenter?type=03">
+                        <span class="num" th:text="${session.user.getBlogs().size()}">96</span>
                         <span class="text">微博</span>
                     </a>
                 </div>
@@ -532,11 +532,17 @@
                     contentType : "application/x-www-form-urlencoded; charset=utf-8",
                     type: 'POST',
                     success: function(data){
-                        good_btn.addClass("active");
-                        status = true;
+                        console.info(data);
+                        if (data.isSuccess) {
+                            good_btn.addClass("active");
+                            status = true;
+                            comment_container.append(get_comment(new_val));
+                        }
+                        else{
+                            alert(data.reason);
+                        }
                     }
                 });
-                comment_container.append(get_comment(new_val));
             });
 
             function get_comment(new_val) {
@@ -576,6 +582,7 @@
                         },
                         type: 'POST',
                         success: function(data){
+                            console.info(data);
                             good_btn.addClass("active");
                             status = true;
                             _this.attr("data-status", true);

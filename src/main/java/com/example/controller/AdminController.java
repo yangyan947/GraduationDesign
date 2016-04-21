@@ -89,7 +89,7 @@ public class AdminController {
 
     @RequestMapping(value = "/commentList", method = RequestMethod.GET)
     public String commentList(HttpSession session, Model model,
-                              @ModelAttribute(value = "commentPage") Page<Comment> commentPage2,
+//                              @ModelAttribute(value = "commentPage") Page<Comment> commentPage2,
                               @RequestParam(value = "page", defaultValue = "1") Integer index,
                               @RequestParam(value = "status", defaultValue = "all") String status) {
 

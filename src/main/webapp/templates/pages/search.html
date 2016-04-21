@@ -36,19 +36,19 @@
 			<div class="info">
 				<div class="item">
 					<a href="/personalCenter?type=01">
-						<span class="num">112</span>
+						<span class="num" th:text="${session.user.getAttentionUsers().size()}">112</span>
 						<span class="text">关注</span>
 					</a>
 				</div>
 				<div class="item">
 					<a href="/personalCenter?type=02">
-						<span class="num">234</span>
+						<span class="num" th:text="${session.user.getFollowUsers().size()}">234</span>
 						<span class="text">粉丝</span>
 					</a>
 				</div>
 				<div class="item">
 					<a href="/personalCenter?type=03">
-						<span class="num">96</span>
+						<span class="num" th:text="${session.user.getBlogs().size()}">96</span>
 						<span class="text">微博</span>
 					</a>
 				</div>
@@ -89,7 +89,9 @@
 		<!--自己发布的微博-->
 		<div class="fri-news" id="fri-news" style="">
 			<div class="news-item" th:each="blog: ${blogPage.getContent()}">
+
 				<a href="javascript:void(0);" class="dele-news" th:attr="data-blogId=${blog.getId()}">删除</a>
+
 				<div class="item-top">
 					<div class="user-head">
 						<img src="/static/images/test/head.jpg" class="head-img"/>
@@ -152,6 +154,201 @@
 			</ul>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		/*发布微博, 添加评论*/
+		$(function () {
+			var fri_news = $("div#fri-news"),
+					news_item = fri_news.find("div.news-item");
+
+			function init(e) {
+				var $this = $(e),
+						comment_list = $this.find("div.comment-list"),
+						add_comment = comment_list.find("textarea.text"),
+						comment_val = add_comment.val(),
+						add_comment_btn = comment_list.find("a.comment-btn"),
+						comment_container = $this.find("div.comment-container"),
+						comment_list_btn = $this.find("a.comment-list-btn");
+
+				/*添加评论框获得和失去焦点*/
+				add_comment.bind({
+					focus: function () {
+						add_comment.addClass("onfocus");
+					},
+					blur: function () {
+						add_comment.removeClass("onfocus");
+					}
+				});
+
+				/*添加评论*/
+				add_comment_btn.bind("click", function () {
+					var new_comment = comment_list.find("textarea.text"),
+							new_val = new_comment.val(),
+							blogId = new_comment.attr('data-blogId');
+					$.ajax({
+						url: "/addComment",
+						data: {
+							"blogId": blogId,
+							"context": new_val
+						},
+						contentType: "application/x-www-form-urlencoded; charset=utf-8",
+						type: 'POST',
+						success: function (data) {
+							good_btn.addClass("active");
+							status = true;
+						}
+					});
+					comment_container.append(get_comment(new_val));
+				});
+
+				function get_comment(new_val) {
+					return "<div class='fri-comment'>" +
+							"<img src='/static/images/test/head.jpg' class='head'>" +
+							"<div class='info-box'><span class='text'><span class='fir-name' th:text='${comment.getUser().getNickname()}'></span>: " + new_val + "</span>" +
+							"<span class='create-time' th:text='${#dates.format(comment.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}'></span></div>" +
+							"</div>";
+				}
+
+				/*评论框所有评论隐藏显示*/
+				if (comment_container.children('.fri-comment').length > 0) {
+					comment_list.show();
+				}
+				else {
+					comment_list.hide();
+				}
+
+				comment_list_btn.bind("click", function () {
+					comment_list.toggle();
+				});
+
+
+				/*点赞功能*/
+				var good_btn = $this.find("a.good");
+
+				good_btn.bind("click", function () {
+					var _this = $(this);
+					var status = _this.attr("data-status");
+					var blogId = _this.attr('data-blogId');
+
+					if (status == 'false') {
+						$.ajax({
+							url: "/pointBlog",
+							data: {
+								"blogId": blogId
+							},
+							type: 'POST',
+							success: function (data) {
+								console.info(data);
+								good_btn.addClass("active");
+								status = true;
+								_this.attr("data-status", true);
+							}
+						});
+					}
+					else if (status == 'true') {
+						$.ajax({
+							url: "/pointBlog",
+							data: {
+								"blogId": blogId
+							},
+							type: 'POST',
+							success: function (data) {
+								good_btn.removeClass("active");
+								status = false;
+								_this.attr("data-status", false);
+							}
+						});
+					}
+				});
+
+
+				/*删除微博*/
+				var dele_btn = $this.find("a.dele-news"),
+						blogId = dele_btn.attr('data-blogId');
+
+				dele_btn.bind("click", function () {
+					$.ajax({
+						url: "/deleteBlog",
+						data: {
+							"blogId": blogId
+						},
+						type: "POST",
+						success: function (data) {
+
+						}
+					});
+				});
+
+
+			}
+
+			news_item.each(function (i, e) {
+				init(e); //针对循环出的当前一个对象e ??
+			});
+
+
+			/*富文本, 发布新状态*/
+			/*富文本初始化*/
+			var editor = new UE.ui.Editor();
+			editor.render("myEditor");
+			//1.2.4以后可以使用一下代码实例化编辑器
+			//UE.getEditor('myEditor')
+
+			var myeditor = $("textarea#myEditor"),
+					publish_btn = $("a#publish-btn"),
+					fri_news = $("div#fri-news");
+
+			publish_btn.bind("click", function () {
+				var content = UE.getEditor('myEditor').getContent();    //UEditor取得内容Html的方法
+
+				function publish_info(info) {
+					return "<div class='news-item'><div class='item-top'>" +
+							"<div class='user-head'><img src='/static/images/test/head.jpg' class='head-img'/></div>" +
+							"<div class='item-info'><div class='user-name'>AAA</div>" +
+							"<div class='create-time'>2016-4-16</div>" +
+							"<p class='text'>" + info + "</p></div></div>" +
+
+							"<div class='item-botm'>" +
+							"<a href='javascript:void(0);' class='comment comment-list-btn'>" +
+							"<span class='glyphicon glyphicon-pencil icon'></span>评论</a><span class='cut'></span>" +
+							"<a href='javascript:void(0);' class='good' data-status=false>" +
+							"<span class='glyphicon glyphicon-thumbs-up icon'></span>点赞</a><span class='cut'></span>" +
+							"<a href='javascript:void(0);' class='report'>" +
+
+							"<div class='comment-list'><span class='triangle'></span>" +
+							"<div class='comment-left'><img src='/static/images/test/head.jpg' class='head'></div>" +
+							"<div class='comment-rit'><div class='add-comment'><textarea name='' class='text'></textarea>" +
+							"<a href='javascript:void(0);' class='comment-btn'>评论</a></div>" +
+							"<div class='comment-container'></div></div></div></div>";
+				}
+
+				$.ajax({
+					url: "/publishBlog",
+					data: {
+						"context": content
+					},
+					type: 'POST',
+					success: function (data) {
+						var news = $.parseJSON(data);
+
+						if (news.isSuccess) {
+							//新发布的微博显示为第一个
+							fri_news.prepend(publish_info(content));
+							//页面已加载完,新发布的微博无法取到,所以需要重新循环,取得父元素的第一个子元素也就是新发布的微博.
+							init(fri_news.children('div.news-item')[0]);
+						}
+						else {
+							alert("发布失败");
+						}
+					}
+				})
+
+			});
+
+
+		});
+
+	</script>
 </div>
 </body>
 </html>

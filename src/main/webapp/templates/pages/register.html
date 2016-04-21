@@ -19,7 +19,7 @@
         <div class="login-box register-box">
             <span class="tit-text">账户注册</span>
 
-            <form id="register-form" class="form-horizontal" action="/register" METHOD="post" th:object="${user}">
+            <form id="register-form" class="form-horizontal" th:action="@{/registerUser}" method="post" th:object="${user}">
                 <div class="input-box">
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <label for="inputSex" class="col-sm-2 control-label">昵称</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputSex" placeholder="请输入昵称" name="sex"/>
+                            <input type="text" class="form-control" id="inputSex" placeholder="请输入昵称" name="nickname"/>
                         </div>
                     </div>
 
@@ -61,7 +61,7 @@
                 </div>
             </form>
 
-            <a href="login.html" class="register-link">
+            <a href="/login" class="register-link">
                 <span class="register">直接登录</span>
             </a>
         </div>
@@ -86,15 +86,15 @@
                     },
                     fields: {
                         nickname: {
-                            message: '无效的用户名',
+                            message: '无效的昵称',
                             validators: {
                                 notEmpty: {
                                     message: '用户名不能为空'
                                 },
                                 stringLength: {
-                                    min: 5,
-                                    max: 30,
-                                    message: '用户名长度大于5小于30'
+                                    min: 1,
+                                    max: 8,
+                                    message: '用户名长度大于1小于8'
                                 },
                                 regexp: {
                                     regexp: /^[a-zA-Z0-9_\.]+$/,

@@ -43,7 +43,7 @@ public class User extends BaseObject {
     private List<Comment> comments;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_point_blog", joinColumns = @JoinColumn(name = "user"), inverseJoinColumns = @JoinColumn(name = "blog"))
+    @JoinTable(name = "user_point_blog", joinColumns = @JoinColumn(name = "pointsUser"), inverseJoinColumns = @JoinColumn(name = "pointsBlog"))
     @OrderBy(value = "createTime DESC")
     private Set<Blog> pointsBlogs;
 
@@ -197,6 +197,10 @@ public class User extends BaseObject {
 
     public boolean isPoint(Long blogId) {
         List<Long> blogIdList = getPointsBlogs().stream().map(Blog::getId).collect(Collectors.toList());
+        return blogIdList.contains(blogId);
+    }
+    public boolean isOwner(Long blogId) {
+        List<Long> blogIdList = getBlogs().stream().map(Blog::getId).collect(Collectors.toList());
         return blogIdList.contains(blogId);
     }
 }

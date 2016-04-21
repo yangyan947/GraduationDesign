@@ -43,31 +43,40 @@ public class BlogController {
     }
 
     //点赞
-    @RequestMapping(value = "/pointBlog", method = RequestMethod.POST)
+    @RequestMapping(value = "/pointBlog", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String pointBlog(HttpSession session, @ModelAttribute(value = "blogId") Long blogId) {
         Message message = blogService.pointBlog(blogId, (User) session.getAttribute(USER));
+        if (message.isSuccess()) {
+            update(session);
+        }
         return message.toString();
     }
 
     //点赞
-    @RequestMapping(value = "/unPointBlog", method = RequestMethod.POST)
+    @RequestMapping(value = "/unPointBlog", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String unPointBlog(HttpSession session, @ModelAttribute(value = "blogId") Long blogId) {
         Message message = blogService.pointBlog(blogId, (User) session.getAttribute(USER));
+        if (message.isSuccess()) {
+            update(session);
+        }
         return message.toString();
     }
 
     //删除
-    @RequestMapping(value = "/deleteBlog", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteBlog", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String deleteBlog(HttpSession session, @ModelAttribute(value = "blogId") Long blogId) {
         Message message = blogService.deleteBlog(blogId, (User) session.getAttribute(USER));
+        if (message.isSuccess()) {
+            update(session);
+        }
         return message.toString();
     }
 
     //微博列表页
-    @RequestMapping(value = "/blogList", method = RequestMethod.GET)
+    @RequestMapping(value = "/blogList", method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String blogList(HttpSession session, Model model, @RequestParam(value = "page", defaultValue = "1") Integer index) {
         Page<Blog> blogPage = blogService.getAllBlog(index);
@@ -76,7 +85,7 @@ public class BlogController {
     }
 
     //微博列表页
-    @RequestMapping(value = "/attendUserBlogList", method = RequestMethod.GET)
+    @RequestMapping(value = "/attendUserBlogList", method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String attendUserBlogList(HttpSession session, Model model, @RequestParam(value = "page", defaultValue = "1") Integer index) {
         Message message = blogService.getAttentionUsersBlog((User) session.getAttribute(USER), index);
@@ -108,6 +117,12 @@ public class BlogController {
             return "pages/search";
         }
     }
-
+    public  User update(HttpSession session) {
+        User oldUser = (User) session.getAttribute(USER);
+        session.removeAttribute(USER);
+        User newUser = userService.update(oldUser);
+        session.setAttribute(USER, newUser);
+        return newUser;
+    }
 
 }

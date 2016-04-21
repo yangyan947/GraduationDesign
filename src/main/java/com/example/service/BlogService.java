@@ -89,13 +89,15 @@ public class BlogService {
             message = new Message(false, "未登录!");
         } else if (blog == null) {
             message = new Message(false, "微博不存在!");
-        } else if (blog.getPointsUsers().contains(user)) {
+        } else if (user.isOwner(blogId)) {
+            message = new Message(false, "无法点赞自己的微博");
+        } else if (blog.isPoint(user.getId()) || user.isPoint(blogId)){
             message = new Message(false, "已经点过赞了");
-        } else {
+        }else{
             blog.getPointsUsers().add(user);
             user.getPointsBlogs().add(blog);
-            blog = blogDao.save(blog);
             user = userDao.save(user);
+//            blog = blogDao.save(blog);
             message = new Message(true, "点赞成功");
         }
         return message;

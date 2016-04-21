@@ -61,15 +61,13 @@ public class UserController {
     }
 
     //注册用户，使用POST，传输数据
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public RedirectView registerPost(Model model,
-                                     //这里和模板中的th:object="${user}"对应起来
-                                     @ModelAttribute(value = USER) User user) {
+    @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
+    public String  registerPost(Model model, @ModelAttribute(value = "user") User user) {
         //使用userService处理业务
         Message result = userService.register(user);
         //将结果放入model中，在模板中可以取到model中的值
         model.addAttribute("result", result.getReason());
-        return new RedirectView("/index", true, false, true);
+        return "pages/login";
     }
 
     //登陆
@@ -208,7 +206,7 @@ public class UserController {
         }
     }
 
-    private User update(HttpSession session) {
+    public User update(HttpSession session) {
         User oldUser = (User) session.getAttribute(USER);
         session.removeAttribute(USER);
         User newUser = userService.update(oldUser);

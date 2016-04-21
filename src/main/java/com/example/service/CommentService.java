@@ -48,10 +48,12 @@ public class CommentService {
             message = new Message(false, "未登录");
         } else if (blog == null) {
             message = new Message(false, "该微博不存在");
+        } else if (comment.getContext() == null || comment.getContext().length() < 3 || comment.getContext().length() > 123) {
+            message = new Message(false, "评论少于3个字符或者多过123个字符！");
         } else {
             comment.setUser(user);
             comment.setBlog(blog);
-            comment =  commentDao.save(comment);
+            comment = commentDao.save(comment);
             user.addComment(comment);
             blog.addComment(comment);
             blogDao.save(blog);

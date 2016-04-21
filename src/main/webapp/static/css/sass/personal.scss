@@ -586,10 +586,6 @@ div.container-box {
       }
     }
 
-    form.edit-form {
-      display: none;
-    }
-
     div.edit-per-info {
       padding: 10px 20px 20px;
       background-color: #fff;
@@ -597,6 +593,7 @@ div.container-box {
       overflow: hidden;
       margin-bottom: 20px;
       position: relative;
+      display: none;
 
       span.title {
         display: block;
@@ -611,7 +608,39 @@ div.container-box {
 
       div.item-box {
         width: 100%;
-        padding: 30px 20px 60px;
+        padding: 30px 20px;
+
+        form {
+          position: relative;
+          padding-bottom: 40px;
+
+          &.head-form {
+            padding-bottom: 0;
+
+            button.btn-item {
+              bottom: 25px;
+            }
+          }
+
+          &:not(:last-child) {
+            border-bottom: 2px solid #f2f2f5;
+          }
+
+          &:not(:first-child) {
+            padding-top: 20px;
+          }
+
+          button.btn-item {
+            position: absolute;
+            right: 90px;
+            bottom: 13px;
+            display: inline-block;
+            height: 25px;
+            line-height: 25px;
+            width: 50px;
+            float: right;
+          }
+        }
 
         div.item.fixed {
           height: 50px;

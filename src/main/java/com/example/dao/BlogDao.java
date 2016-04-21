@@ -1,17 +1,15 @@
 package com.example.dao;
 
 import com.example.domain.Blog;
-import com.example.domain.Comment;
 import com.example.domain.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Set;
 
 /**
  * Created by SunYi on 2016/2/1/0001.
@@ -25,9 +23,9 @@ public interface BlogDao extends JpaRepository<Blog, Long> {
     Page<Blog> getByUserOrderByCreateTimeDesc(User user, Pageable pageable);
 
     @Query("select b from Blog b where b.user in ?1 order by b.createTime")
-    Page<Blog> getByUsers(List<User> user, Pageable pageable);
+    Page<Blog> getByUsers(Set<User> user, Pageable pageable);
 
-    Page<Blog> getByUserIn(List<User> user, Pageable pageable);
+    Page<Blog> getByUserIn(Set<User> user, Pageable pageable);
 
     Page<Blog> findAll(Pageable pageable);
     Page<Blog> getByStatus(String status,Pageable pageable);

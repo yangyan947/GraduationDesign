@@ -154,8 +154,15 @@ public class UserController {
     @RequestMapping(value = "/attendUser", method = RequestMethod.GET)
     public RedirectView attendUser(HttpSession session, Model model, @RequestParam(value = "userId") Long userId) {
         User user = (User) session.getAttribute(USER);
+        if (user == null) {
+            model.addAttribute("result", "用户未登录!");
+            return new RedirectView("/login", true, false, true);
+        }
         Message message = userService.attendUser(user, userId);
-        session.setAttribute(USER, message.getOthers());
+        if (message.isSuccess()) {
+            session.setAttribute(USER, message.getOthers());
+        }
+        model.addAttribute("result", message.getReason());
         return new RedirectView("/personalCenter/" + userId, true, false, true);
 
     }
@@ -163,10 +170,16 @@ public class UserController {
     @RequestMapping(value = "/unAttendUser", method = RequestMethod.GET)
     public RedirectView unAttendUser(HttpSession session, Model model, @RequestParam(value = "userId") Long userId) {
         User user = (User) session.getAttribute(USER);
-        Message message = userService.attendUser(user, userId);
-        session.setAttribute(USER, message.getOthers());
+        if (user == null) {
+            model.addAttribute("result", "用户未登录!");
+            return new RedirectView("/login", true, false, true);
+        }
+        Message message = userService.unAttendUser(user, userId);
+        if (message.isSuccess()) {
+            session.setAttribute(USER, message.getOthers());
+        }
+        model.addAttribute("result", message.getReason());
         return new RedirectView("/personalCenter/" + userId, true, false, true);
-
     }
 
     //关注用户

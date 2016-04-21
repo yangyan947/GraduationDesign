@@ -4,6 +4,7 @@ import com.example.domain.base.BaseObject;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -27,11 +28,11 @@ public class User extends BaseObject {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_user", joinColumns = @JoinColumn(name = "attention_user"), inverseJoinColumns = @JoinColumn(name = "follow_user"))
     @OrderBy(value = "createTime DESC")
-    private List<User> attentionUsers;
+    private Set<User> attentionUsers;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_user", joinColumns = @JoinColumn(name = "follow_user"), inverseJoinColumns = @JoinColumn(name = "attention_user"))
+//    @JoinTable(name = "user_user", joinColumns = @JoinColumn(name = "follow_user"), inverseJoinColumns = @JoinColumn(name = "attention_user"))
     @OrderBy(value = "createTime DESC")
-    private List<User> followUsers;
+    private Set<User> followUsers;
 
     @OneToMany(fetch = FetchType.EAGER)
     @OrderBy(value = "createTime DESC")
@@ -96,20 +97,20 @@ public class User extends BaseObject {
         this.sex = sex;
     }
 
-    public List<User> getAttentionUsers() {
+    public Set<User> getAttentionUsers() {
         return attentionUsers;
     }
 
-    public void setAttentionUsers(List<User> attentionUsers) {
+    public void setAttentionUsers(Set<User> attentionUsers) {
         this.attentionUsers = attentionUsers;
     }
 
 
-    public List<User> getFollowUsers() {
+    public Set<User> getFollowUsers() {
         return followUsers;
     }
 
-    public void setFollowUsers(List<User> followUsers) {
+    public void setFollowUsers(Set<User> followUsers) {
         this.followUsers = followUsers;
     }
 

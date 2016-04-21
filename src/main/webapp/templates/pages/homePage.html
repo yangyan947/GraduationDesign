@@ -31,8 +31,8 @@
         <span class="user-name" th:text="${user.getNickname()}">火火</span>
 
         <div class="follow-box">
-            <a th:href="'/attendUser?userId=' + ${user.getId()}" th:if="${session.user.isAttend(user.getId())}" class="follow">关注</a>
-            <a th:href="'/unAttendUser?userId=' + ${user.getId()}"  th:unless="${session.user.isAttend(user.getId())}" class="follow">取消关注</a>
+            <a th:href="'/attendUser?userId=' + ${user.getId()}" th:unless="${session.user.isAttend(user.getId())}" class="follow" th:text="'关注'"></a>
+            <a th:href="'/unAttendUser?userId=' + ${user.getId()}"  th:if="${session.user.isAttend(user.getId())}" class="follow" th:text="'取消关注'"></a>
         </div>
     </div>
 
@@ -235,7 +235,7 @@
     <span class="glyphicon glyphicon-arrow-up top-icon"></span>
 </a>
 
-
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" th:include="pages/common/modal :: modal"></div>
 
 
 <!--修改个人资料验证-->

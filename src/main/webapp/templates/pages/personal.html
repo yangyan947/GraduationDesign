@@ -240,6 +240,8 @@
                 </div>
                 <div class="info">
                     <span class="name" th:text="${aUser.getNickname()}">名字这个粉丝</span>
+                    <span class="name" th:text="' --- ' +${session.user.relationship(aUser.getId())}"></span>
+
                     <div class="num-box">
                         <span class="num-item">
                             关注:
@@ -274,6 +276,7 @@
                 </div>
                 <div class="info">
                     <span class="name" th:text="${aUser.getNickname()}">名字这个粉丝</span>
+                    <span class="name" th:text="' --- ' +${session.user.relationship(aUser.getId())}"></span>
                     <div class="num-box">
                         <span class="num-item">
                             关注:
@@ -377,7 +380,7 @@
 <a href="javascript:void(0);" id="to-top" class="to-top">
     <span class="glyphicon glyphicon-arrow-up top-icon"></span>
 </a>
-
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" th:include="pages/common/modal :: modal"></div>
 <!--修改个人资料验证-->
 <script type="text/javascript">
     jQuery(document).ready(function () {

@@ -148,6 +148,7 @@ public class UserService {
     public Message unAttendUser(User user, Long attendId) {
         Message message;
         User attendUser = userDao.findOne(attendId);
+        user = userDao.findOne(user.getId());
         if (user == null) {
             message = new Message(false, "未登录");
         } else if (attendUser == null) {
@@ -158,8 +159,9 @@ public class UserService {
         } else {
             user.getAttentionUsers().remove(attendUser);
             attendUser.getFollowUsers().remove(user);
+            attendUser = userDao.save(attendUser);
             user = userDao.save(user);
-            message = new Message(true, "关注成功", user);
+            message = new Message(true, "取消关注成功", user);
         }
         return message;
     }

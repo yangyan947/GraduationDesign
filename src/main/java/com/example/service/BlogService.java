@@ -65,7 +65,10 @@ public class BlogService {
     public Message deleteBlog(Long blogId, User user) {
         Message message;
         Blog blog = blogDao.findOne(blogId);
-        if (user != null && blog.getUser().getId() == user.getId()) {
+        if (blog == null) {
+            message = new Message(true, "微博不存在");
+        }
+        else if (user != null && blog.getUser().getId() == user.getId()) {
             user = userDao.findOne(user.getId());
             user.getBlogs().remove(blog);
             userDao.save(user);

@@ -203,6 +203,7 @@
 							good_btn.addClass("active");
 							status = true;
 							comment_container.append(get_comment(new_val));
+							init(comment_container.children().get(0))
 						}
 						else {
 							alert(data.reason);

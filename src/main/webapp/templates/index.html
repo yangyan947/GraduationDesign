@@ -115,26 +115,26 @@
 			<img src="/static/images/test/1.jpg" class="background-img">
 
 			<div class="head-box">
-				<img src="/static/images/test/head.jpg" class="user-head">
+				<img th:src="${session.user.getImgUrl()}" class="user-head">
 			</div>
-			<span class="user-name">火火</span>
+			<span class="user-name" th:text="${session.user.getNickname()}">火火</span>
 
 			<div class="info">
 				<div class="item">
 					<a href="/personalCenter#follow">
-						<span class="num">112</span>
+						<span class="num" th:text="${session.user.getAttentionUsers().size()}">112</span>
 						<span class="text">关注</span>
 					</a>
 				</div>
 				<div class="item">
 					<a href="/personalCenter#fans">
-						<span class="num">234</span>
+						<span class="num" th:text="${session.user.getFollowUsers().size()}">234</span>
 						<span class="text">粉丝</span>
 					</a>
 				</div>
 				<div class="item">
 					<a href="/personalCenter#news">
-						<span class="num">96</span>
+						<span class="num" th:text="${session.user.getBlogs().size()}">96</span>
 						<span class="text">微博</span>
 					</a>
 				</div>

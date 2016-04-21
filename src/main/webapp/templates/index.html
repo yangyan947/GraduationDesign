@@ -54,8 +54,11 @@
 						<span class="glyphicon glyphicon-pencil icon"></span>评论
 					</a>
 					<span class="cut"></span>
-					<a href="javascript:void(0);" class="good" data-status=false th:attr="data-blogId=${blog.getId()}">
-						<span class="glyphicon glyphicon-thumbs-up icon"></span>点赞 <span th:text="${blog.getPoints()}"></span>
+					<a href="javascript:void(0);" class="good"
+						 th:attr="data-blogId=${blog.getId()},data-status=${blog.isPoint(session.user.id)}">
+						<span class="glyphicon glyphicon-thumbs-up icon"></span> <span
+							th:text="${blog.isPoint(session.user.id)}?'取消点赞':'点赞'"></span> <span
+							th:text="${blog.getPoints()}"></span>
 					</a>
 				</div>
 				<div class="comment-list">
@@ -232,29 +235,42 @@
 			/*点赞功能*/
 			var good_btn = $this.find("a.good");
 
-			good_btn.bind("click", function () {
+			function pointClick() {
+
 				var _this = $(this);
 				var status = _this.attr("data-status");
 				var blogId = _this.attr('data-blogId');
-
+				_this.unbind("click");
+				_this.bind("click", function () {
+					alert('请稍等');
+				});
 				if (status == 'false') {
 					$.ajax({
-						url: "/unPointBlog",
-						data: {
-							data: {
-								"blogId": blogId
-							},
-							type: 'POST',
-							success: function (data) {
-								console.info(data);
-								good_btn.addClass("active");
-								status = true;
-								_this.attr("data-status", true);
-							}
-						}
-					});
-				}
+								url: "/pointBlog",
+								data: {
+									"blogId": blogId
+								},
+								type: 'POST',
+								success: function (data) {
+									_this.unbind("click");
+									_this.bind('click', pointClick);
+									console.info(data);
+									if (data.isSuccess) {
+										good_btn.addClass("active");
+										status = true;
+										_this.attr("data-status", true);
+										_this.children().get(1).innerHTML = "取消点赞";
+										var num = _this.children().get(2).innerHTML;
+										_this.children().get(2).innerHTML = parseInt(num) + 1;
 
+									}
+									else {
+										alert(data.reason);
+									}
+								}
+							}
+					);
+				}
 				else if (status == 'true') {
 					$.ajax({
 						url: "/unPointBlog",
@@ -263,13 +279,26 @@
 						},
 						type: 'POST',
 						success: function (data) {
-							good_btn.removeClass("active");
-							status = false;
-							_this.attr("data-status", false);
+							_this.unbind("click");
+							_this.bind('click', pointClick);
+							console.info(data);
+							if (data.isSuccess) {
+								good_btn.removeClass("active");
+								status = false;
+								_this.attr("data-status", false);
+								_this.children().get(1).innerHTML = "点赞";
+								var num = _this.children().get(2).innerHTML;
+								_this.children().get(2).innerHTML = parseInt(num) - 1;
+							}
+							else {
+								alert(data.reason);
+							}
 						}
 					});
 				}
-			});
+			}
+
+			good_btn.bind("click",pointClick);
 
 
 		}
@@ -336,7 +365,8 @@
 		});
 
 
-	});
+	})
+	;
 
 	/*返回顶部*/
 	$(function () {

@@ -143,7 +143,7 @@
                 <div class="item-top">
                     <div class="user-head">
                         <a th:href="'/personalCenter/' + ${blog.getUser().getId()}">
-                            <img src="/static/images/test/head.jpg" class="head-img"/>
+                            <img th:src="${blog.getUser().getImgUrl()}" class="head-img"/>
                         </a>
                     </div>
                     <div class="item-info">
@@ -216,20 +216,20 @@
                     <div class="num-box">
                         <span class="num-item">
                             关注:
-                            <span class="num" th:text="${aUser.getAttentionUsers().size()}">123</span>
+                            <span class="num" th:text="${aUser.getAttentionUsers().size()}"></span>
                         </span>
                         <span class="num-item">
                             粉丝:
-                            <span class="num" th:text="${aUser.getFollowUsers().size()}">223</span>
+                            <span class="num" th:text="${aUser.getFollowUsers().size()}"></span>
                         </span>
                         <span class="num-item">
                             微博:
-                            <span class="num" th:text="${aUser.getBlogs().size()}">333</span>
+                            <span class="num" th:text="${aUser.getBlogs().size()}"></span>
                         </span>
                     </div>
                     <div class="introduction">
                         简介:
-                        <span class="intro" th:text="${aUser.getResume()}">啊啊是发达是分散 </span>
+                        <span class="intro" th:text="${aUser.getResume()}"></span>
                     </div>
                 </div>
             </div>
@@ -250,20 +250,20 @@
                     <div class="num-box">
                         <span class="num-item">
                             关注:
-                            <span class="num" th:text="${aUser.getAttentionUsers().size()}">123</span>
+                            <span class="num" th:text="${aUser.getAttentionUsers().size()}"></span>
                         </span>
                         <span class="num-item">
                             粉丝:
-                            <span class="num" th:text="${aUser.getFollowUsers().size()}">223</span>
+                            <span class="num" th:text="${aUser.getFollowUsers().size()}"></span>
                         </span>
                         <span class="num-item">
                             微博:
-                            <span class="num" th:text="${aUser.getBlogs().size()}">333</span>
+                            <span class="num" th:text="${aUser.getBlogs().size()}"></span>
                         </span>
                     </div>
                     <div class="introduction">
                         简介:
-                        <span class="intro" th:text="${aUser.getResume()}">啊啊是发达是分散 </span>
+                        <span class="intro" th:text="${aUser.getResume()}"></span>
                     </div>
                 </div>
             </div>
@@ -278,7 +278,7 @@
             <div class="item-box">
                 <div class="item fixed">
                     <span class="tit">邮箱:</span>
-                    <span class="email">123123@1212121</span>
+                    <span class="email" th:text="${user.getEmail()}"></span>
                 </div>
 
                 <form class="head-form" action="/changeUserImg" method="post" enctype="multipart/form-data">

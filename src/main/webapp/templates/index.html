@@ -45,7 +45,7 @@
 					<div class="item-info">
 						<div class="user-name" th:text="${blog.getUser().getNickname()}"></div>
 						<div class="create-time" th:text="${#dates.format(blog.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></div>
-						<p class="text" th:utext="${blog.getContext()}"></p>
+						<p class="text" ><p th:utext="${blog.getContext()}"></p></p>
 						<!--图片??-->
 					</div>
 				</div>
@@ -155,7 +155,7 @@
 
 		<div class="game">
 			<span class="game"></span>
-			<object type="application/x-shockwave-flash" style="outline:none;" data="http://cdn.abowman.com/widgets/hamster/hamster.swf?" width="300" height="225"><param name="movie" value="http://cdn.abowman.com/widgets/hamster/hamster.swf?"></param><param name="AllowScriptAccess" value="always"></param><param name="wmode" value="opaque"></param></object>
+			<object id="surprise" type="application/x-shockwave-flash" style="outline:none;" data="http://cdn.abowman.com/widgets/hamster/hamster.swf?" width="300" height="225"><param name="movie" value="http://cdn.abowman.com/widgets/hamster/hamster.swf?"></param><param name="AllowScriptAccess" value="always"></param><param name="wmode" value="opaque"></param></object>
 		</div>
 	</div>
 </div>
@@ -396,8 +396,12 @@
 				type: 'POST',
 				success: function (data) {
 					// var result = $.parseJSON(data);
-					location.reload();
-					console.log(data);
+					if (data.isSuccess) {
+						location.reload();
+					}
+					else{
+						myAlert(data.reason);
+					}
 				}
 			})
 

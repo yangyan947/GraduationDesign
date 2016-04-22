@@ -43,6 +43,8 @@ public class BlogService {
         Message message;
         if (user == null) {
             message = new Message(false, "未登录!");
+        } else if (blog.getContext().length() > 255) {
+            message = new Message(false, "内容过长!");
         } else {
             blog.setUser(user);
             blog = blogDao.save(blog);

@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 @Entity
 public class Blog extends BaseObject {
     private String context;
+
     @ManyToOne
     private User user;
     @OneToMany(fetch = FetchType.EAGER)

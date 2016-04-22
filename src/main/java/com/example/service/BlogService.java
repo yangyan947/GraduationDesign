@@ -215,6 +215,31 @@ public class BlogService {
         }
         return blogDao.getByStatus(status, new PageRequest(index - 1, PAGE_SIZE, new Sort(Sort.Direction.DESC, "createTime")));
     }
+
+    /**
+     * 获得用户组分页
+     * @param index
+     * @param user
+     * @return
+     */
+    public Page<Blog> getByUser(Integer index, User user) {
+        if (index <= 0) {
+            index = 1;
+        }
+        return blogDao.getByUser(user, new PageRequest(index - 1, PAGE_SIZE, new Sort(Sort.Direction.DESC, "createTime")));
+    }
+    public Page<Blog> getByUserId(Integer index, Long userId) {
+        User user = userDao.findOne(userId);
+        return getByUser(index, user);
+    }
+
+    public Page<Blog> getByUserAttend(Integer index, User user) {
+        if (index <= 0) {
+            index = 1;
+        }
+        return blogDao.getByUserInAndStatusIsNot(user.getAttentionUsers(), "freeze", new PageRequest(index - 1, PAGE_SIZE, new Sort(Sort.Direction.DESC, "createTime")));
+    }
+
     /**
      * 获得所有blog
      *

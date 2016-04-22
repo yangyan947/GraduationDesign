@@ -21,6 +21,8 @@
 	<div class="content error-page" id="particles">
 		<div class="error-box">
 			<h1>哎呀, 好尴尬啊, 页面找不到了!</h1>
+			<h1 th:if="${error}" th:text="${error}"></h1>
+			<h1 th:if="${result}" th:text="${result}"></h1>
 			<div class="error-img">
 				<img src="/static/images/login/error.png">
 			</div>

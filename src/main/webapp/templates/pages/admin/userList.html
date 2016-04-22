@@ -17,30 +17,7 @@
 </head>
 <body>
 
-<div class="nav">
-	<div class="nav-box">
-		<div class=".col-md-2 logo"></div>
-		<span class="logo-txt">SC Blog</span>
-		
-		<!--<div class=".col-md-4 search">-->
-			<!--<input type="text" class="search-box" placeholder="搜索..."/>-->
-			<!--<a href="javascript:void(0);" class="search-icon glyphicon glyphicon-search"></a>-->
-		<!--</div>-->
-		<div class=".col-md-6 nav-item">
-			<a href="/admin">
-				<span class="glyphicon glyphicon-home icon"></span>
-				<span class="index">首页</span>
-			</a>
-			<a href="javascript:;">
-				<span class="glyphicon glyphicon-user icon"></span>
-				<span class="index">管理员</span>
-			</a>
-			<a href="/admin/loginOut">
-				<span class="index">退出登录</span>
-			</a>
-		</div>
-	</div>
-</div>
+<div class="nav" th:include="pages/admin/common/nav :: nav"></div>
 
 <div class="container-box">
 	<div class="col-md-8 cont-left">

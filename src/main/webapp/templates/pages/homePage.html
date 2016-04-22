@@ -98,12 +98,12 @@
         <!--自己发布的微博-->
         <div class="fri-news" id="fri-news" data-name="news">
 
-            <div class="news-item" th:each="blog: ${user.getBlogs()}">
+            <div class="news-item" th:each="blog: ${blogPage.getContent()}">
 
                 <div class="item-top">
                     <div class="user-head">
                         <a th:href="'/personalCenter/' + ${blog.getUser().getId()}">
-                            <img src="/static/images/test/head.jpg" class="head-img"/>
+                            <img th:src="${blog.getUser().getImgUrl()}" class="head-img"/>
                         </a>
                     </div>
                     <div class="item-info">
@@ -154,6 +154,16 @@
                     </div>
                 </div>
             </div>
+            <ul class="pagination">
+                <li th:unless="${blogPage.getNumber()} == 0"><a
+                    th:href="'/personalCenter/'+${user.getId()}+'?page=' + ${blogPage.getNumber()}">&laquo;</a>
+                </li>
+                <li><a href="javascript:;">当前页面 第<span th:text="${blogPage.getNumber()+1}"></span>页</a></li>
+                <li th:unless="${blogPage.getNumber()} == ${blogPage.getTotalPages() -1}"><a
+                    th:href="'/personalCenter/'+${user.getId()}+'?page=' + ${blogPage.getNumber() + 2}">&raquo;</a>
+                </li>
+                <li><a href="javascript:;">共 <span th:text="${blogPage.getTotalPages()}"></span>页</a></li>
+            </ul>
         </div>
         <!--自己发布的微博end-->
 

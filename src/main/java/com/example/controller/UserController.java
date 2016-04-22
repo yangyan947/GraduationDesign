@@ -45,7 +45,10 @@ public class UserController {
     // 8080是端口号，端口号根据tomcat设置而改变，默认值是8080
     @RequestMapping("/index")
     public String home(Model model, @RequestParam(value = "result", defaultValue = "")
-                       String result,@RequestParam(value = "page", defaultValue = "1") Integer index, HttpSession session) {
+                       String result,
+                       @RequestParam(value = "page1", defaultValue = "1") Integer index1
+                       ,@RequestParam(value = "page2", defaultValue = "1") Integer index2,
+                       HttpSession session) {
         if (session.getAttribute(USER) == null && result.equals("")) {
             model.addAttribute("result", "请先登录");
             return "pages/login";
@@ -55,7 +58,8 @@ public class UserController {
             model.addAttribute("result", result);
         }
 
-        model.addAttribute("blogPage", blogService.getByStatusIsNot(index, "freeze"));
+        model.addAttribute("blogPage", blogService.getByStatusIsNot(index1, "freeze"));
+        model.addAttribute("attendBlogPage", blogService.getByUserAttend(index2, (User) session.getAttribute("user")));
         return "index";
     }
 
@@ -116,21 +120,27 @@ public class UserController {
 
     //用户个人信息页面
     @RequestMapping(value = "/personalCenter", method = RequestMethod.GET)
-    public String userCenter(HttpSession session, Model model) {
+    public String userCenter(HttpSession session, Model model,
+                             @RequestParam(value = "result", defaultValue = "")String result,
+                             @RequestParam(value = "page", defaultValue = "1")Integer index) {
         User user = (User) session.getAttribute(USER);
         if (user == null) {
             model.addAttribute("result", "用户未登录!");
             return "pages/login";
         } else {
             update(session);
+            user = (User) session.getAttribute(USER);
             model.addAttribute("user", session.getAttribute(USER));
+            model.addAttribute("blogPage", blogService.getByUser(index, user));
             return "pages/personal";
         }
     }
 
     //用户个人信息页面
     @RequestMapping(value = "/personalCenter/{id}", method = RequestMethod.GET)
-    public String userCenterNormal(HttpSession session, Model model, @PathVariable(value = "id") Long id) {
+    public String userCenterNormal(HttpSession session, Model model, @PathVariable(value = "id") Long id,
+                                   @RequestParam(value = "result", defaultValue = "")String result,
+                                   @RequestParam(value = "page", defaultValue = "1")Integer index) {
         User user = (User) session.getAttribute(USER);
         if (user == null) {
             model.addAttribute("result", "用户未登录!");
@@ -145,9 +155,10 @@ public class UserController {
                 model.addAttribute("result", message.getReason());
                 if (message.isSuccess()) {
                     model.addAttribute("user", message.getOthers());
+                    model.addAttribute("blogPage", blogService.getByUser(index, (User) message.getOthers()));
                     return "pages/homePage";
                 } else {
-                    return "index";
+                    return "error";
                 }
             }
 

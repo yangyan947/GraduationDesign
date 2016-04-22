@@ -136,7 +136,7 @@
         <!--自己发布的微博-->
         <div class="fri-news" id="fri-news" data-name="news">
 
-            <div class="news-item" th:each="blog: ${user.getBlogs()}">
+            <div class="news-item" th:each="blog: ${blogPage.getContent()}">
 
                 <a href="javascript:void(0);" class="dele-news" th:attr="data-blogId=${blog.getId()}">删除</a>
 
@@ -197,6 +197,16 @@
                     </div>
                 </div>
             </div>
+            <ul class="pagination">
+                <li th:unless="${blogPage.getNumber()} == 0"><a
+                    th:href="'/personalCenter?page=' + ${blogPage.getNumber()}">&laquo;</a>
+                </li>
+                <li><a href="javascript:;">当前页面 第<span th:text="${blogPage.getNumber()+1}"></span>页</a></li>
+                <li th:unless="${blogPage.getNumber()} == ${blogPage.getTotalPages() -1}"><a
+                    th:href="'/personalCenter?page=' + ${blogPage.getNumber() + 2}">&raquo;</a>
+                </li>
+                <li><a href="javascript:;">共 <span th:text="${blogPage.getTotalPages()}"></span>页</a></li>
+            </ul>
         </div>
         <!--自己发布的微博end-->
 

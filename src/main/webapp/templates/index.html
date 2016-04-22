@@ -32,79 +32,161 @@
 
 		<!--已关注人状态-->
 		<div class="fri-news" id="fri-news">
-
-			<div class="news-item" th:each="blog: ${blogPage.getContent()}">
-
-
-				<div class="item-top">
-					<div class="user-head">
-						<a th:href="'/personalCenter/' + ${blog.getUser().getId()}">
-							<img th:src="${blog.getUser().getImgUrl()}" class="head-img"/>
-						</a>
-					</div>
-					<div class="item-info">
-						<div class="user-name" th:text="${blog.getUser().getNickname()}"></div>
-						<div class="create-time" th:text="${#dates.format(blog.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></div>
-						<p class="text" ><p th:utext="${blog.getContext()}"></p></p>
-						<!--图片??-->
-					</div>
-				</div>
-				<div class="item-botm">
-					<a href="javascript:void(0);" class="comment comment-list-btn">
-						<span class="glyphicon glyphicon-pencil icon"></span>评论
+			<ul id="myTab" class="nav nav-tabs">
+				<li class="active">
+					<a href="#home" data-toggle="tab">
+						全部微博
 					</a>
-					<span class="cut"></span>
-					<a href="javascript:void(0);" class="good"
-						 th:attr="data-blogId=${blog.getId()},data-status=${blog.isPoint(session.user.id)}">
-						<span class="glyphicon glyphicon-thumbs-up icon"></span> <span
-							th:text="${blog.isPoint(session.user.id)}?'取消点赞':'点赞'"></span> <span
-							th:text="${blog.getPoints()}"></span>
-					</a>
-				</div>
-				<div class="comment-list">
-					<span class="triangle"></span>
-
-					<div class="comment-left">
-						<a th:href="'/personalCenter/' + ${session.user.getId()}">
-							<img th:src="${session.user.getImgUrl()}" class="head">
-						</a>
-					</div>
-					<div class="comment-rit">
-						<div class="add-comment">
-							<textarea name="" class="text" th:attr="data-blogId=${blog.getId()}"></textarea>
-							<a href="javascript:void(0);" class="comment-btn">评论</a>
-						</div>
-						<div class="comment-container">
-
-							<div class="fri-comment" th:each="comment: ${blog.getComments()}">
-								<a th:href="'/personalCenter/' + ${comment.getUser().getId()}">
-									<img th:src="${comment.getUser().getImgUrl()}" class="head">
+				</li>
+				<li><a href="#attend" data-toggle="tab">我关注人的微博</a></li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade in active" id="home">
+					<div class="news-item" th:each="blog: ${blogPage.getContent()}">
+						<div class="item-top">
+							<div class="user-head">
+								<a th:href="'/personalCenter/' + ${blog.getUser().getId()}">
+									<img th:src="${blog.getUser().getImgUrl()}" class="head-img"/>
 								</a>
-								<div class="info-box">
+							</div>
+							<div class="item-info">
+								<div class="user-name" th:text="${blog.getUser().getNickname()}"></div>
+								<div class="create-time" th:text="${#dates.format(blog.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></div>
+								<p class="text" ><p th:utext="${blog.getContext()}"></p></p>
+								<!--图片??-->
+							</div>
+						</div>
+						<div class="item-botm">
+							<a href="javascript:void(0);" class="comment comment-list-btn">
+								<span class="glyphicon glyphicon-pencil icon"></span>评论
+							</a>
+							<span class="cut"></span>
+							<a href="javascript:void(0);" class="good"
+								 th:attr="data-blogId=${blog.getId()},data-status=${blog.isPoint(session.user.id)}">
+								<span class="glyphicon glyphicon-thumbs-up icon"></span> <span
+									th:text="${blog.isPoint(session.user.id)}?'取消点赞':'点赞'"></span> <span
+									th:text="${blog.getPoints()}"></span>
+							</a>
+						</div>
+						<div class="comment-list">
+							<span class="triangle"></span>
+
+							<div class="comment-left">
+								<a th:href="'/personalCenter/' + ${session.user.getId()}">
+									<img th:src="${session.user.getImgUrl()}" class="head">
+								</a>
+							</div>
+							<div class="comment-rit">
+								<div class="add-comment">
+									<textarea name="" class="text" th:attr="data-blogId=${blog.getId()}"></textarea>
+									<a href="javascript:void(0);" class="comment-btn">评论</a>
+								</div>
+								<div class="comment-container">
+
+									<div class="fri-comment" th:each="comment: ${blog.getComments()}">
+										<a th:href="'/personalCenter/' + ${comment.getUser().getId()}">
+											<img th:src="${comment.getUser().getImgUrl()}" class="head">
+										</a>
+										<div class="info-box">
                                 <span class="text">
                                     <span class="fir-name" th:text="${comment.getUser().getNickname()}"></span>:&nbsp
                                     <span th:text="${comment.getContext()}"></span>
                                 </span>
 									<span class="create-time"
 												th:text="${#dates.format(comment.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></span>
+										</div>
+									</div>
+
 								</div>
 							</div>
-
 						</div>
 					</div>
+
+					<ul class="pagination">
+						<li th:unless="${blogPage.getNumber()} == 0"><a
+								th:href="'/index?page1=' + ${blogPage.getNumber()}+'&page2='+ ${param.page2!=null?param.page2[0]:'1'}">&laquo;</a>
+						</li>
+						<li><a href="javascript:;">当前页面 第<span th:text="${blogPage.getNumber()+1}"></span>页</a></li>
+						<li th:unless="${blogPage.getNumber()} == ${blogPage.getTotalPages() -1}"><a
+								th:href="'/index?page1=' + ${blogPage.getNumber() + 2}+'&page2=' + ${param.page2!=null?param.page2[0]:'1'}">&raquo;</a>
+						</li>
+						<li><a href="javascript:;">共 <span th:text="${blogPage.getTotalPages()}"></span>页</a></li>
+					</ul>
+				</div>
+				<div class="tab-pane fade" id="attend">
+					<div class="news-item" th:each="blog: ${attendBlogPage.getContent()}">
+						<div class="item-top">
+							<div class="user-head">
+								<a th:href="'/personalCenter/' + ${blog.getUser().getId()}">
+									<img th:src="${blog.getUser().getImgUrl()}" class="head-img"/>
+								</a>
+							</div>
+							<div class="item-info">
+								<div class="user-name" th:text="${blog.getUser().getNickname()}"></div>
+								<div class="create-time" th:text="${#dates.format(blog.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></div>
+								<p class="text" ><p th:utext="${blog.getContext()}"></p></p>
+								<!--图片??-->
+							</div>
+						</div>
+						<div class="item-botm">
+							<a href="javascript:void(0);" class="comment comment-list-btn">
+								<span class="glyphicon glyphicon-pencil icon"></span>评论
+							</a>
+							<span class="cut"></span>
+							<a href="javascript:void(0);" class="good"
+								 th:attr="data-blogId=${blog.getId()},data-status=${blog.isPoint(session.user.id)}">
+								<span class="glyphicon glyphicon-thumbs-up icon"></span> <span
+									th:text="${blog.isPoint(session.user.id)}?'取消点赞':'点赞'"></span> <span
+									th:text="${blog.getPoints()}"></span>
+							</a>
+						</div>
+						<div class="comment-list">
+							<span class="triangle"></span>
+
+							<div class="comment-left">
+								<a th:href="'/personalCenter/' + ${session.user.getId()}">
+									<img th:src="${session.user.getImgUrl()}" class="head">
+								</a>
+							</div>
+							<div class="comment-rit">
+								<div class="add-comment">
+									<textarea name="" class="text" th:attr="data-blogId=${blog.getId()}"></textarea>
+									<a href="javascript:void(0);" class="comment-btn">评论</a>
+								</div>
+								<div class="comment-container">
+
+									<div class="fri-comment" th:each="comment: ${blog.getComments()}">
+										<a th:href="'/personalCenter/' + ${comment.getUser().getId()}">
+											<img th:src="${comment.getUser().getImgUrl()}" class="head">
+										</a>
+										<div class="info-box">
+                                <span class="text">
+                                    <span class="fir-name" th:text="${comment.getUser().getNickname()}"></span>:&nbsp
+                                    <span th:text="${comment.getContext()}"></span>
+                                </span>
+									<span class="create-time"
+												th:text="${#dates.format(comment.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></span>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<ul class="pagination">
+						<li th:unless="${attendBlogPage.getNumber()} == 0"><a
+								th:href="'/index?page2=' + ${attendBlogPage.getNumber()} +'&page1=' + ${param.page1!=null?param.page1[0]:'1'}">&laquo;</a>
+						</li>
+						<li><a href="javascript:;">当前页面 第<span th:text="${attendBlogPage.getNumber()+1}"></span>页</a></li>
+						<li th:unless="${attendBlogPage.getNumber()} == ${attendBlogPage.getTotalPages() -1}"><a
+								th:href="'/index?page2=' + ${attendBlogPage.getNumber() + 2}+'&page1=' + ${param.page1!=null?param.page1[0]:'1'}">&raquo;</a>
+						</li>
+						<li><a href="javascript:;">共 <span th:text="${attendBlogPage.getTotalPages()}"></span>页</a></li>
+					</ul>
 				</div>
 			</div>
 
-			<ul class="pagination">
-				<li th:unless="${blogPage.getNumber()} == 0"><a
-						th:href="'/index?page=' + ${blogPage.getNumber()}">&laquo;</a>
-				</li>
-				<li><a href="javascript:;">当前页面 第<span th:text="${blogPage.getNumber()+1}"></span>页</a></li>
-				<li th:unless="${blogPage.getNumber()} == ${blogPage.getTotalPages() -1}"><a
-						th:href="'/index?page=' + ${blogPage.getNumber() + 2}">&raquo;</a>
-				</li>
-				<li><a href="javascript:;">共 <span th:text="${blogPage.getTotalPages()}"></span>页</a></li>
-			</ul>
 		</div>
 	</div>
 	<div class="col-md-4 cont-rit">

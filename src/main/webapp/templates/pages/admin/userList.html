@@ -25,7 +25,7 @@
 			<div class="news-item">
 				<div class="item-top">
 					<div class="user-head">
-						<img src="/static/images/test/head.jpg" class="head-img"/>
+						<img th:src="${user.getImgUrl()}" class="head-img"/>
 
 					</div>
 					<div class="item-info">
@@ -68,7 +68,7 @@
 				<a>
 					<form action="/admin/userList" method="get">
 						<span>跳转至</span>
-						<input onkeyup="value=value.replace(/[^\d]/g,'')" type="text" name="page">
+						<input onkeyup="value=value.replace(/[^\d]/g,'')"  min="0" th:max="${userPage.getTotalPages()}" type="number" name="page">
 						<input class="hide" type="text" name="status" th:value="${param.status!=null?param.status[0]:'all'}">
 						<span>页</span>
 						<button type="submit">确认跳转</button>

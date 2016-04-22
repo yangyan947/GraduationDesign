@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.dao.BlogDao;
+import com.example.dao.CommentDao;
 import com.example.dao.UserDao;
 import com.example.domain.Admin;
 import com.example.domain.Blog;
@@ -25,6 +26,8 @@ public class BlogService {
     private UserDao userDao;
     @Autowired
     private BlogDao blogDao;
+    @Autowired
+    private CommentDao commentDao;
     public static final int PAGE_SIZE = 10;
 
     //普通，冻结，热门
@@ -43,8 +46,10 @@ public class BlogService {
         Message message;
         if (user == null) {
             message = new Message(false, "未登录!");
-        } else if (blog.getContext().length() > 255) {
+        } else if (blog.getContext().length() > 255 ) {
             message = new Message(false, "内容过长!");
+        }else if (blog.getContext().length() < 7) {
+            message = new Message(false, "内容过短!");
         } else {
             blog.setUser(user);
             blog = blogDao.save(blog);
@@ -71,7 +76,8 @@ public class BlogService {
         else if (user != null && blog.getUser().getId() == user.getId()) {
             user = userDao.findOne(user.getId());
             user.getBlogs().remove(blog);
-            userDao.save(user);
+            commentDao.delete(blog.getComments());
+//            userDao.save(user);
             blogDao.delete(blog.getId());
             message = new Message(true, "删除成功");
         } else {
@@ -99,6 +105,7 @@ public class BlogService {
         } else if (blog.isPoint(user.getId()) ){
             message = new Message(false, "已经点过赞了");
         }else{
+            user = userDao.findOne(user.getId());
             blog.getPointsUsers().add(user);
             blog = blogDao.save(blog);
             message = new Message(true, "点赞成功");
@@ -226,7 +233,7 @@ public class BlogService {
         if (index <= 0) {
             index = 1;
         }
-        return blogDao.getByUser(user, new PageRequest(index - 1, PAGE_SIZE, new Sort(Sort.Direction.DESC, "createTime")));
+        return blogDao.getByUserAndStatusIsNot(user, "freeze", new PageRequest(index - 1, PAGE_SIZE, new Sort(Sort.Direction.DESC, "createTime")));
     }
     public Page<Blog> getByUserId(Integer index, Long userId) {
         User user = userDao.findOne(userId);

@@ -29,16 +29,16 @@ public class User extends BaseObject {
     @JoinTable(name = "user_user", joinColumns = @JoinColumn(name = "attention_user"), inverseJoinColumns = @JoinColumn(name = "follow_user"))
     @OrderBy(value = "createTime DESC")
     private Set<User> attentionUsers;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER,mappedBy="attentionUsers")
 //    @JoinTable(name = "user_user", joinColumns = @JoinColumn(name = "follow_user"), inverseJoinColumns = @JoinColumn(name = "attention_user"))
     @OrderBy(value = "createTime DESC")
     private Set<User> followUsers;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     @OrderBy(value = "createTime DESC")
     private List<Blog> blogs;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     @OrderBy(value = "createTime")
     private List<Comment> comments;
 //
@@ -168,6 +168,9 @@ public class User extends BaseObject {
     }
 
     public String getImgUrl() {
+        if (imgUrl == null || imgUrl.equals("")) {
+            imgUrl = "/static/images/test/head.jpg";
+        }
         return imgUrl;
     }
 
@@ -187,6 +190,7 @@ public class User extends BaseObject {
         this.phone = user.getPhone();
         this.nickname = user.getNickname();
         this.resume = user.getResume();
+        this.sex = user.getSexInt();
         return this;
     }
 

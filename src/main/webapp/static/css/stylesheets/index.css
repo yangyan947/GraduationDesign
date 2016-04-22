@@ -424,6 +424,9 @@ div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.
   padding-bottom: 5px;
   border-top: 1px solid #d9d9d9;
 }
+div.container-box a img{
+  float: left;
+}
 /* line 334, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment:first-child {
   padding-top: 15px;
@@ -637,23 +640,24 @@ a.to-top:hover {
   opacity: 1;
 }
 
-/* line 547, ../sass/index.scss */
-ul.pagination {
-  width: 100%;
-  text-align: center;
-}
-/* line 551, ../sass/index.scss */
-ul.pagination li {
-  display: inline-block;
-}
-/* line 554, ../sass/index.scss */
-ul.pagination li a {
+/*!* line 547, ../sass/index.scss *!*/
+/*ul.pagination {*/
+  /*width: 100%;*/
+  /*text-align: center;*/
+/*}*/
+/*!* line 551, ../sass/index.scss *!*/
+/*ul.pagination li {*/
+  /*display: inline-block;*/
+/*}*/
+/*!* line 554, ../sass/index.scss *!*/
+ul.pagination li.goto a {
   background-color: transparent;
   cursor: default;
   border: none;
+  height: 36px;
   color: #23527c;
 }
-/* line 560, ../sass/index.scss */
+ /*line 560, ../sass/index.scss */
 ul.pagination li a:hover {
   background-color: transparent;
 }
@@ -668,6 +672,7 @@ ul.pagination li a.arrow:hover {
 }
 /* line 574, ../sass/index.scss */
 ul.pagination li.goto {
+  background: none;
   height: 34px;
   margin-left: 20px;
 }
@@ -678,7 +683,7 @@ ul.pagination li.goto input {
 /* line 582, ../sass/index.scss */
 ul.pagination li.goto button {
   width: 80px;
-  height: 26px;
+  height: 30px;
   margin-left: 20px;
   font-size: 14px;
 }

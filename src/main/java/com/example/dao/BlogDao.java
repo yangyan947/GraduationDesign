@@ -22,7 +22,7 @@ public interface BlogDao extends JpaRepository<Blog, Long> {
 
     Page<Blog> getByUserOrderByCreateTimeDesc(User user, Pageable pageable);
 
-    Page<Blog> getByUser(User user, Pageable pageable);
+    Page<Blog> getByUserAndStatusIsNot(User user, String status,Pageable pageable);
 
     @Query("select b from Blog b where b.user in ?1")
     Page<Blog> getByUsers(Set<User> user, Pageable pageable);

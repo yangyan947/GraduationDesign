@@ -13,7 +13,7 @@ public class Comment extends BaseObject {
     private String context;
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
-    @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Blog blog;
 
     public String getContext() {

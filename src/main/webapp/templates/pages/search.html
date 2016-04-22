@@ -145,14 +145,25 @@
 				</div>
 			</div>
 			<ul class="pagination">
-				<li th:unless="${blogPage.getNumber()} == 0"><a
+				<li class="arrow" th:unless="${blogPage.getNumber()} == 0"><a
 						th:href="'/search?page=' + ${blogPage.getNumber()} +'&&search=' + ${param.search!=null?param.search[0]:'all'}">&laquo;</a>
 				</li>
 				<li><a href="javascript:;">当前页面 第<span th:text="${blogPage.getNumber()+1}"></span>页</a></li>
-				<li th:unless="${blogPage.getNumber()} == ${blogPage.getTotalPages() -1}"><a
+				<li class="arrow" th:unless="${blogPage.getNumber()} >= ${blogPage.getTotalPages() -1}"><a
 						th:href="'/search?page=' + ${blogPage.getNumber() + 2} +'&&search=' + ${param.search!=null?param.search[0]:'all'}">&raquo;</a>
 				</li>
 				<li><a href="javascript:;">共 <span th:text="${blogPage.getTotalPages()}"></span>页</a></li>
+				<li class="goto">
+					<a>
+						<form action="/admin/blogList" method="get">
+							<span>跳转至</span>
+							<input onkeyup="value=value.replace(/[^\d]/g,'')" min="0" th:max="${blogPage.getTotalPages()}" type="number" name="page">
+							<input class="hide" type="text" name="status" th:value="${param.search!=null?param.search[0]:'all'}">
+							<span>页</span>
+							<button type="submit">确认跳转</button>
+						</form>
+					</a>
+				</li>
 			</ul>
 		</div>
 	</div>

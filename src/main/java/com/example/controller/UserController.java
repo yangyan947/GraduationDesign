@@ -149,6 +149,8 @@ public class UserController {
             if (user.getId() == id) {
                 update(session);
                 model.addAttribute("user", session.getAttribute(USER));
+                model.addAttribute("blogPage", blogService.getByUserId(index, user.getId()));
+
                 return "pages/personal";
             } else {
                 Message message = userService.getUserById(id);

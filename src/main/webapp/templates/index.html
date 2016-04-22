@@ -103,14 +103,25 @@
 					</div>
 
 					<ul class="pagination">
-						<li th:unless="${blogPage.getNumber()} == 0"><a
+						<li th:unless="${blogPage.getNumber()} == 0"><a class="arrow"
 								th:href="'/index?page1=' + ${blogPage.getNumber()}+'&page2='+ ${param.page2!=null?param.page2[0]:'1'}">&laquo;</a>
 						</li>
 						<li><a href="javascript:;">当前页面 第<span th:text="${blogPage.getNumber()+1}"></span>页</a></li>
-						<li th:unless="${blogPage.getNumber()} == ${blogPage.getTotalPages() -1}"><a
+						<li th:unless="${blogPage.getNumber()} == ${blogPage.getTotalPages() -1}"><a class="arrow"
 								th:href="'/index?page1=' + ${blogPage.getNumber() + 2}+'&page2=' + ${param.page2!=null?param.page2[0]:'1'}">&raquo;</a>
 						</li>
 						<li><a href="javascript:;">共 <span th:text="${blogPage.getTotalPages()}"></span>页</a></li>
+						<li class="goto">
+							<a>
+								<form action="/index" method="get">
+									<span>跳转至</span>
+									<input onkeyup="value=value.replace(/[^\d]/g,'')"  min="0" th:max="${blogPage.getTotalPages()}" type="number"  name="page1">
+									<input class="hide" type="text" name="page2" th:value="${param.page2!=null?param.page2[0]:'1'}">
+									<span>页</span>
+									<button type="submit" class="btn btn-default">确认跳转</button>
+								</form>
+							</a>
+						</li>
 					</ul>
 				</div>
 				<div class="tab-pane fade" id="attend">
@@ -185,11 +196,12 @@
 						<li><a href="javascript:;">共 <span th:text="${attendBlogPage.getTotalPages()}"></span>页</a></li>
 						<li class="goto">
 							<a>
-								<form action="/index" method="get">
+								<form action="/index" method="get" >
 									<span>跳转至</span>
-									<input onkeyup="value=value.replace(/[^\d]/g,'')" type="text" name="page">
+									<input onkeyup="value=value.replace(/[^\d]/g,'')"  min="0" th:max="${attendBlogPage.getTotalPages()}" type="number"  name="page2">
+									<input class="hide" type="text" name="page1" th:value="${param.page1!=null?param.page1[0]:'1'}">
 									<span>页</span>
-									<button type="submit">确认跳转</button>
+									<button type="submit" class="btn btn-default">确认跳转</button>
 								</form>
 							</a>
 						</li>

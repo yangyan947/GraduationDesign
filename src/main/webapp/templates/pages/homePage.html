@@ -155,14 +155,26 @@
                 </div>
             </div>
             <ul class="pagination">
-                <li th:unless="${blogPage.getNumber()} == 0"><a
+                <li class="arrow" th:unless="${blogPage.getNumber()} == 0"><a
                     th:href="'/personalCenter/'+${user.getId()}+'?page=' + ${blogPage.getNumber()}">&laquo;</a>
                 </li>
                 <li><a href="javascript:;">当前页面 第<span th:text="${blogPage.getNumber()+1}"></span>页</a></li>
-                <li th:unless="${blogPage.getNumber()} == ${blogPage.getTotalPages() -1}"><a
+                <li class="arrow" th:unless="${blogPage.getNumber()} == ${blogPage.getTotalPages() -1}"><a
                     th:href="'/personalCenter/'+${user.getId()}+'?page=' + ${blogPage.getNumber() + 2}">&raquo;</a>
                 </li>
-                <li><a href="javascript:;">共 <span th:text="${blogPage.getTotalPages()}"></span>页</a></li>
+                <li><a href="javascript:;">共 <span th:text="${blogPage.getTotalPages()}"></span>页</a>
+                </li>
+                <li class="goto">
+                    <a>
+                        <form th:action="'/personalCenter/'+${user.getId()}"method="get" >
+                            <span>跳转至</span>
+                            <input onkeyup="value=value.replace(/[^\d]/g,'')" min="0" th:max="${blogPage.getTotalPages()}" type="number" name="page">
+
+                            <span>页</span>
+                            <button type="submit" class="btn btn-default">确认跳转</button>
+                        </form>
+                    </a>
+                </li>
             </ul>
         </div>
         <!--自己发布的微博end-->

@@ -2,9 +2,7 @@ package com.example.controller;
 
 import com.example.domain.Comment;
 import com.example.domain.User;
-import com.example.service.BlogService;
 import com.example.service.CommentService;
-import com.example.service.UserService;
 import com.example.service.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,11 +20,11 @@ import static com.example.controller.UserController.USER;
 //控制类，控制页面跳转，数据传输
 public class CommentController {
     //自动注入userService，用来处理业务
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private BlogService blogService;
+//    @Autowired
+//    private UserService userService;
+//
+//    @Autowired
+//    private BlogService blogService;
 
     @Autowired
     private CommentService commentService;

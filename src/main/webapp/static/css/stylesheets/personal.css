@@ -602,6 +602,9 @@ div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.
   padding-bottom: 5px;
   border-top: 1px solid #d9d9d9;
 }
+div.container-box a img{
+  float: left;
+}
 /* line 511, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment:first-child {
   padding-top: 15px;

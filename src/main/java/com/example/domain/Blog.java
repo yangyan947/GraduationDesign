@@ -17,12 +17,11 @@ public class Blog extends BaseObject {
 
     @ManyToOne
     private User user;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "blog")
     @OrderBy(value = "createTime")
     private Set<Comment> comments;
 
-    @OneToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "user_point_blog", joinColumns = @JoinColumn(name = "pointsBlog"), inverseJoinColumns = @JoinColumn(name = "pointsUser"))
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     @OrderBy(value = "createTime DESC")
     private Set<User> pointsUsers;
 
@@ -32,6 +31,7 @@ public class Blog extends BaseObject {
     }
 
     public void setContext(String context) {
+        context = context.replaceAll("http://localhost:8080", "");
         this.context = context;
     }
 

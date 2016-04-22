@@ -98,11 +98,11 @@ public class User extends BaseObject {
     }
 
     public Set<User> getAttentionUsers() {
-        for (User user : attentionUsers) {
-            if (user.getStatus() == "freeze") {
-                attentionUsers.remove(user);
-            }
-        }
+//        for (User user : attentionUsers) {
+//            if (user.getStatus().equals("freeze")) {
+//                attentionUsers.remove(user);
+//            }
+//        }
         return attentionUsers;
     }
 
@@ -112,11 +112,11 @@ public class User extends BaseObject {
 
 
     public Set<User> getFollowUsers() {
-        for (User user : followUsers) {
-            if (user.getStatus() == "freeze") {
-                followUsers.remove(user);
-            }
-        }
+//        for (User user : followUsers) {
+//            if (user.getStatus().equals("freeze")) {
+//                followUsers.remove(user);
+//            }
+//        }
         return followUsers;
     }
 
@@ -125,11 +125,14 @@ public class User extends BaseObject {
     }
 
     public List<Blog> getBlogs() {
-        for (Blog blog : blogs) {
-            if (blog.getStatus() == "freeze") {
-                blogs.remove(blog);
+        for (int i=0; i<blogs.size(); i++) {
+            if (blogs.get(i).getStatus().equals("freeze")) {
+                blogs.remove(i);
+                i--;
             }
         }
+
+
         return blogs;
     }
 
@@ -142,15 +145,21 @@ public class User extends BaseObject {
     }
 
     public List<Comment> getComments() {
-        for (Comment comment : comments) {
-            if (comment.getStatus() == "freeze") {
-                comments.remove(comment);
+        for (int i=0; i<comments.size(); i++) {
+            if (comments.get(i).getStatus().equals("freeze")) {
+                comments.remove(i);
+                i--;
             }
         }
         return comments;
     }
 
     public void setComments(List<Comment> comments) {
+//        for (Comment comment : comments) {
+//            if (comment.getStatus().equals("freeze")) {
+//                comments.remove(comment);
+//            }
+//        }
         this.comments = comments;
     }
 

@@ -3,6 +3,7 @@ package com.example.domain;
 import com.example.domain.base.BaseObject;
 
 import javax.persistence.*;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -49,20 +50,22 @@ public class Blog extends BaseObject {
     }
 
     public Set<Comment> getComments() {
-        for (Comment comment : comments) {
-            if (comment.getStatus() == "freeze") {
-                comments.remove(comment);
+        Iterator<Comment> it = comments.iterator();
+        while (it.hasNext()) {
+            Comment c = it.next();
+            if (c.getStatus().equals("freeze")) {
+                it.remove();
             }
         }
         return comments;
     }
 
     public void setComments(Set<Comment> comments) {
-        for (Comment comment : comments) {
-            if (comment.getStatus() == "freeze") {
-                comments.remove(comment);
-            }
-        }
+//        for (Comment comment : comments) {
+//            if (comment.getStatus().equals("freeze")) {
+//                comments.remove(comment);
+//            }
+//        }
         this.comments = comments;
     }
 

@@ -6,7 +6,6 @@ import com.example.domain.Admin;
 import com.example.domain.Blog;
 import com.example.domain.User;
 import com.example.service.message.Message;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -71,7 +70,7 @@ public class BlogService {
             user = userDao.findOne(user.getId());
             user.getBlogs().remove(blog);
             userDao.save(user);
-            blogDao.delete(blog);
+            blogDao.delete(blog.getId());
             message = new Message(true, "删除成功");
         } else {
             message = new Message(false, "你不是该微博拥有者，不能删除");

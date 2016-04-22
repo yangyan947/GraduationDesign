@@ -106,12 +106,7 @@
 <script type="text/javascript">
     var login_btn = $("#login-btn");
     var login_form = $("#login-form");
-    var isSuccess = false;
-    $("#close-btn").bind("click", function () {
-        if (isSuccess){
-            window.location = "/index";
-        }
-    });
+
     login_btn.click(function (e){
         e.preventDefault();
         $.ajax({
@@ -120,8 +115,9 @@
             type: 'POST',
             success: function(data){
                 var result = $.parseJSON(data);
-
-                isSuccess = result.isSuccess;
+                if (result.isSuccess){
+                    window.location = "/index";
+                }
                 myAlert(result.reason);
             }
         })

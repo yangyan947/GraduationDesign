@@ -65,17 +65,18 @@
 					</div>
 				</div>
 			</div>
-			<ul class="pagination">
-				<li th:unless="${commentPage.getNumber()} == 0"><a
-						th:href="'/admin/blogList?page=' + ${commentPage.getNumber()} +'&&status=' + ${param.status!=null?param.status[0]:'all'}">&laquo;</a>
-				</li>
-				<li><a href="javascript:;">当前页面 第<span th:text="${commentPage.getNumber()+1}"></span>页</a></li>
-				<li th:unless="${commentPage.getNumber()} == ${commentPage.getTotalPages() -1}"><a
-						th:href="'/admin/blogList?page=' + ${commentPage.getNumber() + 2} +'&&status=' + ${param.status!=null?param.status[0]:'all'}">&raquo;</a>
-				</li>
-				<li><a href="javascript:;">共 <span th:text="${commentPage.getTotalPages()}"></span>页</a></li>
-			</ul>
+
 		</div>
+		<ul class="pagination">
+			<li th:unless="${commentPage.getNumber()} == 0"><a
+					th:href="'/admin/blogList?page=' + ${commentPage.getNumber()} +'&&status=' + ${param.status!=null?param.status[0]:'all'}">&laquo;</a>
+			</li>
+			<li><a href="javascript:;">当前页面 第<span th:text="${commentPage.getNumber()+1}"></span>页</a></li>
+			<li th:unless="${commentPage.getNumber()} == ${commentPage.getTotalPages() -1}"><a
+					th:href="'/admin/blogList?page=' + ${commentPage.getNumber() + 2} +'&&status=' + ${param.status!=null?param.status[0]:'all'}">&raquo;</a>
+			</li>
+			<li><a href="javascript:;">共 <span th:text="${commentPage.getTotalPages()}"></span>页</a></li>
+		</ul>
 	</div>
 		<div class="col-md-4 cont-rit" th:include="pages/admin/common/right-nav :: right">
 		</div>

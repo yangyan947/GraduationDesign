@@ -636,3 +636,49 @@ a.to-top span.top-icon {
 a.to-top:hover {
   opacity: 1;
 }
+
+/* line 547, ../sass/index.scss */
+ul.pagination {
+  width: 100%;
+  text-align: center;
+}
+/* line 551, ../sass/index.scss */
+ul.pagination li {
+  display: inline-block;
+}
+/* line 554, ../sass/index.scss */
+ul.pagination li a {
+  background-color: transparent;
+  cursor: default;
+  border: none;
+  color: #23527c;
+}
+/* line 560, ../sass/index.scss */
+ul.pagination li a:hover {
+  background-color: transparent;
+}
+/* line 564, ../sass/index.scss */
+ul.pagination li a.arrow {
+  width: 35px;
+}
+/* line 567, ../sass/index.scss */
+ul.pagination li a.arrow:hover {
+  color: #fff;
+  cursor: pointer;
+}
+/* line 574, ../sass/index.scss */
+ul.pagination li.goto {
+  height: 34px;
+  margin-left: 20px;
+}
+/* line 578, ../sass/index.scss */
+ul.pagination li.goto input {
+  width: 70px;
+}
+/* line 582, ../sass/index.scss */
+ul.pagination li.goto button {
+  width: 80px;
+  height: 26px;
+  margin-left: 20px;
+  font-size: 14px;
+}

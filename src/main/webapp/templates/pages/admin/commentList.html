@@ -46,14 +46,29 @@
 
 		</div>
 		<ul class="pagination">
-			<li th:unless="${commentPage.getNumber()} == 0"><a
-					th:href="'/admin/blogList?page=' + ${commentPage.getNumber()} +'&&status=' + ${param.status!=null?param.status[0]:'all'}">&laquo;</a>
+			<li th:unless="${commentPage.getNumber()} == 0">
+				<a class="arrow" th:href="'/admin/commentList?page=' + ${commentPage.getNumber()} +'&&status=' + ${param.status!=null?param.status[0]:'all'}">&laquo;</a>
 			</li>
-			<li><a href="javascript:;">当前页面 第<span th:text="${commentPage.getNumber()+1}"></span>页</a></li>
-			<li th:unless="${commentPage.getNumber()} == ${commentPage.getTotalPages() -1}"><a
-					th:href="'/admin/blogList?page=' + ${commentPage.getNumber() + 2} +'&&status=' + ${param.status!=null?param.status[0]:'all'}">&raquo;</a>
+			<li>
+				<a href="javascript:;">当前页面 第<span th:text="${commentPage.getNumber()+1}"></span>页</a>
 			</li>
-			<li><a href="javascript:;">共 <span th:text="${commentPage.getTotalPages()}"></span>页</a></li>
+			<li th:unless="${commentPage.getNumber()} == ${commentPage.getTotalPages() -1}">
+				<a class="arrow" th:href="'/admin/commentList?page=' + ${commentPage.getNumber() + 2} +'&&status=' + ${param.status!=null?param.status[0]:'all'}">&raquo;</a>
+			</li>
+			<li>
+				<a href="javascript:;">共 <span th:text="${commentPage.getTotalPages()}"></span>页</a>
+			</li>
+			<li class="goto">
+				<a>
+					<form action="/admin/commentList" method="get">
+						<span>跳转至</span>
+						<input onkeyup="value=value.replace(/[^\d]/g,'')" type="text" name="page">
+						<input class="hide" type="text" name="status" th:value="${param.status!=null?param.status[0]:'all'}">
+						<span>页</span>
+						<button type="submit">确认跳转</button>
+					</form>
+				</a>
+			</li>
 		</ul>
 	</div>
 		<div class="col-md-4 cont-rit" th:include="pages/admin/common/right-nav :: right">

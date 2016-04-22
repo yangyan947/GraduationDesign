@@ -175,14 +175,24 @@
 					</div>
 
 					<ul class="pagination">
-						<li th:unless="${attendBlogPage.getNumber()} == 0"><a
-								th:href="'/index?page2=' + ${attendBlogPage.getNumber()} +'&page1=' + ${param.page1!=null?param.page1[0]:'1'}">&laquo;</a>
+						<li th:unless="${attendBlogPage.getNumber()} == 0">
+							<a class="arrow" th:href="'/index?page2=' + ${attendBlogPage.getNumber()} +'&page1=' + ${param.page1!=null?param.page1[0]:'1'}">&laquo;</a>
 						</li>
 						<li><a href="javascript:;">当前页面 第<span th:text="${attendBlogPage.getNumber()+1}"></span>页</a></li>
-						<li th:unless="${attendBlogPage.getNumber()} == ${attendBlogPage.getTotalPages() -1}"><a
-								th:href="'/index?page2=' + ${attendBlogPage.getNumber() + 2}+'&page1=' + ${param.page1!=null?param.page1[0]:'1'}">&raquo;</a>
+						<li th:unless="${attendBlogPage.getNumber()} == ${attendBlogPage.getTotalPages() -1}">
+							<a class="arrow" th:href="'/index?page2=' + ${attendBlogPage.getNumber() + 2}+'&page1=' + ${param.page1!=null?param.page1[0]:'1'}">&raquo;</a>
 						</li>
 						<li><a href="javascript:;">共 <span th:text="${attendBlogPage.getTotalPages()}"></span>页</a></li>
+						<li class="goto">
+							<a>
+								<form action="/index" method="get">
+									<span>跳转至</span>
+									<input onkeyup="value=value.replace(/[^\d]/g,'')" type="text" name="page">
+									<span>页</span>
+									<button type="submit">确认跳转</button>
+								</form>
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>

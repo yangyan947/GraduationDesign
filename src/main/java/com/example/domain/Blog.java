@@ -49,10 +49,20 @@ public class Blog extends BaseObject {
     }
 
     public Set<Comment> getComments() {
+        for (Comment comment : comments) {
+            if (comment.getStatus() == "freeze") {
+                comments.remove(comment);
+            }
+        }
         return comments;
     }
 
     public void setComments(Set<Comment> comments) {
+        for (Comment comment : comments) {
+            if (comment.getStatus() == "freeze") {
+                comments.remove(comment);
+            }
+        }
         this.comments = comments;
     }
 

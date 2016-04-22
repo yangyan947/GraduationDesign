@@ -65,7 +65,7 @@ public class AdminController {
     public RedirectView AdminLoginOut(HttpSession session) {
         //从session中删除user属性，用户退出登录
         session.removeAttribute(ADMIN);
-        return new RedirectView("/index", true, false, true);
+        return new RedirectView("/admin", true, false, true);
     }
 
     @RequestMapping(value = "/userList", method = RequestMethod.GET)

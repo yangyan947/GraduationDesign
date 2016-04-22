@@ -97,7 +97,20 @@ public class UserService {
         }
         return message;
     }
-
+    //    用户信息修改
+    public Message changeUserImg(User user, String  imgUrl) {
+        Message message;
+        //通过用户名获取用户
+        //若获取失败
+        if (user == null) {
+            message = new Message(false, "未登录");
+        }  else {
+            user.setImgUrl(imgUrl);
+            user = userDao.save(user);
+            message = new Message(true, "修改成功", user);
+        }
+        return message;
+    }
     public Message changeUserPassword(User user, String oldPsd, String newPsd) {
         Message message;
         //通过用户名获取用户

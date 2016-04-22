@@ -3,7 +3,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+				<h4 class="modal-title text-center" id="myModalLabel">操作信息</h4>
 			</div>
 			<div class="modal-body">
 				<p id="result" data-result=""></p>
@@ -13,12 +13,17 @@
 			</div>
 		</div>
 	</div>
-	<script>
+	<script th:inline="javascript">
 		var modal = $('#myModal');
 		var modal_result = $("#result");
 		function myAlert(data) {
 			modal_result.text(data);
 			modal.modal('show');
 		}
+		var result_get = /*[[${param.result}]]*/;
+		if (result_get != null) {
+			myAlert(result_get[0]);
+		}
+
 	</script>
 </div>

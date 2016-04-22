@@ -18,14 +18,14 @@
 <body>
 
 <!--发布微博模态框-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="myPublishModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">有什么新鲜事想要告诉大家?</h4>
             </div>
-            <div class="modal-body">
+            <div class=" modal-body">
                 <div class="editor">
                     <div class="text-editor">
                         <textarea name="后台取值的key" id="myEditor"></textarea>
@@ -69,7 +69,7 @@
         </div>
 
         <!--发布新微博btn-->
-        <a href="javascript:void(0);" class="public-news" id="public-news" data-toggle="modal" data-target="#myModal">
+        <a href="javascript:void(0);" class="public-news" id="public-news" data-toggle="modal" data-target="#myPublishModal">
             <span class="glyphicon glyphicon-edit public"></span>
         </a>
 
@@ -77,8 +77,7 @@
         <script type="text/javascript">
             $(function (){
                 var public_btn = $("a#public-news"),
-                        my_modal = $("div#myModal");
-
+                        my_modal = $("div#myPublishModal");
                 public_btn.bind("click", function(){
                     my_modal.modal('show');
                 });
@@ -171,7 +170,7 @@
                 <div class="item-top">
                     <div class="user-head">
                         <a th:href="'/personalCenter/' + ${blog.getUser().getId()}">
-                            <img src="/static/images/test/head.jpg" class="head-img"/>
+                            <img th:src="${blog.getUser().getImgUrl()}" class="head-img"/>
                         </a>
                     </div>
                     <div class="item-info">
@@ -582,9 +581,10 @@
                     success: function(data){
                         good_btn.addClass("active");
                         status = true;
+                        comment_container.append(get_comment(new_val));
+                        location.reload();
                     }
                 });
-                comment_container.append(get_comment(new_val));
             });
 
             function get_comment(new_val) {

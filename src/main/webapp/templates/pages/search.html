@@ -76,11 +76,13 @@
 					<span class="tit">电话:</span>
 					<span class="info" th:text="${user.getPhone()}"></span>
 				</li>
+				<li>
+					<span class="tit">简介:</span>
+					<span class="info" th:text="${user.getResume()}"></span>
+				</li>
 			</ul>
 
-			<div class="edit">
-				<a href="javascript:void(0);" class="info-edit">编辑个人资料 ></a>
-			</div>
+
 		</div>
 	</div>
 
@@ -94,7 +96,7 @@
 
 				<div class="item-top">
 					<div class="user-head">
-						<img src="/static/images/test/head.jpg" class="head-img"/>
+						<img th:src="${blog.getUser().getImgUrl()}" class="head-img"/>
 					</div>
 					<div class="item-info">
 						<div class="user-name" th:text="${blog.getUser().getNickname()}"></div>
@@ -194,11 +196,12 @@
 						contentType: "application/x-www-form-urlencoded; charset=utf-8",
 						type: 'POST',
 						success: function (data) {
-							good_btn.addClass("active");
-							status = true;
+//							good_btn.addClass("active");
+//							status = true;
+//							comment_container.append(get_comment(new_val));
+							location.reload();
 						}
 					});
-					comment_container.append(get_comment(new_val));
 				});
 
 				function get_comment(new_val) {

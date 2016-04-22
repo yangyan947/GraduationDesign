@@ -98,6 +98,11 @@ public class User extends BaseObject {
     }
 
     public Set<User> getAttentionUsers() {
+        for (User user : attentionUsers) {
+            if (user.getStatus() == "freeze") {
+                attentionUsers.remove(user);
+            }
+        }
         return attentionUsers;
     }
 
@@ -107,6 +112,11 @@ public class User extends BaseObject {
 
 
     public Set<User> getFollowUsers() {
+        for (User user : followUsers) {
+            if (user.getStatus() == "freeze") {
+                followUsers.remove(user);
+            }
+        }
         return followUsers;
     }
 
@@ -115,6 +125,11 @@ public class User extends BaseObject {
     }
 
     public List<Blog> getBlogs() {
+        for (Blog blog : blogs) {
+            if (blog.getStatus() == "freeze") {
+                blogs.remove(blog);
+            }
+        }
         return blogs;
     }
 
@@ -162,7 +177,6 @@ public class User extends BaseObject {
     public User update(User user) {
         this.phone = user.getPhone();
         this.nickname = user.getNickname();
-        this.imgUrl = user.getImgUrl();
         this.resume = user.getResume();
         return this;
     }

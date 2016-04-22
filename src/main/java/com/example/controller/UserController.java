@@ -222,8 +222,7 @@ public class UserController {
     public RedirectView changeUserImg(HttpSession session, Model model, @RequestParam(value = "img") MultipartFile file) throws Exception {
         User user = (User) session.getAttribute(USER);
         String imgUrl = saveFile(file, session);
-        user.setImgUrl(imgUrl);
-        Message message = userService.changeUser(user, user);
+        Message message = userService.changeUserImg(user, imgUrl);
         update(session);
         return new RedirectView("/personalCenter", true, false, true);
     }

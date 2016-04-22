@@ -168,24 +168,24 @@
                     </a>
                 </div>
                 <div class="info">
-                    <span class="name">名字这个粉丝</span>
+                    <span class="name" th:text="${aUser.getNickname()}">名字这个粉丝</span>
                     <div class="num-box">
                         <span class="num-item">
                             关注:
-                            <span class="num">123</span>
+                            <span class="num" th:text="${aUser.getAttentionUsers().size()}">123</span>
                         </span>
                         <span class="num-item">
                             粉丝:
-                            <span class="num">223</span>
+                            <span class="num" th:text="${aUser.getFollowUsers().size()}">223</span>
                         </span>
                         <span class="num-item">
                             微博:
-                            <span class="num">333</span>
+                            <span class="num" th:text="${aUser.getBlogs().size()}">333</span>
                         </span>
                     </div>
                     <div class="introduction">
                         简介:
-                        <span class="intro">啊啊是发达是分散 阿斯蒂芬阿斯蒂芬啊发发撒</span>
+                        <span class="intro" th:text="${aUser.getResume()}">啊啊是发达是分散 </span>
                     </div>
                 </div>
             </div>
@@ -202,24 +202,24 @@
                     </a>
                 </div>
                 <div class="info">
-                    <span class="name">名字这个关注</span>
+                    <span class="name" th:text="${aUser.getNickname()}">名字这个粉丝</span>
                     <div class="num-box">
                         <span class="num-item">
                             关注:
-                            <span class="num">123</span>
+                            <span class="num" th:text="${aUser.getAttentionUsers().size()}">123</span>
                         </span>
                         <span class="num-item">
                             粉丝:
-                            <span class="num">223</span>
+                            <span class="num" th:text="${aUser.getFollowUsers().size()}">223</span>
                         </span>
                         <span class="num-item">
                             微博:
-                            <span class="num">333</span>
+                            <span class="num" th:text="${aUser.getBlogs().size()}">333</span>
                         </span>
                     </div>
                     <div class="introduction">
                         简介:
-                        <span class="intro">啊啊是发达是分散 阿斯蒂芬阿斯蒂芬啊发发撒</span>
+                        <span class="intro" th:text="${aUser.getResume()}">啊啊是发达是分散 </span>
                     </div>
                 </div>
             </div>

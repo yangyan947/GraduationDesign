@@ -209,6 +209,7 @@
 							status = true;
 							comment_container.append(get_comment(new_val));
 							init(comment_container.children().get(0))
+							location.reload();
 						}
 						else {
 							alert(data.reason);
@@ -364,6 +365,7 @@
 				type: 'POST',
 				success: function (data) {
 					// var result = $.parseJSON(data);
+					location.reload();
 					console.log(data);
 				}
 			})

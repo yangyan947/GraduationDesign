@@ -284,7 +284,7 @@ div.container-box div.cont-left div.fri-news div.news-item div.item-top div.item
   font-size: 12px;
 }
 /* line 194, ../sass/index.scss */
-div.container-box div.cont-left div.fri-news div.news-item div.item-top div.item-info p.text {
+div.container-box div.cont-left div.fri-news div.news-item div.item-top div.item-info p {
   word-break: break-all;
 }
 /* line 200, ../sass/index.scss */

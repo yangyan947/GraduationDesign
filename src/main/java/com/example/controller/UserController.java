@@ -67,12 +67,15 @@ public class UserController {
 
     //注册用户，使用POST，传输数据
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
-    public String  registerPost(Model model, @ModelAttribute(value = "user") User user) {
+    public RedirectView  registerPost(Model model, @ModelAttribute(value = "user") User user) {
         //使用userService处理业务
         Message result = userService.register(user);
         //将结果放入model中，在模板中可以取到model中的值
         model.addAttribute("result", result.getReason());
-        return "pages/login";
+        if (result.isSuccess()) {
+            return new RedirectView("/login", true, false, true);
+        }
+        return new RedirectView("/register", true, false, true);
     }
 
     //登陆
@@ -222,8 +225,7 @@ public class UserController {
     public RedirectView changeUserImg(HttpSession session, Model model, @RequestParam(value = "img") MultipartFile file) throws Exception {
         User user = (User) session.getAttribute(USER);
         String imgUrl = saveFile(file, session);
-        user.setImgUrl(imgUrl);
-        Message message = userService.changeUser(user, user);
+        Message message = userService.changeUserImg(user, imgUrl);
         update(session);
         return new RedirectView("/personalCenter", true, false, true);
     }

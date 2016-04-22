@@ -39,7 +39,7 @@ public class User extends BaseObject {
     private List<Blog> blogs;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @OrderBy(value = "createTime DESC")
+    @OrderBy(value = "createTime")
     private List<Comment> comments;
 //
 //    @ManyToMany(fetch = FetchType.EAGER)

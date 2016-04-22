@@ -16,7 +16,7 @@ public class Blog extends BaseObject {
     @ManyToOne
     private User user;
     @OneToMany(fetch = FetchType.EAGER)
-    @OrderBy(value = "createTime DESC")
+    @OrderBy(value = "createTime")
     private Set<Comment> comments;
 
     @OneToMany(fetch = FetchType.EAGER)

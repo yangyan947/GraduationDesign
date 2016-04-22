@@ -1,7 +1,7 @@
 @import "layout";
 
 body {
-  background-color: #32a2d5;
+  background-color: #B0E2FF;
 }
 
 div.modal {
@@ -263,6 +263,7 @@ div.container-box {
     margin-bottom: 20px;
 
     div.editor {
+      display: none;
       width: 100%;
       background-color: #fff;
       margin-bottom: 10px;
@@ -276,7 +277,7 @@ div.container-box {
       }
 
       a.publish {
-        display: block;
+        display: inline-block;
         text-decoration: none;
         text-align: center;
         border-radius: 2px;
@@ -284,7 +285,7 @@ div.container-box {
         line-height: 26px;
         margin-bottom: 20px;
         position: absolute;
-        right: 20px;
+        right: 100px;
         bottom: 0;
         width: 62px;
         height: 26px;
@@ -296,6 +297,13 @@ div.container-box {
 
         &:hover {
           background-color: #eb7350;
+        }
+        
+        &.close {
+          right: 25px;
+          color: #333;
+          background-color: #fff;
+          border: 1px solid #666;
         }
       }
     }

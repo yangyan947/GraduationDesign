@@ -9,36 +9,11 @@
     <script type="text/javascript" src="/static/js/resources/jquery.min.js"></script>
     <script src="/static/js/resources/bootstrap.min.js"></script>
     <script src="/static/js/resources/bootstrapValidator.js"></script>
-
-
     <script type="text/javascript" src="/resources/ueditor.config.js"></script>
     <script type="text/javascript" src="/resources/ueditor.all.js"></script>
 
 </head>
 <body>
-
-<!--发布微博模态框-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">有什么新鲜事想要告诉大家?</h4>
-            </div>
-            <div class="modal-body">
-                <div class="editor">
-                    <div class="text-editor">
-                        <textarea name="后台取值的key" id="myEditor"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a href="javascript:void(0);" class="publish" id="publish-btn">发布</a>
-                <button type="button" class="btn btn-default" data-dismiss="modal" id="close-btn">关闭</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!--头部导航-->
 <div class="nav">
@@ -69,21 +44,9 @@
         </div>
 
         <!--发布新微博btn-->
-        <a href="javascript:void(0);" class="public-news" id="public-news" data-toggle="modal" data-target="#myModal">
+        <a href="javascript:void(0);" class="public-news" id="public-news">
             <span class="glyphicon glyphicon-edit public"></span>
         </a>
-
-        <!--发布新微博-->
-        <script type="text/javascript">
-            $(function (){
-                var public_btn = $("a#public-news"),
-                        my_modal = $("div#myModal");
-
-                public_btn.bind("click", function(){
-                    my_modal.modal('show');
-                });
-            });
-        </script>
 
     </div>
 </div>
@@ -160,6 +123,15 @@
 
 
     <div class="col-md-8 cont-left" id="cont-box">
+
+        <!--富文本部分-->
+        <div class="editor" id="editor-box">
+            <div class="text-editor">
+                <textarea name="后台取值的key" id="myEditor"></textarea>
+            </div>
+            <a href="javascript:void(0);" class="publish" id="publish-btn">发布</a>
+            <a href="javascript:void(0);" class="publish close" id="colse-btn">取消</a>
+        </div>
 
         <!--自己发布的微博-->
         <div class="fri-news" id="fri-news" data-name="news">
@@ -499,7 +471,9 @@
                 follow_btn = $("a#follow-btn"),
                 fans_btn = $("a#fans-btn"),
                 news_btn = $("a#news-btn"),
-                edit_btn = $("a#info-edit-btn");
+                edit_btn = $("a#info-edit-btn"),
+                open_editor = $("a#public-news"),
+                editor_box = $("div#editor-box");
 
         follow_btn.bind("click", function (){
             cont_box.children().fadeOut(200);
@@ -516,6 +490,10 @@
         edit_btn.bind("click", function (){
             cont_box.children().fadeOut(200);
             edit_info.fadeIn(200);
+        });
+        open_editor.bind("click", function (){
+            cont_box.children().fadeOut(200);
+            fri_news.fadeIn(200);
         });
     });
 
@@ -718,9 +696,21 @@
 
         var myeditor = $("textarea#myEditor"),
                 publish_btn = $("a#publish-btn"),
-                fri_news = $("div#fri-news");
+                fri_news = $("div#fri-news"),
+                open_editor = $("a#public-news"),
+                close_editor = $("a#colse-btn"),
+                editor_box = $("div#editor-box");
+
+        open_editor.bind("click", function () {
+            editor_box.fadeIn(200);
+        });
+
+        close_editor.bind("click", function () {
+            editor_box.fadeOut(200);
+        });
 
         publish_btn.bind("click", function () {
+
             var content = UE.getEditor('myEditor').getContent();    //UEditor取得内容Html的方法
 
             function publish_info(info) {
@@ -751,7 +741,6 @@
                 },
                 type: 'POST',
                 success: function (data) {
-                    console.info(data);
                     var news = data;
                     if(news.isSuccess) {
                         location.reload();

@@ -263,7 +263,7 @@ public class UserController {
             File files = new File(path + "\\upload");
             // 判断文件夹是否存在,如果不存在则创建文件夹
             if (!files.exists()) {
-                files.mkdir();
+                files.mkdirs();
             }
             if (file.getContentType().split("/")[0].equals("image")) {
                 if (path.endsWith(separator))

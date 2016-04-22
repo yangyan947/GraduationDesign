@@ -83,7 +83,7 @@ body .edui-default .edui-editor-bottomContainer td {
 
 /* line 3, ../sass/index.scss */
 body {
-  background-color: #32a2d5;
+  background-color: #B0E2FF;
 }
 
 /* line 7, ../sass/index.scss */
@@ -594,8 +594,22 @@ div.container-box div.cont-rit div.notice div.notice-box a span {
   line-height: 30px;
   font-size: 12px;
 }
+/* line 505, ../sass/index.scss */
+div.container-box div.cont-rit div.game {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+/* line 512, ../sass/index.scss */
+div.container-box div.cont-rit div.game object {
+  margin: 0 auto;
+}
 
-/* line 507, ../sass/index.scss */
+/* line 519, ../sass/index.scss */
 a.to-top {
   display: block;
   text-decoration: none;
@@ -608,7 +622,7 @@ a.to-top {
   position: fixed;
   background-color: #60a6c6;
 }
-/* line 519, ../sass/index.scss */
+/* line 531, ../sass/index.scss */
 a.to-top span.top-icon {
   color: #fff;
   display: block;
@@ -618,7 +632,7 @@ a.to-top span.top-icon {
   text-align: center;
   width: 45px;
 }
-/* line 529, ../sass/index.scss */
+/* line 541, ../sass/index.scss */
 a.to-top:hover {
   opacity: 1;
 }

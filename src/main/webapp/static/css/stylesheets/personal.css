@@ -83,7 +83,7 @@ body .edui-default .edui-editor-bottomContainer td {
 
 /* line 3, ../sass/personal.scss */
 body {
-  background-color: #32a2d5;
+  background-color: #B0E2FF;
 }
 
 /* line 8, ../sass/personal.scss */
@@ -350,6 +350,7 @@ div.container-box div.cont-left {
 }
 /* line 265, ../sass/personal.scss */
 div.container-box div.cont-left div.editor {
+  display: none;
   width: 100%;
   background-color: #fff;
   margin-bottom: 10px;
@@ -359,14 +360,14 @@ div.container-box div.cont-left div.editor {
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 273, ../sass/personal.scss */
+/* line 274, ../sass/personal.scss */
 div.container-box div.cont-left div.editor div.text-editor {
   width: 100%;
   margin: 0 auto 20px;
 }
-/* line 278, ../sass/personal.scss */
+/* line 279, ../sass/personal.scss */
 div.container-box div.cont-left div.editor a.publish {
-  display: block;
+  display: inline-block;
   text-decoration: none;
   text-align: center;
   border-radius: 2px;
@@ -374,7 +375,7 @@ div.container-box div.cont-left div.editor a.publish {
   line-height: 26px;
   margin-bottom: 20px;
   position: absolute;
-  right: 20px;
+  right: 100px;
   bottom: 0;
   width: 62px;
   height: 26px;
@@ -384,11 +385,18 @@ div.container-box div.cont-left div.editor a.publish {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   outline: none;
 }
-/* line 297, ../sass/personal.scss */
+/* line 298, ../sass/personal.scss */
 div.container-box div.cont-left div.editor a.publish:hover {
   background-color: #eb7350;
 }
-/* line 305, ../sass/personal.scss */
+/* line 302, ../sass/personal.scss */
+div.container-box div.cont-left div.editor a.publish.close {
+  right: 25px;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #666;
+}
+/* line 313, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item {
   margin-bottom: 10px;
   background-color: #fff;
@@ -398,7 +406,7 @@ div.container-box div.cont-left div.fri-news div.news-item {
   overflow: hidden;
   position: relative;
 }
-/* line 312, ../sass/personal.scss */
+/* line 320, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item a.dele-news {
   display: block;
   width: 50px;
@@ -413,15 +421,15 @@ div.container-box div.cont-left div.fri-news div.news-item a.dele-news {
   top: 25px;
   right: 15px;
 }
-/* line 326, ../sass/personal.scss */
+/* line 334, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item a.dele-news:hover {
   color: #32a2d5;
 }
-/* line 331, ../sass/personal.scss */
+/* line 339, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-top {
   padding: 20px 20px 10px;
 }
-/* line 334, ../sass/personal.scss */
+/* line 342, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-top div.user-head {
   width: 60px;
   height: 60px;
@@ -431,12 +439,12 @@ div.container-box div.cont-left div.fri-news div.news-item div.item-top div.user
   overflow: hidden;
   display: inline-block;
 }
-/* line 341, ../sass/personal.scss */
+/* line 349, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-top div.user-head img.head-img {
   width: 100%;
   height: 100%;
 }
-/* line 347, ../sass/personal.scss */
+/* line 355, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-top div.item-info {
   display: inline-block;
   vertical-align: top;
@@ -444,20 +452,20 @@ div.container-box div.cont-left div.fri-news div.news-item div.item-top div.item
   width: 535px;
   line-height: 20px;
 }
-/* line 354, ../sass/personal.scss */
+/* line 362, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-top div.item-info div.user-name {
   font-size: 14px;
 }
-/* line 358, ../sass/personal.scss */
+/* line 366, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-top div.item-info div.create-time {
   color: #808080;
   font-size: 12px;
 }
-/* line 363, ../sass/personal.scss */
+/* line 371, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-top div.item-info p.text {
   word-break: break-all;
 }
-/* line 369, ../sass/personal.scss */
+/* line 377, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-botm {
   width: 100%;
   height: 36px;
@@ -465,7 +473,7 @@ div.container-box div.cont-left div.fri-news div.news-item div.item-botm {
   border-bottom: 1px solid #f2f2f5;
   position: relative;
 }
-/* line 376, ../sass/personal.scss */
+/* line 384, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-botm a {
   color: #808080;
   display: inline-block;
@@ -477,19 +485,19 @@ div.container-box div.cont-left div.fri-news div.news-item div.item-botm a {
   width: 48.5%;
   outline: none;
 }
-/* line 387, ../sass/personal.scss */
+/* line 395, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-botm a span.icon {
   margin-right: 5px;
 }
-/* line 391, ../sass/personal.scss */
+/* line 399, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-botm a:hover {
   color: #32a2d5;
 }
-/* line 395, ../sass/personal.scss */
+/* line 403, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-botm a.active {
   color: #32a2d5;
 }
-/* line 400, ../sass/personal.scss */
+/* line 408, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-botm span.cut {
   background-color: #d9d9d9;
   display: inline-block;
@@ -497,14 +505,14 @@ div.container-box div.cont-left div.fri-news div.news-item div.item-botm span.cu
   height: 22px;
   vertical-align: middle;
 }
-/* line 409, ../sass/personal.scss */
+/* line 417, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list {
   position: relative;
   padding: 20px;
   background-color: #f2f2f5;
   display: none;
 }
-/* line 415, ../sass/personal.scss */
+/* line 423, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list span.triangle {
   position: absolute;
   top: -15px;
@@ -524,30 +532,30 @@ div.container-box div.cont-left div.fri-news div.news-item div.comment-list span
   border-right-color: transparent;
   border-top-color: transparent;
 }
-/* line 435, ../sass/personal.scss */
+/* line 443, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-left {
   display: inline-block;
   width: 60px;
   text-align: center;
 }
-/* line 440, ../sass/personal.scss */
+/* line 448, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-left img.head {
   width: 30px;
   height: 30px;
 }
-/* line 446, ../sass/personal.scss */
+/* line 454, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit {
   display: inline-block;
   margin-left: 10px;
   vertical-align: top;
   width: 530px;
 }
-/* line 452, ../sass/personal.scss */
+/* line 460, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.add-comment {
   padding-bottom: 60px;
   position: relative;
 }
-/* line 456, ../sass/personal.scss */
+/* line 464, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.add-comment textarea.text {
   width: 100%;
   resize: none;
@@ -561,11 +569,11 @@ div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.15) inset;
   vertical-align: middle;
 }
-/* line 470, ../sass/personal.scss */
+/* line 478, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.add-comment textarea.text.onfocus {
   border: 1px solid #eb7350;
 }
-/* line 474, ../sass/personal.scss */
+/* line 482, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.add-comment a.comment-btn {
   display: block;
   text-decoration: none;
@@ -585,24 +593,24 @@ div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   outline: none;
 }
-/* line 493, ../sass/personal.scss */
+/* line 501, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.add-comment a.comment-btn:hover {
   background-color: #eb7350;
 }
-/* line 499, ../sass/personal.scss */
+/* line 507, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment {
   padding-bottom: 5px;
   border-top: 1px solid #d9d9d9;
 }
-/* line 503, ../sass/personal.scss */
+/* line 511, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment:first-child {
   padding-top: 15px;
 }
-/* line 506, ../sass/personal.scss */
+/* line 514, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment:not(:first-child) {
   padding-top: 10px;
 }
-/* line 510, ../sass/personal.scss */
+/* line 518, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment img.head {
   display: inline-block;
   width: 30px;
@@ -610,7 +618,7 @@ div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.
   margin-right: 10px;
   vertical-align: top;
 }
-/* line 518, ../sass/personal.scss */
+/* line 526, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment div.info-box {
   display: inline-block;
   width: 485px;
@@ -618,21 +626,21 @@ div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.
   line-height: 20px;
   color: #333;
 }
-/* line 525, ../sass/personal.scss */
+/* line 533, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment div.info-box span.text {
   display: block;
   width: 100%;
   word-break: break-all;
 }
-/* line 530, ../sass/personal.scss */
+/* line 538, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment div.info-box span.text span.fir-name {
   color: #32a2d5;
 }
-/* line 535, ../sass/personal.scss */
+/* line 543, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment div.info-box span.create-time {
   color: #808080;
 }
-/* line 545, ../sass/personal.scss */
+/* line 553, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list {
   padding: 10px 20px 20px;
   background-color: #fff;
@@ -640,11 +648,11 @@ div.container-box div.cont-left div.fri-list {
   overflow: hidden;
   margin-bottom: 20px;
 }
-/* line 552, ../sass/personal.scss */
+/* line 560, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list.follow-list, div.container-box div.cont-left div.fri-list.fans-list {
   display: none;
 }
-/* line 556, ../sass/personal.scss */
+/* line 564, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list span.title {
   display: block;
   width: 100%;
@@ -655,16 +663,16 @@ div.container-box div.cont-left div.fri-list span.title {
   line-height: 40px;
   font-weight: bold;
 }
-/* line 567, ../sass/personal.scss */
+/* line 575, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item {
   width: 100%;
   padding: 20px 0;
 }
-/* line 571, ../sass/personal.scss */
+/* line 579, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item:not(:last-child) {
   border-bottom: 1px solid #f2f2f5;
 }
-/* line 575, ../sass/personal.scss */
+/* line 583, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.img-box {
   display: inline-block;
   width: 50px;
@@ -676,17 +684,17 @@ div.container-box div.cont-left div.fri-list div.item div.img-box {
   overflow: hidden;
   vertical-align: top;
 }
-/* line 584, ../sass/personal.scss */
+/* line 592, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.img-box img.head {
   width: 50px;
   height: 50px;
 }
-/* line 590, ../sass/personal.scss */
+/* line 598, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info {
   display: inline-block;
   width: 545px;
 }
-/* line 594, ../sass/personal.scss */
+/* line 602, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info span.name {
   display: block;
   font-size: 14px;
@@ -696,36 +704,36 @@ div.container-box div.cont-left div.fri-list div.item div.info span.name {
   margin-bottom: 5px;
   font-weight: bold;
 }
-/* line 604, ../sass/personal.scss */
+/* line 612, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info div.num-box {
   width: 100%;
   height: 20px;
 }
-/* line 608, ../sass/personal.scss */
+/* line 616, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info div.num-box span {
   font-size: 12px;
   color: #333;
 }
-/* line 612, ../sass/personal.scss */
+/* line 620, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info div.num-box span.num-item {
   display: inline-block;
   height: 20px;
   line-height: 20px;
   padding-right: 15px;
 }
-/* line 618, ../sass/personal.scss */
+/* line 626, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info div.num-box span.num-item:not(:first-child) {
   padding-left: 15px;
 }
-/* line 622, ../sass/personal.scss */
+/* line 630, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info div.num-box span.num-item:not(:last-child) {
   border-right: 1px solid #f2f2f5;
 }
-/* line 627, ../sass/personal.scss */
+/* line 635, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info div.num-box span.num {
   color: #32a2d5;
 }
-/* line 633, ../sass/personal.scss */
+/* line 641, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info div.introduction {
   width: 100%;
   margin-top: 8px;
@@ -733,11 +741,11 @@ div.container-box div.cont-left div.fri-list div.item div.info div.introduction 
   line-height: 20px;
   color: #808080;
 }
-/* line 640, ../sass/personal.scss */
+/* line 648, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info div.introduction span.intro {
   color: #333;
 }
-/* line 649, ../sass/personal.scss */
+/* line 657, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info {
   padding: 10px 20px 20px;
   background-color: #fff;
@@ -747,7 +755,7 @@ div.container-box div.cont-left div.edit-per-info {
   position: relative;
   display: none;
 }
-/* line 658, ../sass/personal.scss */
+/* line 666, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info span.title {
   display: block;
   width: 100%;
@@ -758,33 +766,33 @@ div.container-box div.cont-left div.edit-per-info span.title {
   line-height: 40px;
   font-weight: bold;
 }
-/* line 669, ../sass/personal.scss */
+/* line 677, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box {
   width: 100%;
   padding: 30px 20px;
 }
-/* line 673, ../sass/personal.scss */
+/* line 681, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box form {
   position: relative;
   padding-bottom: 40px;
 }
-/* line 677, ../sass/personal.scss */
+/* line 685, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box form.head-form {
   padding-bottom: 0;
 }
-/* line 680, ../sass/personal.scss */
+/* line 688, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box form.head-form button.btn-item {
   bottom: 25px;
 }
-/* line 685, ../sass/personal.scss */
+/* line 693, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box form:not(:last-child) {
   border-bottom: 2px solid #f2f2f5;
 }
-/* line 689, ../sass/personal.scss */
+/* line 697, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box form:not(:first-child) {
   padding-top: 20px;
 }
-/* line 693, ../sass/personal.scss */
+/* line 701, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box form button.btn-item {
   position: absolute;
   right: 90px;
@@ -795,16 +803,16 @@ div.container-box div.cont-left div.edit-per-info div.item-box form button.btn-i
   width: 50px;
   float: right;
 }
-/* line 705, ../sass/personal.scss */
+/* line 713, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item.fixed {
   height: 50px;
 }
-/* line 709, ../sass/personal.scss */
+/* line 717, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item {
   width: 100%;
   vertical-align: middle;
 }
-/* line 713, ../sass/personal.scss */
+/* line 721, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item span.tit {
   color: #808080;
   display: inline-block;
@@ -814,7 +822,7 @@ div.container-box div.cont-left div.edit-per-info div.item-box div.item span.tit
   text-align: right;
   width: 75px;
 }
-/* line 723, ../sass/personal.scss */
+/* line 731, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item span.email {
   display: inline-block;
   width: 300px;
@@ -824,11 +832,11 @@ div.container-box div.cont-left div.edit-per-info div.item-box div.item span.ema
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 733, ../sass/personal.scss */
+/* line 741, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item input {
   display: inline-block;
 }
-/* line 736, ../sass/personal.scss */
+/* line 744, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item input.edit {
   width: 400px;
   color: #333;
@@ -838,15 +846,15 @@ div.container-box div.cont-left div.edit-per-info div.item-box div.item input.ed
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 747, ../sass/personal.scss */
+/* line 755, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item label {
   width: 100px;
 }
-/* line 750, ../sass/personal.scss */
+/* line 758, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item label input {
   margin-right: 10px;
 }
-/* line 755, ../sass/personal.scss */
+/* line 763, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item textarea.introduction {
   width: 400px;
   height: 70px;
@@ -859,20 +867,20 @@ div.container-box div.cont-left div.edit-per-info div.item-box div.item textarea
   word-wrap: break-word;
   padding: 4px 10px;
 }
-/* line 768, ../sass/personal.scss */
+/* line 776, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item.sex {
   line-height: 40px;
 }
-/* line 772, ../sass/personal.scss */
+/* line 780, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item.introduction {
   height: 70px;
 }
-/* line 775, ../sass/personal.scss */
+/* line 783, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item.introduction span.tit {
   vertical-align: top;
   margin-top: 10px;
 }
-/* line 783, ../sass/personal.scss */
+/* line 791, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info a.edit-btn {
   display: block;
   text-decoration: none;
@@ -892,16 +900,16 @@ div.container-box div.cont-left div.edit-per-info a.edit-btn {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   outline: none;
 }
-/* line 802, ../sass/personal.scss */
+/* line 810, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info a.edit-btn:hover {
   background-color: #eb7350;
 }
-/* line 809, ../sass/personal.scss */
+/* line 817, ../sass/personal.scss */
 div.container-box div.cont-rit {
   padding: 0 5px;
   margin-bottom: 20px;
 }
-/* line 813, ../sass/personal.scss */
+/* line 821, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal {
   background-color: #fff;
   margin-bottom: 10px;
@@ -911,56 +919,56 @@ div.container-box div.cont-rit div.personal {
   border-radius: 3px;
   overflow: hidden;
 }
-/* line 820, ../sass/personal.scss */
+/* line 828, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal div.info {
   width: 100%;
   padding: 9px 16px;
 }
-/* line 824, ../sass/personal.scss */
+/* line 832, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal div.info div.item {
   width: 31%;
   display: inline-block;
 }
-/* line 828, ../sass/personal.scss */
+/* line 836, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal div.info div.item:not(:last-child) {
   border-right: 1px solid #d9d9d9;
 }
-/* line 832, ../sass/personal.scss */
+/* line 840, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal div.info div.item a {
   text-decoration: none;
   outline: none;
 }
-/* line 836, ../sass/personal.scss */
+/* line 844, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal div.info div.item a span {
   display: block;
   width: 100%;
   text-align: center;
 }
-/* line 841, ../sass/personal.scss */
+/* line 849, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal div.info div.item a span.num {
   color: #333;
   font-size: 18px;
   line-height: 30px;
   font-weight: bold;
 }
-/* line 848, ../sass/personal.scss */
+/* line 856, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal div.info div.item a span.text {
   color: #808080;
   font-size: 12px;
   line-height: 14px;
 }
-/* line 857, ../sass/personal.scss */
+/* line 865, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal div.info div.item a:hover span {
   color: #32a2d5;
 }
-/* line 866, ../sass/personal.scss */
+/* line 874, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info {
   background-color: #fff;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 870, ../sass/personal.scss */
+/* line 878, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info span.head {
   display: block;
   width: 100%;
@@ -971,39 +979,39 @@ div.container-box div.cont-rit div.per-info span.head {
   font-weight: bold;
   border-bottom: 1px solid #d9d9d9;
 }
-/* line 881, ../sass/personal.scss */
+/* line 889, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info ul.info-box {
   width: 100%;
   padding: 16px;
 }
-/* line 885, ../sass/personal.scss */
+/* line 893, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info ul.info-box li {
   font-size: 12px;
   color: #808080;
   width: 100%;
   line-height: 30px;
 }
-/* line 891, ../sass/personal.scss */
+/* line 899, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info ul.info-box li span.tit {
   letter-spacing: 10px;
   display: inline-block;
   width: 60px;
   vertical-align: top;
 }
-/* line 898, ../sass/personal.scss */
+/* line 906, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info ul.info-box li span.info {
   color: #333;
   display: inline-block;
   width: 225px;
 }
-/* line 906, ../sass/personal.scss */
+/* line 914, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info div.edit {
   width: 100%;
   height: 40px;
   line-height: 40px;
   border-top: 1px solid #d9d9d9;
 }
-/* line 912, ../sass/personal.scss */
+/* line 920, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info div.edit a.info-edit {
   display: block;
   text-decoration: none;
@@ -1012,12 +1020,12 @@ div.container-box div.cont-rit div.per-info div.edit a.info-edit {
   color: #333;
   outline: none;
 }
-/* line 920, ../sass/personal.scss */
+/* line 928, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info div.edit a.info-edit:hover {
   color: #32a2d5;
 }
 
-/* line 929, ../sass/personal.scss */
+/* line 937, ../sass/personal.scss */
 a.to-top {
   display: block;
   text-decoration: none;
@@ -1030,7 +1038,7 @@ a.to-top {
   position: fixed;
   background-color: #60a6c6;
 }
-/* line 941, ../sass/personal.scss */
+/* line 949, ../sass/personal.scss */
 a.to-top span.top-icon {
   color: #fff;
   display: block;
@@ -1040,7 +1048,7 @@ a.to-top span.top-icon {
   text-align: center;
   width: 45px;
 }
-/* line 951, ../sass/personal.scss */
+/* line 959, ../sass/personal.scss */
 a.to-top:hover {
   opacity: 1;
 }

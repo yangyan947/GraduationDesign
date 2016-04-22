@@ -1,13 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Title</title>
+	<title>Error</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/resources/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/static/css/stylesheets/login.css"/>
+	<script type="text/javascript" src="/static/js/resources/jquery.min.js"></script>
+	<script src="/static/js/resources/bootstrap.min.js"></script>
+	<script src="/static/js/resources/bootstrapValidator.js"></script>
+	<script type='text/javascript' src='/static/js/animation/jquery.particleground.min.js'></script>
+	<script type='text/javascript' src='/static/js/animation/demo.js'></script>
 </head>
 <body>
-	出错啦！
-	<p th:text="${error}"></p>
-	<a href="/index">点击回到首页</a>
+<div class="container-box">
+
+	<div class="header error-header">
+		<img src="/static/images/login/logo.png">
+		<span class="logo-txt">SC Blog</span>
+	</div>
+	<div class="content error-page" id="particles">
+		<div class="error-box">
+			<h1>哎呀, 好尴尬啊, 页面找不到了!</h1>
+			<div class="error-img">
+				<img src="/static/images/login/error.png">
+			</div>
+		</div>
+	</div>
+
+	<div class="footer">
+		<span>© 2016 SC Blog 版权所有</span>
+	</div>
+</div>
+
+
 </body>
-</html>

@@ -238,86 +238,6 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" th:include="pages/common/modal :: modal"></div>
 
 
-<!--修改个人资料验证-->
-<script type="text/javascript">
-    jQuery(document).ready(function () {
-        $('#edit-form')
-                .bootstrapValidator({
-                    message: '这个值无效',
-                    //live: 'submitted',
-                    feedbackIcons: {
-                        valid: 'glyphicon glyphicon-ok',
-                        invalid: 'glyphicon glyphicon-remove',
-                        validating: 'glyphicon glyphicon-refresh'
-                    },
-                    fields: {
-                        nickname: {
-                            message: '无效的用户名',
-                            validators: {
-                                notEmpty: {
-                                    message: '用户名不能为空'
-                                },
-                                stringLength: {
-                                    min: 5,
-                                    max: 30,
-                                    message: '用户名长度大于5小于30'
-                                },
-                                regexp: {
-                                    regexp: /^[a-zA-Z0-9_\.]+$/,
-                                    message: '用户名只能为英文字符数组或者下划线'
-                                }
-                            }
-                        },
-                        phone: {
-                            validators: {
-                                notEmpty: {
-                                    message: '手机号'
-                                },
-                                stringLength: {
-                                    min: 11,
-                                    max: 11,
-                                    message: '手机号长度不对'
-                                },
-                                regexp: {
-                                    regexp: /^[0-9]+$/,
-                                    message: '手机号应该为数字'
-                                }
-                            }
-                        },
-                        password: {
-                            validators: {
-                                notEmpty: {
-                                    message: '密码不能为空'
-                                },
-                                stringLength: {
-                                    min: 5,
-                                    max: 30,
-                                    message: '密码长度大于5小于30'
-                                }
-                            }
-                        },
-                        password2: {
-                            validators: {
-                                notEmpty: {
-                                    message: '密码不能为空'
-                                },
-                                identical: {
-                                    field: 'password',
-                                    message: '两次密码应该一致'
-                                },
-                                stringLength: {
-                                    min: 5,
-                                    max: 30,
-                                    message: '密码长度大于5小于30'
-                                }
-                            }
-                        }
-                    }
-                })
-    });
-</script>
-
-
 <script type="text/javascript">
 
     /*本页面tab点击切换模块*/
@@ -502,66 +422,6 @@
             init(e); //针对循环出的当前一个对象e ??
         });
 
-
-
-
-        /*富文本, 发布新状态*/
-        /*富文本初始化*/
-        var editor = new UE.ui.Editor();
-        editor.render("myEditor");
-        //1.2.4以后可以使用一下代码实例化编辑器
-        //UE.getEditor('myEditor')
-
-        var myeditor = $("textarea#myEditor"),
-                publish_btn = $("a#publish-btn"),
-                fri_news = $("div#fri-news");
-
-        publish_btn.bind("click", function () {
-            var content = UE.getEditor('myEditor').getContent();    //UEditor取得内容Html的方法
-
-            function publish_info(info) {
-                return "<div class='news-item'><div class='item-top'>" +
-                        "<div class='user-head'><img src='/static/images/test/head.jpg' class='head-img'/></div>" +
-                        "<div class='item-info'><div class='user-name'>AAA</div>" +
-                        "<div class='create-time'>2016-4-16</div>" +
-                        "<p class='text'>" + info + "</p></div></div>" +
-
-                        "<div class='item-botm'>" +
-                        "<a href='javascript:void(0);' class='comment comment-list-btn'>" +
-                        "<span class='glyphicon glyphicon-pencil icon'></span>评论</a><span class='cut'></span>" +
-                        "<a href='javascript:void(0);' class='good' data-status=false>" +
-                        "<span class='glyphicon glyphicon-thumbs-up icon'></span>点赞</a><span class='cut'></span>" +
-                        "<a href='javascript:void(0);' class='report'>" +
-
-                        "<div class='comment-list'><span class='triangle'></span>" +
-                        "<div class='comment-left'><img src='/static/images/test/head.jpg' class='head'></div>" +
-                        "<div class='comment-rit'><div class='add-comment'><textarea name='' class='text'></textarea>" +
-                        "<a href='javascript:void(0);' class='comment-btn'>评论</a></div>" +
-                        "<div class='comment-container'></div></div></div></div>";
-            }
-
-            //新发布的微博显示为第一个
-            fri_news.prepend(publish_info(content));
-
-            //页面已加载完,新发布的微博无法取到,所以需要重新循环,取得父元素的第一个子元素也就是新发布的微博.
-            init(fri_news.children('div.news-item')[0]);
-
-
-//            $.ajax({
-//                url: "/publishBlog",
-//                data: {
-//                    "content": content,
-//                },
-//                type: 'POST',
-//                success: function (data) {
-//                    // var result = $.parseJSON(data);
-//                    console.log(data);
-//                }
-//            })
-
-        });
-
-
     });
 
     /*返回顶部*/
@@ -578,12 +438,12 @@
             to_top.hide();
         }
 
-        to_top.bind("click", function () {
+        /*to_top.bind("click", function () {
             body.animate({scrollTop: 0}, 200);
             to_top.hide(0, function () {
 
             });
-        });
+        });*/
 
         $(window).scroll(function () {
             var body_scrolltop = body.scrollTop();

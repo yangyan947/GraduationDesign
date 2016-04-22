@@ -1,7 +1,7 @@
 @import "layout";
 
 body {
-  background-color: #32a2d5;
+  background-color: #B0E2FF;
 }
 
 div.nav {
@@ -499,6 +499,18 @@ div.container-box {
             font-size: 12px;
           }
         }
+      }
+    }
+
+    div.game {
+      width: 100%;
+      margin-top: 20px;
+      text-align: center;
+      @include border-radius(3px);
+      overflow: hidden;
+
+      object {
+        margin: 0 auto;
       }
     }
   }

@@ -26,7 +26,8 @@
 		<div class="head-box">
 			<img th:src="${user.getImgUrl()}" class="user-head">
 		</div>
-		<span class="user-name">火火</span>
+		<span class="user-name" th:text="${user.getNickname()}">火火</span>
+		<span class="introduction" th:text="${user.getResume()}"></span>
 	</div>
 
 	<div class="col-md-4 cont-rit">
@@ -92,11 +93,17 @@
 		<div class="fri-news" id="fri-news" style="">
 			<div class="news-item" th:each="blog: ${blogPage.getContent()}">
 
+				<div class="hot-blog">
+					<span class="glyphicon glyphicon-fire"></span>
+				</div>
+
 				<a href="javascript:void(0);" class="dele-news" th:attr="data-blogId=${blog.getId()}">删除</a>
 
 				<div class="item-top">
 					<div class="user-head">
-						<img th:src="${blog.getUser().getImgUrl()}" class="head-img"/>
+						<a th:href="'/personalCenter/' + ${blog.getUser().getId()}">
+							<img th:src="${blog.getUser().getImgUrl()}" class="head-img"/>
+						</a>
 					</div>
 					<div class="item-info">
 						<div class="user-name" th:text="${blog.getUser().getNickname()}"></div>
@@ -118,7 +125,9 @@
 					<span class="triangle"></span>
 
 					<div class="comment-left">
-						<img th:src="${user.getImgUrl()}" class="head">
+						<a th:href="'/personalCenter/' + ${session.user.getId()}">
+							<img th:src="${session.user.getImgUrl()}" class="head">
+						</a>
 					</div>
 					<div class="comment-rit">
 						<div class="add-comment">
@@ -128,7 +137,9 @@
 						<div class="comment-container">
 
 							<div class="fri-comment" th:each="comment: ${blog.getComments()}">
-								<img th:src="${comment.getUser().getImgUrl()}" class="head">
+								<a th:href="'/personalCenter/' + ${comment.getUser().getId()}">
+									<img th:src="${comment.getUser().getImgUrl()}" class="head">
+								</a>
 
 								<div class="info-box">
                                 <span class="text">
@@ -155,7 +166,7 @@
 				<li><a href="javascript:;">共 <span th:text="${blogPage.getTotalPages()}"></span>页</a></li>
 				<li class="goto">
 					<a>
-						<form action="/admin/blogList" method="get">
+						<form action="/search" method="get">
 							<span>跳转至</span>
 							<input onkeyup="value=value.replace(/[^\d]/g,'')" min="0" th:max="${blogPage.getTotalPages()}" type="number" name="page">
 							<input class="hide" type="text" name="status" th:value="${param.search!=null?param.search[0]:'all'}">
@@ -165,6 +176,7 @@
 					</a>
 				</li>
 			</ul>
+
 		</div>
 	</div>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" th:include="pages/common/modal :: modal"></div>

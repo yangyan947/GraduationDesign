@@ -43,6 +43,9 @@
 			<div id="myTabContent" class="tab-content">
 				<div class="tab-pane fade in active" id="home">
 					<div class="news-item" th:each="blog: ${blogPage.getContent()}">
+						<div class="hot-blog">
+							<span class="glyphicon glyphicon-fire"></span>
+						</div>
 						<div class="item-top">
 							<div class="user-head">
 								<a th:href="'/personalCenter/' + ${blog.getUser().getId()}">
@@ -126,6 +129,9 @@
 				</div>
 				<div class="tab-pane fade" id="attend">
 					<div class="news-item" th:each="blog: ${attendBlogPage.getContent()}">
+						<div class="hot-blog">
+							<span class="glyphicon glyphicon-fire"></span>
+						</div>
 						<div class="item-top">
 							<div class="user-head">
 								<a th:href="'/personalCenter/' + ${blog.getUser().getId()}">

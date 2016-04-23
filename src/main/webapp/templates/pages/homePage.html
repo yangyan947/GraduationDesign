@@ -95,10 +95,14 @@
 
     <div class="col-md-8 cont-left" id="cont-box">
 
-        <!--自己发布的微博-->
+        <!--发布的微博-->
         <div class="fri-news" id="fri-news" data-name="news">
 
             <div class="news-item" th:each="blog: ${blogPage.getContent()}">
+
+                <div class="hot-blog">
+                    <span class="glyphicon glyphicon-fire"></span>
+                </div>
 
                 <div class="item-top">
                     <div class="user-head">

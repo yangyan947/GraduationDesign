@@ -246,12 +246,13 @@ div.container-box div.cont-left div.fri-news div.news-item {
   -webkit-border-radius: 3px;
   border-radius: 3px;
   overflow: hidden;
+  position: relative;
 }
-/* line 162, ../sass/index.scss */
+/* line 163, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-top {
   padding: 20px 20px 10px;
 }
-/* line 165, ../sass/index.scss */
+/* line 166, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-top div.user-head {
   width: 60px;
   height: 60px;
@@ -261,12 +262,12 @@ div.container-box div.cont-left div.fri-news div.news-item div.item-top div.user
   overflow: hidden;
   display: inline-block;
 }
-/* line 172, ../sass/index.scss */
+/* line 173, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-top div.user-head img.head-img {
   width: 100%;
   height: 100%;
 }
-/* line 178, ../sass/index.scss */
+/* line 179, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-top div.item-info {
   display: inline-block;
   vertical-align: top;
@@ -274,20 +275,20 @@ div.container-box div.cont-left div.fri-news div.news-item div.item-top div.item
   width: 535px;
   line-height: 20px;
 }
-/* line 185, ../sass/index.scss */
+/* line 186, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-top div.item-info div.user-name {
   font-size: 14px;
 }
-/* line 189, ../sass/index.scss */
+/* line 190, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-top div.item-info div.create-time {
   color: #808080;
   font-size: 12px;
 }
-/* line 194, ../sass/index.scss */
+/* line 195, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-top div.item-info p {
   word-break: break-all;
 }
-/* line 200, ../sass/index.scss */
+/* line 201, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-botm {
   width: 100%;
   height: 36px;
@@ -295,7 +296,7 @@ div.container-box div.cont-left div.fri-news div.news-item div.item-botm {
   border-bottom: 1px solid #f2f2f5;
   position: relative;
 }
-/* line 207, ../sass/index.scss */
+/* line 208, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-botm a {
   color: #808080;
   display: inline-block;
@@ -307,19 +308,19 @@ div.container-box div.cont-left div.fri-news div.news-item div.item-botm a {
   width: 48.5%;
   outline: none;
 }
-/* line 218, ../sass/index.scss */
+/* line 219, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-botm a span.icon {
   margin-right: 5px;
 }
-/* line 222, ../sass/index.scss */
+/* line 223, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-botm a:hover {
   color: #32a2d5;
 }
-/* line 226, ../sass/index.scss */
+/* line 227, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-botm a.active {
   color: #32a2d5;
 }
-/* line 231, ../sass/index.scss */
+/* line 232, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.item-botm span.cut {
   background-color: #d9d9d9;
   display: inline-block;
@@ -327,14 +328,14 @@ div.container-box div.cont-left div.fri-news div.news-item div.item-botm span.cu
   height: 22px;
   vertical-align: middle;
 }
-/* line 240, ../sass/index.scss */
+/* line 241, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list {
   position: relative;
   padding: 20px;
   background-color: #f2f2f5;
   display: none;
 }
-/* line 246, ../sass/index.scss */
+/* line 247, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list span.triangle {
   position: absolute;
   top: -15px;
@@ -354,30 +355,30 @@ div.container-box div.cont-left div.fri-news div.news-item div.comment-list span
   border-right-color: transparent;
   border-top-color: transparent;
 }
-/* line 266, ../sass/index.scss */
+/* line 267, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-left {
   display: inline-block;
   width: 60px;
   text-align: center;
 }
-/* line 271, ../sass/index.scss */
+/* line 272, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-left img.head {
   width: 30px;
   height: 30px;
 }
-/* line 277, ../sass/index.scss */
+/* line 278, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit {
   display: inline-block;
   margin-left: 10px;
   vertical-align: top;
   width: 530px;
 }
-/* line 283, ../sass/index.scss */
+/* line 284, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.add-comment {
   padding-bottom: 60px;
   position: relative;
 }
-/* line 287, ../sass/index.scss */
+/* line 288, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.add-comment textarea.text {
   width: 100%;
   resize: none;
@@ -391,11 +392,11 @@ div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.15) inset;
   vertical-align: middle;
 }
-/* line 301, ../sass/index.scss */
+/* line 302, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.add-comment textarea.text.onfocus {
   border: 1px solid #eb7350;
 }
-/* line 305, ../sass/index.scss */
+/* line 306, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.add-comment a.comment-btn {
   display: block;
   text-decoration: none;
@@ -415,35 +416,33 @@ div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   outline: none;
 }
-/* line 324, ../sass/index.scss */
+/* line 325, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.add-comment a.comment-btn:hover {
   background-color: #eb7350;
 }
-/* line 330, ../sass/index.scss */
+/* line 331, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment {
   padding-bottom: 5px;
   border-top: 1px solid #d9d9d9;
 }
-div.container-box a img{
-  float: left;
-}
-/* line 334, ../sass/index.scss */
+/* line 335, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment:first-child {
   padding-top: 15px;
 }
-/* line 337, ../sass/index.scss */
+/* line 338, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment:not(:first-child) {
   padding-top: 10px;
 }
-/* line 341, ../sass/index.scss */
+/* line 342, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment img.head {
   display: inline-block;
   width: 30px;
   height: 30px;
   margin-right: 10px;
   vertical-align: top;
+  float: left;
 }
-/* line 349, ../sass/index.scss */
+/* line 351, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment div.info-box {
   display: inline-block;
   width: 485px;
@@ -451,26 +450,26 @@ div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.
   line-height: 20px;
   color: #333;
 }
-/* line 356, ../sass/index.scss */
+/* line 358, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment div.info-box span.text {
   display: block;
   width: 100%;
   word-break: break-all;
 }
-/* line 361, ../sass/index.scss */
+/* line 363, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment div.info-box span.text span.fir-name {
   color: #32a2d5;
 }
-/* line 366, ../sass/index.scss */
+/* line 368, ../sass/index.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment div.info-box span.create-time {
   color: #808080;
 }
-/* line 377, ../sass/index.scss */
+/* line 379, ../sass/index.scss */
 div.container-box div.cont-rit {
   padding: 0 5px;
   margin-bottom: 20px;
 }
-/* line 381, ../sass/index.scss */
+/* line 383, ../sass/index.scss */
 div.container-box div.cont-rit div.personal {
   background-color: #fff;
   margin-bottom: 10px;
@@ -480,12 +479,12 @@ div.container-box div.cont-rit div.personal {
   border-radius: 3px;
   overflow: hidden;
 }
-/* line 388, ../sass/index.scss */
+/* line 390, ../sass/index.scss */
 div.container-box div.cont-rit div.personal img.background-img {
   width: 100%;
   height: 75px;
 }
-/* line 393, ../sass/index.scss */
+/* line 395, ../sass/index.scss */
 div.container-box div.cont-rit div.personal div.head-box {
   width: 65px;
   height: 65px;
@@ -499,12 +498,12 @@ div.container-box div.cont-rit div.personal div.head-box {
   top: 30px;
   left: 128px;
 }
-/* line 404, ../sass/index.scss */
+/* line 406, ../sass/index.scss */
 div.container-box div.cont-rit div.personal div.head-box img.user-head {
   width: 100%;
   height: 100%;
 }
-/* line 410, ../sass/index.scss */
+/* line 412, ../sass/index.scss */
 div.container-box div.cont-rit div.personal span.user-name {
   display: block;
   color: #333;
@@ -515,56 +514,56 @@ div.container-box div.cont-rit div.personal span.user-name {
   line-height: 16px;
   font-weight: bold;
 }
-/* line 421, ../sass/index.scss */
+/* line 423, ../sass/index.scss */
 div.container-box div.cont-rit div.personal div.info {
   width: 100%;
   padding: 9px 16px;
 }
-/* line 425, ../sass/index.scss */
+/* line 427, ../sass/index.scss */
 div.container-box div.cont-rit div.personal div.info div.item {
   width: 31%;
   display: inline-block;
 }
-/* line 429, ../sass/index.scss */
+/* line 431, ../sass/index.scss */
 div.container-box div.cont-rit div.personal div.info div.item:not(:last-child) {
   border-right: 1px solid #d9d9d9;
 }
-/* line 433, ../sass/index.scss */
+/* line 435, ../sass/index.scss */
 div.container-box div.cont-rit div.personal div.info div.item a {
   text-decoration: none;
   outline: none;
 }
-/* line 437, ../sass/index.scss */
+/* line 439, ../sass/index.scss */
 div.container-box div.cont-rit div.personal div.info div.item a span {
   display: block;
   width: 100%;
   text-align: center;
 }
-/* line 442, ../sass/index.scss */
+/* line 444, ../sass/index.scss */
 div.container-box div.cont-rit div.personal div.info div.item a span.num {
   color: #333;
   font-size: 18px;
   line-height: 20px;
   font-weight: bold;
 }
-/* line 449, ../sass/index.scss */
+/* line 451, ../sass/index.scss */
 div.container-box div.cont-rit div.personal div.info div.item a span.text {
   color: #808080;
   font-size: 12px;
   line-height: 14px;
 }
-/* line 458, ../sass/index.scss */
+/* line 460, ../sass/index.scss */
 div.container-box div.cont-rit div.personal div.info div.item a:hover span {
   color: #32a2d5;
 }
-/* line 467, ../sass/index.scss */
+/* line 469, ../sass/index.scss */
 div.container-box div.cont-rit div.notice {
   background-color: #fff;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 471, ../sass/index.scss */
+/* line 473, ../sass/index.scss */
 div.container-box div.cont-rit div.notice span.head {
   display: block;
   width: 100%;
@@ -575,29 +574,29 @@ div.container-box div.cont-rit div.notice span.head {
   font-weight: bold;
   border-bottom: 1px solid #d9d9d9;
 }
-/* line 482, ../sass/index.scss */
+/* line 484, ../sass/index.scss */
 div.container-box div.cont-rit div.notice div.notice-box {
   width: 100%;
   padding: 16px;
 }
-/* line 486, ../sass/index.scss */
+/* line 488, ../sass/index.scss */
 div.container-box div.cont-rit div.notice div.notice-box a {
   text-decoration: none;
   display: block;
   width: 100%;
   color: #32a2d5;
 }
-/* line 492, ../sass/index.scss */
+/* line 494, ../sass/index.scss */
 div.container-box div.cont-rit div.notice div.notice-box a:hover {
   color: #32a2d5;
 }
-/* line 496, ../sass/index.scss */
+/* line 498, ../sass/index.scss */
 div.container-box div.cont-rit div.notice div.notice-box a span {
   height: 30px;
   line-height: 30px;
   font-size: 12px;
 }
-/* line 505, ../sass/index.scss */
+/* line 507, ../sass/index.scss */
 div.container-box div.cont-rit div.game {
   width: 100%;
   margin-top: 20px;
@@ -607,12 +606,12 @@ div.container-box div.cont-rit div.game {
   border-radius: 3px;
   overflow: hidden;
 }
-/* line 512, ../sass/index.scss */
+/* line 514, ../sass/index.scss */
 div.container-box div.cont-rit div.game object {
   margin: 0 auto;
 }
 
-/* line 519, ../sass/index.scss */
+/* line 521, ../sass/index.scss */
 a.to-top {
   display: block;
   text-decoration: none;
@@ -625,7 +624,7 @@ a.to-top {
   position: fixed;
   background-color: #60a6c6;
 }
-/* line 531, ../sass/index.scss */
+/* line 533, ../sass/index.scss */
 a.to-top span.top-icon {
   color: #fff;
   display: block;
@@ -635,55 +634,67 @@ a.to-top span.top-icon {
   text-align: center;
   width: 45px;
 }
-/* line 541, ../sass/index.scss */
+/* line 543, ../sass/index.scss */
 a.to-top:hover {
   opacity: 1;
 }
 
-/*!* line 547, ../sass/index.scss *!*/
-/*ul.pagination {*/
-  /*width: 100%;*/
-  /*text-align: center;*/
-/*}*/
-/*!* line 551, ../sass/index.scss *!*/
-/*ul.pagination li {*/
-  /*display: inline-block;*/
-/*}*/
-/*!* line 554, ../sass/index.scss *!*/
-ul.pagination li.goto a {
+/* line 549, ../sass/index.scss */
+ul.pagination {
+  width: 100%;
+  text-align: center;
+}
+/* line 553, ../sass/index.scss */
+ul.pagination li {
+  display: inline-block;
+}
+/* line 556, ../sass/index.scss */
+ul.pagination li a {
   background-color: transparent;
   cursor: default;
   border: none;
-  height: 36px;
   color: #23527c;
 }
- /*line 560, ../sass/index.scss */
+/* line 562, ../sass/index.scss */
 ul.pagination li a:hover {
   background-color: transparent;
 }
-/* line 564, ../sass/index.scss */
+/* line 566, ../sass/index.scss */
 ul.pagination li a.arrow {
   width: 35px;
 }
-/* line 567, ../sass/index.scss */
+/* line 569, ../sass/index.scss */
 ul.pagination li a.arrow:hover {
   color: #fff;
   cursor: pointer;
 }
-/* line 574, ../sass/index.scss */
+/* line 576, ../sass/index.scss */
 ul.pagination li.goto {
-  background: none;
   height: 34px;
   margin-left: 20px;
 }
-/* line 578, ../sass/index.scss */
+/* line 580, ../sass/index.scss */
 ul.pagination li.goto input {
   width: 70px;
 }
-/* line 582, ../sass/index.scss */
+/* line 584, ../sass/index.scss */
 ul.pagination li.goto button {
   width: 80px;
-  height: 30px;
+  height: 26px;
   margin-left: 20px;
   font-size: 14px;
+}
+
+/* line 594, ../sass/index.scss */
+div.hot-blog {
+  position: absolute;
+  top: 18px;
+  right: 30px;
+}
+/* line 599, ../sass/index.scss */
+div.hot-blog span {
+  color: #ff8140;
+  font-size: 20px;
+  height: 22px;
+  line-height: 22px;
 }

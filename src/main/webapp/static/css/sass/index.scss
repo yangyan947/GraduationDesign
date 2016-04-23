@@ -158,6 +158,7 @@ div.container-box {
         background-color: #fff;
         @include border-radius(3px);
         overflow: hidden;
+        position: relative;
 
         div.item-top {
           padding: 20px 20px 10px;
@@ -587,5 +588,18 @@ ul.pagination {
         font-size: 14px;
       }
     }
+  }
+}
+
+div.hot-blog {
+  position: absolute;
+  top: 18px;
+  right: 30px;
+
+  span {
+      color: #ff8140;
+      font-size: 20px;
+      height: 22px;
+      line-height: 22px;
   }
 }

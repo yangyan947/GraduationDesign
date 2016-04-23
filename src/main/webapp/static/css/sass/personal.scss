@@ -328,8 +328,8 @@ div.container-box {
           outline: none;
           text-decoration: none;
           position: absolute;
-          top: 25px;
-          right: 15px;
+          top: 17px;
+          right: 50px;
 
           &:hover {
             color: #32a2d5;
@@ -959,5 +959,63 @@ a.to-top {
 
   &:hover {
     opacity: 1;
+  }
+}
+
+div.hot-blog {
+  position: absolute;
+  top: 18px;
+  right: 30px;
+
+  span {
+    color: #ff8140;
+    font-size: 20px;
+    height: 22px;
+    line-height: 22px;
+  }
+}
+
+ul.pagination {
+  width: 100%;
+  text-align: center;
+
+  li {
+    display: inline-block;
+
+    a {
+      background-color: transparent;
+      cursor: default;
+      border: none;
+      color: #23527c;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      &.arrow {
+        width: 35px;
+
+        &:hover {
+          color: #fff;
+          cursor: pointer;
+        }
+      }
+    }
+
+    &.goto {
+      height: 34px;
+      margin-left: 20px;
+
+      input {
+        width: 70px;
+      }
+
+      button {
+        width: 80px;
+        height: 26px;
+        margin-left: 20px;
+        font-size: 14px;
+      }
+    }
   }
 }

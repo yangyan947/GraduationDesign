@@ -418,8 +418,8 @@ div.container-box div.cont-left div.fri-news div.news-item a.dele-news {
   outline: none;
   text-decoration: none;
   position: absolute;
-  top: 25px;
-  right: 15px;
+  top: 17px;
+  right: 50px;
 }
 /* line 334, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item a.dele-news:hover {
@@ -602,9 +602,6 @@ div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.
   padding-bottom: 5px;
   border-top: 1px solid #d9d9d9;
 }
-div.container-box a img{
-  float: left;
-}
 /* line 511, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment:first-child {
   padding-top: 15px;
@@ -620,8 +617,9 @@ div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.
   height: 30px;
   margin-right: 10px;
   vertical-align: top;
+  float: left;
 }
-/* line 526, ../sass/personal.scss */
+/* line 527, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment div.info-box {
   display: inline-block;
   width: 485px;
@@ -629,21 +627,21 @@ div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.
   line-height: 20px;
   color: #333;
 }
-/* line 533, ../sass/personal.scss */
+/* line 534, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment div.info-box span.text {
   display: block;
   width: 100%;
   word-break: break-all;
 }
-/* line 538, ../sass/personal.scss */
+/* line 539, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment div.info-box span.text span.fir-name {
   color: #32a2d5;
 }
-/* line 543, ../sass/personal.scss */
+/* line 544, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-news div.news-item div.comment-list div.comment-rit div.fri-comment div.info-box span.create-time {
   color: #808080;
 }
-/* line 553, ../sass/personal.scss */
+/* line 554, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list {
   padding: 10px 20px 20px;
   background-color: #fff;
@@ -651,11 +649,11 @@ div.container-box div.cont-left div.fri-list {
   overflow: hidden;
   margin-bottom: 20px;
 }
-/* line 560, ../sass/personal.scss */
+/* line 561, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list.follow-list, div.container-box div.cont-left div.fri-list.fans-list {
   display: none;
 }
-/* line 564, ../sass/personal.scss */
+/* line 565, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list span.title {
   display: block;
   width: 100%;
@@ -666,16 +664,16 @@ div.container-box div.cont-left div.fri-list span.title {
   line-height: 40px;
   font-weight: bold;
 }
-/* line 575, ../sass/personal.scss */
+/* line 576, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item {
   width: 100%;
   padding: 20px 0;
 }
-/* line 579, ../sass/personal.scss */
+/* line 580, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item:not(:last-child) {
   border-bottom: 1px solid #f2f2f5;
 }
-/* line 583, ../sass/personal.scss */
+/* line 584, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.img-box {
   display: inline-block;
   width: 50px;
@@ -687,17 +685,17 @@ div.container-box div.cont-left div.fri-list div.item div.img-box {
   overflow: hidden;
   vertical-align: top;
 }
-/* line 592, ../sass/personal.scss */
+/* line 593, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.img-box img.head {
   width: 50px;
   height: 50px;
 }
-/* line 598, ../sass/personal.scss */
+/* line 599, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info {
   display: inline-block;
   width: 545px;
 }
-/* line 602, ../sass/personal.scss */
+/* line 603, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info span.name {
   display: block;
   font-size: 14px;
@@ -707,36 +705,36 @@ div.container-box div.cont-left div.fri-list div.item div.info span.name {
   margin-bottom: 5px;
   font-weight: bold;
 }
-/* line 612, ../sass/personal.scss */
+/* line 613, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info div.num-box {
   width: 100%;
   height: 20px;
 }
-/* line 616, ../sass/personal.scss */
+/* line 617, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info div.num-box span {
   font-size: 12px;
   color: #333;
 }
-/* line 620, ../sass/personal.scss */
+/* line 621, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info div.num-box span.num-item {
   display: inline-block;
   height: 20px;
   line-height: 20px;
   padding-right: 15px;
 }
-/* line 626, ../sass/personal.scss */
+/* line 627, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info div.num-box span.num-item:not(:first-child) {
   padding-left: 15px;
 }
-/* line 630, ../sass/personal.scss */
+/* line 631, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info div.num-box span.num-item:not(:last-child) {
   border-right: 1px solid #f2f2f5;
 }
-/* line 635, ../sass/personal.scss */
+/* line 636, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info div.num-box span.num {
   color: #32a2d5;
 }
-/* line 641, ../sass/personal.scss */
+/* line 642, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info div.introduction {
   width: 100%;
   margin-top: 8px;
@@ -744,11 +742,11 @@ div.container-box div.cont-left div.fri-list div.item div.info div.introduction 
   line-height: 20px;
   color: #808080;
 }
-/* line 648, ../sass/personal.scss */
+/* line 649, ../sass/personal.scss */
 div.container-box div.cont-left div.fri-list div.item div.info div.introduction span.intro {
   color: #333;
 }
-/* line 657, ../sass/personal.scss */
+/* line 658, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info {
   padding: 10px 20px 20px;
   background-color: #fff;
@@ -758,7 +756,7 @@ div.container-box div.cont-left div.edit-per-info {
   position: relative;
   display: none;
 }
-/* line 666, ../sass/personal.scss */
+/* line 667, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info span.title {
   display: block;
   width: 100%;
@@ -769,33 +767,33 @@ div.container-box div.cont-left div.edit-per-info span.title {
   line-height: 40px;
   font-weight: bold;
 }
-/* line 677, ../sass/personal.scss */
+/* line 678, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box {
   width: 100%;
   padding: 30px 20px;
 }
-/* line 681, ../sass/personal.scss */
+/* line 682, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box form {
   position: relative;
   padding-bottom: 40px;
 }
-/* line 685, ../sass/personal.scss */
+/* line 686, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box form.head-form {
   padding-bottom: 0;
 }
-/* line 688, ../sass/personal.scss */
+/* line 689, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box form.head-form button.btn-item {
   bottom: 25px;
 }
-/* line 693, ../sass/personal.scss */
+/* line 694, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box form:not(:last-child) {
   border-bottom: 2px solid #f2f2f5;
 }
-/* line 697, ../sass/personal.scss */
+/* line 698, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box form:not(:first-child) {
   padding-top: 20px;
 }
-/* line 701, ../sass/personal.scss */
+/* line 702, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box form button.btn-item {
   position: absolute;
   right: 90px;
@@ -806,16 +804,16 @@ div.container-box div.cont-left div.edit-per-info div.item-box form button.btn-i
   width: 50px;
   float: right;
 }
-/* line 713, ../sass/personal.scss */
+/* line 714, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item.fixed {
   height: 50px;
 }
-/* line 717, ../sass/personal.scss */
+/* line 718, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item {
   width: 100%;
   vertical-align: middle;
 }
-/* line 721, ../sass/personal.scss */
+/* line 722, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item span.tit {
   color: #808080;
   display: inline-block;
@@ -825,7 +823,7 @@ div.container-box div.cont-left div.edit-per-info div.item-box div.item span.tit
   text-align: right;
   width: 75px;
 }
-/* line 731, ../sass/personal.scss */
+/* line 732, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item span.email {
   display: inline-block;
   width: 300px;
@@ -835,11 +833,11 @@ div.container-box div.cont-left div.edit-per-info div.item-box div.item span.ema
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 741, ../sass/personal.scss */
+/* line 742, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item input {
   display: inline-block;
 }
-/* line 744, ../sass/personal.scss */
+/* line 745, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item input.edit {
   width: 400px;
   color: #333;
@@ -849,15 +847,15 @@ div.container-box div.cont-left div.edit-per-info div.item-box div.item input.ed
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 755, ../sass/personal.scss */
+/* line 756, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item label {
   width: 100px;
 }
-/* line 758, ../sass/personal.scss */
+/* line 759, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item label input {
   margin-right: 10px;
 }
-/* line 763, ../sass/personal.scss */
+/* line 764, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item textarea.introduction {
   width: 400px;
   height: 70px;
@@ -870,20 +868,20 @@ div.container-box div.cont-left div.edit-per-info div.item-box div.item textarea
   word-wrap: break-word;
   padding: 4px 10px;
 }
-/* line 776, ../sass/personal.scss */
+/* line 777, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item.sex {
   line-height: 40px;
 }
-/* line 780, ../sass/personal.scss */
+/* line 781, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item.introduction {
   height: 70px;
 }
-/* line 783, ../sass/personal.scss */
+/* line 784, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info div.item-box div.item.introduction span.tit {
   vertical-align: top;
   margin-top: 10px;
 }
-/* line 791, ../sass/personal.scss */
+/* line 792, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info a.edit-btn {
   display: block;
   text-decoration: none;
@@ -903,16 +901,16 @@ div.container-box div.cont-left div.edit-per-info a.edit-btn {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   outline: none;
 }
-/* line 810, ../sass/personal.scss */
+/* line 811, ../sass/personal.scss */
 div.container-box div.cont-left div.edit-per-info a.edit-btn:hover {
   background-color: #eb7350;
 }
-/* line 817, ../sass/personal.scss */
+/* line 818, ../sass/personal.scss */
 div.container-box div.cont-rit {
   padding: 0 5px;
   margin-bottom: 20px;
 }
-/* line 821, ../sass/personal.scss */
+/* line 822, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal {
   background-color: #fff;
   margin-bottom: 10px;
@@ -922,56 +920,56 @@ div.container-box div.cont-rit div.personal {
   border-radius: 3px;
   overflow: hidden;
 }
-/* line 828, ../sass/personal.scss */
+/* line 829, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal div.info {
   width: 100%;
   padding: 9px 16px;
 }
-/* line 832, ../sass/personal.scss */
+/* line 833, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal div.info div.item {
   width: 31%;
   display: inline-block;
 }
-/* line 836, ../sass/personal.scss */
+/* line 837, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal div.info div.item:not(:last-child) {
   border-right: 1px solid #d9d9d9;
 }
-/* line 840, ../sass/personal.scss */
+/* line 841, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal div.info div.item a {
   text-decoration: none;
   outline: none;
 }
-/* line 844, ../sass/personal.scss */
+/* line 845, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal div.info div.item a span {
   display: block;
   width: 100%;
   text-align: center;
 }
-/* line 849, ../sass/personal.scss */
+/* line 850, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal div.info div.item a span.num {
   color: #333;
   font-size: 18px;
   line-height: 30px;
   font-weight: bold;
 }
-/* line 856, ../sass/personal.scss */
+/* line 857, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal div.info div.item a span.text {
   color: #808080;
   font-size: 12px;
   line-height: 14px;
 }
-/* line 865, ../sass/personal.scss */
+/* line 866, ../sass/personal.scss */
 div.container-box div.cont-rit div.personal div.info div.item a:hover span {
   color: #32a2d5;
 }
-/* line 874, ../sass/personal.scss */
+/* line 875, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info {
   background-color: #fff;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 878, ../sass/personal.scss */
+/* line 879, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info span.head {
   display: block;
   width: 100%;
@@ -982,39 +980,39 @@ div.container-box div.cont-rit div.per-info span.head {
   font-weight: bold;
   border-bottom: 1px solid #d9d9d9;
 }
-/* line 889, ../sass/personal.scss */
+/* line 890, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info ul.info-box {
   width: 100%;
   padding: 16px;
 }
-/* line 893, ../sass/personal.scss */
+/* line 894, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info ul.info-box li {
   font-size: 12px;
   color: #808080;
   width: 100%;
   line-height: 30px;
 }
-/* line 899, ../sass/personal.scss */
+/* line 900, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info ul.info-box li span.tit {
   letter-spacing: 10px;
   display: inline-block;
   width: 60px;
   vertical-align: top;
 }
-/* line 906, ../sass/personal.scss */
+/* line 907, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info ul.info-box li span.info {
   color: #333;
   display: inline-block;
   width: 225px;
 }
-/* line 914, ../sass/personal.scss */
+/* line 915, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info div.edit {
   width: 100%;
   height: 40px;
   line-height: 40px;
   border-top: 1px solid #d9d9d9;
 }
-/* line 920, ../sass/personal.scss */
+/* line 921, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info div.edit a.info-edit {
   display: block;
   text-decoration: none;
@@ -1023,12 +1021,12 @@ div.container-box div.cont-rit div.per-info div.edit a.info-edit {
   color: #333;
   outline: none;
 }
-/* line 928, ../sass/personal.scss */
+/* line 929, ../sass/personal.scss */
 div.container-box div.cont-rit div.per-info div.edit a.info-edit:hover {
   color: #32a2d5;
 }
 
-/* line 937, ../sass/personal.scss */
+/* line 938, ../sass/personal.scss */
 a.to-top {
   display: block;
   text-decoration: none;
@@ -1041,7 +1039,7 @@ a.to-top {
   position: fixed;
   background-color: #60a6c6;
 }
-/* line 949, ../sass/personal.scss */
+/* line 950, ../sass/personal.scss */
 a.to-top span.top-icon {
   color: #fff;
   display: block;
@@ -1051,7 +1049,67 @@ a.to-top span.top-icon {
   text-align: center;
   width: 45px;
 }
-/* line 959, ../sass/personal.scss */
+/* line 960, ../sass/personal.scss */
 a.to-top:hover {
   opacity: 1;
+}
+
+/* line 965, ../sass/personal.scss */
+div.hot-blog {
+  position: absolute;
+  top: 18px;
+  right: 30px;
+}
+/* line 970, ../sass/personal.scss */
+div.hot-blog span {
+  color: #ff8140;
+  font-size: 20px;
+  height: 22px;
+  line-height: 22px;
+}
+
+/* line 978, ../sass/personal.scss */
+ul.pagination {
+  width: 100%;
+  text-align: center;
+}
+/* line 982, ../sass/personal.scss */
+ul.pagination li {
+  display: inline-block;
+}
+/* line 985, ../sass/personal.scss */
+ul.pagination li a {
+  background-color: transparent;
+  cursor: default;
+  border: none;
+  color: #23527c;
+}
+/* line 991, ../sass/personal.scss */
+ul.pagination li a:hover {
+  background-color: transparent;
+}
+/* line 995, ../sass/personal.scss */
+ul.pagination li a.arrow {
+  width: 35px;
+}
+/* line 998, ../sass/personal.scss */
+ul.pagination li a.arrow:hover {
+  color: #fff;
+  cursor: pointer;
+}
+/* line 1005, ../sass/personal.scss */
+ul.pagination li.goto {
+  height: 34px;
+  margin-left: 20px;
+}
+/* line 1009, ../sass/personal.scss */
+ul.pagination li.goto input {
+  width: 70px;
+}
+/* line 1013, ../sass/personal.scss */
+ul.pagination li.goto button {
+  width: 80px;
+  height: 26px;
+  margin-left: 20px;
+  font-size: 14px;
 }

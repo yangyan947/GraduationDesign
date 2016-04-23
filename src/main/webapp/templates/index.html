@@ -43,7 +43,7 @@
 			<div id="myTabContent" class="tab-content">
 				<div class="tab-pane fade in active" id="home">
 					<div class="news-item" th:each="blog: ${blogPage.getContent()}">
-						<div class="hot-blog">
+						<div th:if="${blog.isHot()}" class="hot-blog">
 							<span class="glyphicon glyphicon-fire"></span>
 						</div>
 						<div class="item-top">
@@ -129,7 +129,7 @@
 				</div>
 				<div class="tab-pane fade" id="attend">
 					<div class="news-item" th:each="blog: ${attendBlogPage.getContent()}">
-						<div class="hot-blog">
+						<div th:if="${blog.isHot()}" class="hot-blog">
 							<span class="glyphicon glyphicon-fire"></span>
 						</div>
 						<div class="item-top">
@@ -250,17 +250,7 @@
 		</div>
 
 		<!--公告栏-->
-		<div class="notice">
-			<span class="head">公告栏</span>
-
-			<div class="notice-box">
-				<a href="http://weibo.com/p/1001603849727862021333?rightmod=1&wvr=6&mod=noticeboard">
-					<span class="tit">《​关于色情信息处置标准的公告》</span>
-				</a>
-				<a href="http://news.sina.com.cn/c/2013-08-14/154027948112.shtml?rightmod=1&wvr=6">
-					<span class="tit">《首都互联网协会发布坚守七条底线倡议书》</span>
-				</a>
-			</div>
+		<div class="notice" th:include="pages/common/notice :: notice">
 		</div>
 
 		<div class="game">

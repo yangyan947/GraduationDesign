@@ -92,6 +92,9 @@ public class Blog extends BaseObject {
         }
         return "状态异常";
     }
+    public boolean isHot() {
+        return getStatus().equals("hot");
+    }
     public boolean isPoint(Long userId) {
         List<Long> userIdList = getPointsUsers().stream().map(User::getId).collect(Collectors.toList());
         return userIdList.contains(userId);

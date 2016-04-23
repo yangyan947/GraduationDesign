@@ -37,9 +37,6 @@
 							<button th:attr="data-id=${user.getId()}" data-status="normal"
 											type="button" class="btn btn-success">正常
 							</button>
-							<button th:attr="data-id=${user.getId()}" data-status="hot"
-											type="button" class="btn btn-danger">热门
-							</button>
 						</div>
 						<div class="user-name"><p th:text="'昵称 :' + ${user.getNickname()}"></p>
 							<p th:text="'邮箱：' + ${user.getEmail()}"></p>

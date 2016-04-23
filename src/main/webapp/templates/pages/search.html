@@ -93,7 +93,7 @@
 		<div class="fri-news" id="fri-news" style="">
 			<div class="news-item" th:each="blog: ${blogPage.getContent()}">
 
-				<div class="hot-blog">
+				<div  th:if="${blog.isHot()}" class="hot-blog">
 					<span class="glyphicon glyphicon-fire"></span>
 				</div>
 

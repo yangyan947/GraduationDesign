@@ -50,9 +50,6 @@
 							<li class="list-group-item">
 								<a href="/admin/userList?status=freeze">冻结用户</a>
 							</li>
-							<li class="list-group-item">
-								<a href="/admin/userList?status=hot">热门用户</a>
-							</li>
 						</ul>
 					</div>
 				</div>
@@ -86,16 +83,7 @@
 	</div>
 
 	<!--公告栏-->
-	<div class="notice">
-		<span class="head">公告栏</span>
+	<div class="notice" th:include="pages/common/notice :: notice">
 
-		<div class="notice-box">
-			<a href="http://weibo.com/p/1001603849727862021333?rightmod=1&wvr=6&mod=noticeboard">
-				<span class="tit">《​关于色情信息处置标准的公告》</span>
-			</a>
-			<a href="http://news.sina.com.cn/c/2013-08-14/154027948112.shtml?rightmod=1&wvr=6">
-				<span class="tit">《首都互联网协会发布坚守七条底线倡议书》</span>
-			</a>
-		</div>
 	</div>
 </div>

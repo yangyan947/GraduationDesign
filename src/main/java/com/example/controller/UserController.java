@@ -90,7 +90,21 @@ public class UserController {
         }
         return "pages/login";
     }
-
+    //登陆
+    @RequestMapping(value = "/notice1", method = RequestMethod.GET)
+    public String notice1(Model model, @RequestParam(value = "result", defaultValue = "") String result) {
+        if (result != null || result.equals("")) {
+            model.addAttribute("result", result);
+        }
+        return "pages/notice/notice1";
+    }    //登陆
+    @RequestMapping(value = "/notice2", method = RequestMethod.GET)
+    public String notice2(Model model, @RequestParam(value = "result", defaultValue = "") String result) {
+        if (result != null || result.equals("")) {
+            model.addAttribute("result", result);
+        }
+        return "pages/notice/notice2";
+    }
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String loginPost(Model model,
@@ -298,4 +312,5 @@ public class UserController {
         }
         return "/upload" + separator + uuid + ".png";
     }
+
 }

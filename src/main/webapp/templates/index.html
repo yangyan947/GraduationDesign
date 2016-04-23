@@ -54,7 +54,7 @@
 							</div>
 							<div class="item-info">
 								<div class="user-name" th:text="${blog.getUser().getNickname()}"></div>
-								<div class="create-time" th:text="${#dates.format(blog.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></div>
+								<div class="create-time" th:text="${#dates.format(blog.getCreateTime(),'yyyy-MM-dd HH:mm')}"></div>
 								<p class="text" ><p th:utext="${blog.getContext()}"></p></p>
 								<!--图片??-->
 							</div>
@@ -96,7 +96,7 @@
                                     <span th:text="${comment.getContext()}"></span>
                                 </span>
 									<span class="create-time"
-												th:text="${#dates.format(comment.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></span>
+												th:text="${#dates.format(comment.getCreateTime(),'yyyy-MM-dd HH:mm')}"></span>
 										</div>
 									</div>
 
@@ -140,7 +140,7 @@
 							</div>
 							<div class="item-info">
 								<div class="user-name" th:text="${blog.getUser().getNickname()}"></div>
-								<div class="create-time" th:text="${#dates.format(blog.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></div>
+								<div class="create-time" th:text="${#dates.format(blog.getCreateTime(),'yyyy-MM-dd HH:mm')}"></div>
 								<p class="text" ><p th:utext="${blog.getContext()}"></p></p>
 								<!--图片??-->
 							</div>
@@ -182,7 +182,7 @@
                                     <span th:text="${comment.getContext()}"></span>
                                 </span>
 									<span class="create-time"
-												th:text="${#dates.format(comment.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></span>
+												th:text="${#dates.format(comment.getCreateTime(),'yyyy-MM-dd HH:mm')}"></span>
 										</div>
 									</div>
 
@@ -365,7 +365,7 @@
 				return "<div class='fri-comment'>" +
 						"<img src='" + session_user.imgUrl + "' class='head'>" +
 						"<div class='info-box'><span class='text'><span class='fir-name'> " + session_user.nickname + "</span>: " + new_val + "</span>" +
-						"<span class='create-time'> " + new Date().Format('yyyy-MM-dd HH:mm:ss') + "</span></div>" +
+						"<span class='create-time'> " + new Date().Format('yyyy-MM-dd HH:mm') + "</span></div>" +
 						"</div>";
 			}
 
@@ -476,7 +476,7 @@
 				return "<div class='news-item'><div class='item-top'>" +
 						"<div class='user-head'><img src='" + session_user.imgUrl + "' class='head-img'/></div>" +
 						"<div class='item-info'><div class='user-name'>" + session_user.nickname + "</div>" +
-						"<div class='create-time'> " + new Date().Format('yyyy-MM-dd HH:mm:ss') + "</div>" +
+						"<div class='create-time'> " + new Date().Format('yyyy-MM-dd HH:mm') + "</div>" +
 						"<p class='text'>" + info + "</p></div></div>" +
 
 						"<div class='item-botm'>" +

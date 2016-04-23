@@ -683,15 +683,16 @@ ul.pagination li.goto button {
   height: 26px;
   margin-left: 20px;
   font-size: 14px;
+  line-height: 15px;
 }
 
-/* line 594, ../sass/index.scss */
+/* line 595, ../sass/index.scss */
 div.hot-blog {
   position: absolute;
   top: 18px;
   right: 30px;
 }
-/* line 599, ../sass/index.scss */
+/* line 600, ../sass/index.scss */
 div.hot-blog span {
   color: #ff8140;
   font-size: 20px;

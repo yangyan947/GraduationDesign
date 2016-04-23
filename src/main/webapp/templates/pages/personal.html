@@ -153,7 +153,7 @@
                     </div>
                     <div class="item-info">
                         <div class="user-name" th:text="${blog.getUser().getNickname()}"></div>
-                        <div class="create-time" th:text="${#dates.format(blog.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></div>
+                        <div class="create-time" th:text="${#dates.format(blog.getCreateTime(),'yyyy-MM-dd HH:mm')}"></div>
                         <p class="text" th:utext="${blog.getContext()}"></p>
                     </div>
                 </div>
@@ -194,7 +194,7 @@
                                     <span class="fir-name" th:text="${comment.getUser().getNickname()}"></span>:&nbsp
                                     <span th:text="${comment.getContext()}"></span>
                                 </span>
-                                    <span class="create-time" th:text="${#dates.format(comment.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></span>
+                                    <span class="create-time" th:text="${#dates.format(comment.getCreateTime(),'yyyy-MM-dd HH:mm')}"></span>
                                 </div>
                             </div>
 
@@ -624,7 +624,7 @@
                 return "<div class='fri-comment'>" +
                     "<img src='" + session_user.imgUrl + "' class='head'>" +
                     "<div class='info-box'><span class='text'><span class='fir-name'> " + session_user.nickname + "</span>: " + new_val + "</span>" +
-                    "<span class='create-time'> " + new Date().Format('yyyy-MM-dd HH:mm:ss') + "</span></div>" +
+                    "<span class='create-time'> " + new Date().Format('yyyy-MM-dd HH:mm') + "</span></div>" +
                     "</div>";
             }
 
